@@ -41,3 +41,140 @@ This project is indexed by GitNexus as **twoway-douzo** (920 symbols, 1456 relat
 | Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
 
 <!-- gitnexus:end -->
+
+---
+
+## Workflow (MANDATORY)
+
+**Mọi thay đổi code đều phải đi qua intake gate trước.**  
+Repo này **không dùng GitHub Issues** (`has_issues: false`). Source-of-truth cho task state là **`harness.db`** (SQLite, local, `.gitignore`d).
+
+### Workflow Overview
+
+```
+User prompt
+    |
+    v
+1. Classify input type (docs/FEATURE_INTAKE.md)
+2. Record intake: scripts/bin/harness-cli intake ...
+3. Identify story(s) from matrix: scripts/bin/harness-cli query matrix
+4. Risk lane → determine depth
+5. Branch theo docs/BRANCHING.md
+6. Implement → commit theo Conventional Commits
+7. Verify: story verify + proof booleans
+8. Record trace: scripts/bin/harness-cli trace ...
+9. Merge PR theo docs/BRANCHING.md
+10. Cập nhật harness: story update --status implemented
+```
+
+### 1. Intake Gate
+
+Mỗi task bắt đầu bằng intake classification. Xem `docs/FEATURE_INTAKE.md` để xác định input type và risk lane.
+
+```bash
+scripts/bin/harness-cli intake --type "<input-type>" --summary "<text>" --lane <tiny|normal|high-risk>
+```
+
+Input types: `new spec | spec slice | change request | new initiative | maintenance request | harness improvement`.
+
+Lanes: `tiny` (patch trực tiếp), `normal` (story + validation), `high-risk` (execplan + design + decision records + human confirmation).
+
+### 2. Task Tracking (No GitHub Issues)
+
+Repo không dùng GitHub Issues. Thay thế bằng:
+
+| Thay thế | Bằng |
+|---|---|
+| Issue để track task | Story row trong harness.db |
+| Issue checklist | story contract trong docs/stories/ |
+| Auto-close khi merge | Branch cleanup thủ công + harness update |
+| PR body "Closes #123" | PR body "Story: US-XXX" + link story file |
+
+**Quy tắc:**
+
+- Mỗi US (user story) có row trong `harness.db` với id như `US-001`, `US-002`, ...
+- `scripts/bin/harness-cli query matrix` để xem trạng thái tất cả stories.
+- Story workflow: `planned → implemented → verified` (status trong CLI).
+- Khi bắt đầu story: kiểm tra `scripts/bin/harness-cli query matrix` để biết story đã planned chưa.
+- Khi hoàn thành: update status + chạy verify.
+
+### 3. Branch & Commit
+
+Chi tiết tại `docs/BRANCHING.md`.
+
+```
+main → epic/<id>-<slug> → feat/<us-id>-<slug>
+```
+
+Commit convention:
+
+```
+<type>(<scope>): <subject>
+
+- bullet changes...
+
+Story: US-XXX
+```
+
+### 4. Implementation & Harness Proof
+
+**Trước khi code:**
+- Đọc `docs/BRANCHING.md` để biết branch đích.
+- Với normal/high-risk: tạo story file từ template nếu chưa có.
+
+**Sau khi code:**
+```bash
+scripts/bin/harness-cli story update --id US-XXX --status implemented
+scripts/bin/harness-cli story update --id US-XXX --unit 1 --integration 0 --e2e 0 --platform 0
+scripts/bin/harness-cli story verify US-XXX
+```
+
+### 5. Trace
+
+Mọi task phải ghi trace. Mức depth tùy theo lane (xem `docs/TRACE_SPEC.md`):
+
+| Lane | Trace tier |
+|---|---|
+| Tiny | Minimal |
+| Normal | Standard |
+| High-risk | Detailed |
+
+```bash
+scripts/bin/harness-cli trace \
+  --summary "<what was done>" \
+  --story US-XXX \
+  --outcome completed \
+  --actions "..." \
+  --changed "file1.ts,file2.ts" \
+  --friction "<none or description>"
+```
+
+### 6. Merge & Cleanup
+
+Theo `docs/BRANCHING.md`:
+
+| Tầng | Strategy | Khi nào merge |
+|---|---|---|
+| feat → epic | squash | Sau mỗi story hoàn thành (auto-proceed, không cần hỏi) |
+| epic → main | merge commit | Sau khi tất cả feature trong epic xong (cần user approval) |
+
+### 7. Harness Friction
+
+Nếu phát hiện thiếu sót trong harness (docs stale, thiếu template, quy trình mơ hồ):
+
+```bash
+scripts/bin/harness-cli backlog add --title "<short name>" --pain "<what was hard>"
+```
+
+### 8. Thứ tự ưu tiên khi đọc docs
+
+Khi bắt đầu task mới, đọc theo thứ tự:
+
+1. `CLAUDE.md` hoặc `AGENTS.md` (workflow này)
+2. `docs/BRANCHING.md` (branch & merge rules)
+3. `docs/HARNESS.md` (harness durable layer)
+4. `docs/FEATURE_INTAKE.md` (risk classification)
+5. `docs/TRACE_SPEC.md` (trace quality tiers)
+6. `scripts/bin/harness-cli query matrix` (trạng thái stories hiện tại)
+
+<!-- SYNC NOTICE: CLAUDE.md and AGENTS.md share workflow content when both exist. Edit BOTH together when changing repo workflow rules. Tool-managed blocks (<!-- gitnexus:* -->, <!-- HARNESS:* -->) may be regenerated into only one file by their tools. After running those tools, manually re-sync the other file if needed. -->

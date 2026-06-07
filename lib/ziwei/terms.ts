@@ -126,6 +126,23 @@ export const TERMS: Record<string, TermEntry> = {
   '火星': { vi: 'Hỏa Tinh', zh: '火星' },
   '铃星': { vi: 'Linh Tinh', zh: '铃星' },
 
+  // ── phụ tinh mở rộng (từ algorithm.ts) ──
+  '天官': { vi: 'Thiên Quan', zh: '天官' },
+  '天福': { vi: 'Thiên Phúc', zh: '天福' },
+  '天才': { vi: 'Thiên Tài', zh: '天才' },
+  '天寿': { vi: 'Thiên Thọ', zh: '天寿' },
+  '三台': { vi: 'Tam Thai', zh: '三台' },
+  '八座': { vi: 'Bát Tọa', zh: '八座' },
+  '恩光': { vi: 'Ân Quang', zh: '恩光' },
+  '天贵': { vi: 'Thiên Quý', zh: '天贵' },
+  '台辅': { vi: 'Đài Phụ', zh: '台辅' },
+  '龙池': { vi: 'Long Trì', zh: '龙池' },
+  '凤阁': { vi: 'Phượng Các', zh: '凤阁' },
+  '天空': { vi: 'Thiên Không', zh: '天空' },
+  '旬空': { vi: 'Tuần Không', zh: '旬空' },
+  '截路': { vi: 'Tiệt Lộ', zh: '截路' },
+  '大耗': { vi: 'Đại Hao', zh: '大耗' },
+
   // ── sao đặc biệt ──
   '天伤': { vi: 'Thiên Thương', zh: '天伤' },
   '天使': { vi: 'Thiên Sứ', zh: '天使' },
@@ -147,6 +164,7 @@ export const TERMS: Record<string, TermEntry> = {
 
   // ── UI labels trong TopBar ──
   '返回': { vi: 'Quay Lại', zh: '返回' },
+  '紫微斗数': { vi: 'Tử Vi Đẩu Số', zh: '紫微斗数' },
   '紫微命盘': { vi: 'Tử Vi Mệnh Bàn', zh: '紫微命盘' },
   '分享': { vi: 'Chia Sẻ', zh: '分享' },
   '打印': { vi: 'In', zh: '打印' },
@@ -181,6 +199,27 @@ export const TERMS: Record<string, TermEntry> = {
   '中性偏吉': { vi: 'Trung Tính Thiên Cát', zh: '中性偏吉' },
   '凶中带吉': { vi: 'Hung Trung Đới Cát', zh: '凶中带吉' },
   '中性': { vi: 'Trung Tính', zh: '中性' },
+
+  // ── UI labels từ ChartSummary ──
+  '命格总览': { vi: 'Mệnh Cách Tổng Lãm', zh: '命格总览' },
+  '命宫主星': { vi: 'Mệnh Cung Chủ Tinh', zh: '命宫主星' },
+  '性格特质': { vi: 'Tính Cách Đặc Chất', zh: '性格特质' },
+  '五行局': { vi: 'Ngũ Hành Cục', zh: '五行局' },
+  '当前大限': { vi: 'Đương Tiền Đại Hạn', zh: '当前大限' },
+  '岁': { vi: 'tuổi', zh: '岁' },
+  '公历': { vi: 'Dương Lịch', zh: '公历' },
+  '农历': { vi: 'Âm Lịch', zh: '农历' },
+  '闰': { vi: 'Nhuận', zh: '闰' },
+  '日': { vi: 'ngày', zh: '日' },
+  '时': { vi: 'giờ', zh: '时' },
+  '本命四化': { vi: 'Bản Mệnh Tứ Hóa', zh: '本命四化' },
+  '格局识别': { vi: 'Cách Cục Nhận Thức', zh: '格局识别' },
+  '个格局': { vi: ' cách cục', zh: '个格局' },
+  '必须': { vi: 'Cần Thiết', zh: '必须' },
+  '加分': { vi: 'Cộng Điểm', zh: '加分' },
+  '破格': { vi: 'Phá Cách', zh: '破格' },
+  '出处': { vi: 'Xuất Xứ', zh: '出处' },
+  '大限运程': { vi: 'Đại Hạn Vận Trình', zh: '大限运程' },
 };
 
 /**

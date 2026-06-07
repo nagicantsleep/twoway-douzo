@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "chart": "Lá số",
+    "heming": "Hợp hôn",
+    "knowledge": "Tri thức",
+    "library": "Kinh điển"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "close": "Đóng"
+  }
+}

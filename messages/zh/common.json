@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "首页",
+    "chart": "命盘",
+    "heming": "合婚",
+    "knowledge": "知识",
+    "library": "经典"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "retry": "重试",
+    "close": "关闭"
+  }
+}

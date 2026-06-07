@@ -7,3 +7,10 @@ dist/
 *.tsbuildinfo
 .DS_Store
 .gitnexus
+.omc/state/agent-*.jsonl
+.omc/state/sessions/*/hud-state.json
+.omc/state/sessions/*/last-tool-error-state.json
+.omc/state/sessions/*/mission-state.json
+.omc/state/sessions/*/pre-tool-advisory-throttle.json
+.omc/state/sessions/*/subagent-tracking-state.json
+.omc/state/sessions/*/session-started.json

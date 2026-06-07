@@ -2,7 +2,7 @@
  * /library/search?q=xxx — 搜索结果页
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { searchClassics, getParagraphById } from '@/lib/classics';
 
 export const metadata = {

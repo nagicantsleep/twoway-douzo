@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import BirthForm, { type BirthFormState } from '@/components/BirthForm';
 import TopBar, { type TimeView } from '@/components/chart/TopBar';
 import ChartBoard from '@/components/chart/ChartBoard';

@@ -12,7 +12,7 @@
  *  - generateStaticParams 静态生成，零运行时开销
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import type { TopicKey } from '@/lib/ziwei/db-analysis';
 import {
@@ -24,6 +24,7 @@ import {
   STAR_TO_SLUG,
   SLUG_TO_STAR,
 } from '@/lib/seo/knowledge';
+import { routing } from '@/i18n/routing';
 
 // 允许动态参数：如果某个 star/topic 组合不在 generateStaticParams 列表中
 // 也允许运行时按需渲染，避免中文 URL 编码问题导致 404
@@ -32,10 +33,12 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   const routes = getAllKnowledgeRoutes();
   // URL 用拼音 slug 替代中文，避开 Vercel/CDN 中文路由边界问题
-  return routes.map(r => ({ star: r.slug, topic: r.topic }));
+  return routing.locales.flatMap(locale =>
+    routes.map(r => ({ locale, star: r.slug, topic: r.topic }))
+  );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ star: string; topic: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; star: string; topic: string }> }) {
   const { star: slug, topic } = await params;
   const star = SLUG_TO_STAR[slug];
   if (!star) return {};
@@ -53,10 +56,13 @@ export async function generateMetadata({ params }: { params: Promise<{ star: str
       title,
       description,
       type: 'article',
-      url: `https://wdyziweidoushu666.com/knowledge/${slug}/${topic}`,
+      url: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
     },
     alternates: {
-      canonical: `https://wdyziweidoushu666.com/knowledge/${slug}/${topic}`,
+      languages: {
+        vi: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
+        zh: `https://wdyziweidoushu666.com/zh/knowledge/${slug}/${topic}`,
+      },
     },
     keywords: [
       '紫微斗数', '倪海夏', star, data.palaceName, data.topicLabel,
@@ -92,7 +98,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
     },
     datePublished: '2026-04-28',
     dateModified: '2026-04-28',
-    mainEntityOfPage: `https://wdyziweidoushu666.com/knowledge/${slug}/${topic}`,
+    mainEntityOfPage: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
     articleSection: '紫微斗数 · 倪海夏体系',
     keywords: [`紫微斗数`, star, data.palaceName, data.topicLabel].join(', '),
   };

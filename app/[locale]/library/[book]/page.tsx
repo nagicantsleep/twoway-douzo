@@ -2,15 +2,18 @@
  * /library/[book] — 单部古籍目录页
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import { ALL_BOOKS, getBookBySlug } from '@/lib/classics';
+import { routing } from '@/i18n/routing';
 
 export async function generateStaticParams() {
-  return ALL_BOOKS.map(b => ({ book: b.slug }));
+  return routing.locales.flatMap(locale =>
+    ALL_BOOKS.map(b => ({ locale, book: b.slug }))
+  );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ book: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; book: string }> }) {
   const { book: slug } = await params;
   const book = getBookBySlug(slug);
   if (!book) return {};
@@ -20,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ book: str
   };
 }
 
-export default async function BookPage({ params }: { params: Promise<{ book: string }> }) {
+export default async function BookPage({ params }: { params: Promise<{ locale: string; book: string }> }) {
   const { book: slug } = await params;
   const book = getBookBySlug(slug);
   if (!book) notFound();

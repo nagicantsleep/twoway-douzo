@@ -2,17 +2,20 @@
  * /library/[book]/[chapter] — 单章节阅读页
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import { ALL_BOOKS, getChapter } from '@/lib/classics';
+import { routing } from '@/i18n/routing';
 
 export async function generateStaticParams() {
-  return ALL_BOOKS.flatMap(b =>
-    b.chapters.map((_, i) => ({ book: b.slug, chapter: String(i) }))
+  return routing.locales.flatMap(locale =>
+    ALL_BOOKS.flatMap(b =>
+      b.chapters.map((_, i) => ({ locale, book: b.slug, chapter: String(i) }))
+    )
   );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ book: string; chapter: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; book: string; chapter: string }> }) {
   const { book: bookSlug, chapter: chIdx } = await params;
   const result = getChapter(bookSlug, parseInt(chIdx));
   if (!result) return {};
@@ -22,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ book: str
   };
 }
 
-export default async function ChapterPage({ params }: { params: Promise<{ book: string; chapter: string }> }) {
+export default async function ChapterPage({ params }: { params: Promise<{ locale: string; book: string; chapter: string }> }) {
   const { book: bookSlug, chapter: chIdx } = await params;
   const result = getChapter(bookSlug, parseInt(chIdx));
   if (!result) notFound();

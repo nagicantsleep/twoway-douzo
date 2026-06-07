@@ -3,7 +3,7 @@
  * 列出 14 主星，每星可看其在 13 宫位的解读
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ALL_STARS, ALL_TOPICS, getKnowledge, STAR_BRIEF_SEO, STAR_TO_SLUG } from '@/lib/seo/knowledge';
 import { TOPIC_LABEL } from '@/lib/ziwei/db-analysis';
 

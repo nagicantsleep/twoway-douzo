@@ -4,7 +4,7 @@
  * 列出所有收录古籍 + 全局搜索入口
  */
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ALL_BOOKS, TOTAL_PARAGRAPHS } from '@/lib/classics';
 import LibrarySearch from './LibrarySearch';
 

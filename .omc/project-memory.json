@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build",
+    "buildCommand": "cd \"E:\\Workspaces\\twoway-douzo\" && H=scripts/bin/harness-cli.exe\n$H story add --id US-001 --title \"Sửa broken imports app/chart/page.tsx\" --lane tiny --verify \"npx tsc --noEmit\" 2>&1\n$H story add --id US-002 --title \"Cài + cấu hình next-intl\" --lane normal --verify \"npm run build\" 2>&1\n$H story add --id US-003 --title \"Tái cấu trúc app/ sang [locale]\" --lane high-risk --verify \"npm run build\" 2>&1\n$H story add --id US-004 --title \"Bảng phiên âm Hán-Việt lib/ziwei/terms.ts\" --lane normal --verify \"npx tsc --noEmit\" 2>&1\n$H story add --id US-005 --title \"Tách + dịch chuỗi UI messages/{vi,zh}\" --lane normal --verify \"npm run build\" 2>&1\n$H story add --id US-006 --title \"Áp localizeTerm vào component bàn cờ\" --lane normal --verify \"npm run build\" 2>&1\n$H story add --id US-007 --title \"Dịch nội dung tri thức chuyên sâu\" --lane high-risk --verify \"npm run build\" 2>&1\n$H story add --id US-008 --title \"SEO/metadata + sitemap hreflang\" --lane normal --verify \"npm run build\" 2>&1\n$H story add --id US-009 --title \"Tooling lint locale-aware + README + docs\" --lane tiny --verify \"npx tsc --noEmit\" 2>&1",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -111,6 +111,307 @@
       "keyFiles": []
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "app\\chart\\page.tsx",
+      "accessCount": 17,
+      "lastAccessed": 1780847771633,
+      "type": "file"
+    },
+    {
+      "path": "lib\\ziwei\\patterns.ts",
+      "accessCount": 7,
+      "lastAccessed": 1780836333620,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 5,
+      "lastAccessed": 1780836427125,
+      "type": "directory"
+    },
+    {
+      "path": "components\\ChartBoard.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1780847624560,
+      "type": "file"
+    },
+    {
+      "path": "components\\InsightPanel.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1780847642242,
+      "type": "file"
+    },
+    {
+      "path": "app\\page.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1780836404996,
+      "type": "file"
+    },
+    {
+      "path": "app\\layout.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1780836245548,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 3,
+      "lastAccessed": 1780836453691,
+      "type": "file"
+    },
+    {
+      "path": "components\\TimeNav.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1780847527551,
+      "type": "file"
+    },
+    {
+      "path": "components\\ShareModal.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1780847624491,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 2,
+      "lastAccessed": 1780836245660,
+      "type": "file"
+    },
+    {
+      "path": "next.config.js",
+      "accessCount": 2,
+      "lastAccessed": 1780836245730,
+      "type": "file"
+    },
+    {
+      "path": "components\\BirthForm.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1780836304361,
+      "type": "file"
+    },
+    {
+      "path": "lib\\nihai\\tianji.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780836333219,
+      "type": "file"
+    },
+    {
+      "path": "lib\\nihai\\diji.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780836333479,
+      "type": "file"
+    },
+    {
+      "path": "lib\\nihai\\renji.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780836333712,
+      "type": "file"
+    },
+    {
+      "path": "lib\\seo\\knowledge.ts",
+      "accessCount": 2,
+      "lastAccessed": 1780836333806,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1780835940701,
+      "type": "file"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780835940902,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1780835940975,
+      "type": "file"
+    },
+    {
+      "path": "postcss.config.js",
+      "accessCount": 1,
+      "lastAccessed": 1780835941087,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 1,
+      "lastAccessed": 1780835941249,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 1,
+      "lastAccessed": 1780835941348,
+      "type": "file"
+    },
+    {
+      "path": "next-env.d.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780835978942,
+      "type": "file"
+    },
+    {
+      "path": ".npmrc",
+      "accessCount": 1,
+      "lastAccessed": 1780835979058,
+      "type": "file"
+    },
+    {
+      "path": "components\\AnnouncementModal.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836304433,
+      "type": "file"
+    },
+    {
+      "path": "components\\ChartSummary.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836304521,
+      "type": "file"
+    },
+    {
+      "path": "lib\\ziwei\\types.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780836309920,
+      "type": "file"
+    },
+    {
+      "path": "lib\\ziwei\\constants.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780836309949,
+      "type": "file"
+    },
+    {
+      "path": "components\\FamousPersonCard.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836313546,
+      "type": "file"
+    },
+    {
+      "path": "components\\ChatPanel.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836313778,
+      "type": "file"
+    },
+    {
+      "path": "components\\PalaceCell.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836313847,
+      "type": "file"
+    },
+    {
+      "path": "lib\\classics\\types.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780836320997,
+      "type": "file"
+    },
+    {
+      "path": "lib\\classics\\index.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780836321284,
+      "type": "file"
+    },
+    {
+      "path": "components\\PatternsCard.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836339759,
+      "type": "file"
+    },
+    {
+      "path": "components\\ScrollIntro.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836339812,
+      "type": "file"
+    },
+    {
+      "path": "components\\ShareCardCanvas.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836340009,
+      "type": "file"
+    },
+    {
+      "path": "components\\StarField.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836349484,
+      "type": "file"
+    },
+    {
+      "path": "components\\ThemeProvider.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836349557,
+      "type": "file"
+    },
+    {
+      "path": "components\\StarDetailPanel.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836349647,
+      "type": "file"
+    },
+    {
+      "path": "app\\heming\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836415711,
+      "type": "file"
+    },
+    {
+      "path": "app\\knowledge\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836426911,
+      "type": "file"
+    },
+    {
+      "path": "app\\knowledge\\[star]\\[topic]\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836427002,
+      "type": "file"
+    },
+    {
+      "path": "app\\library\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836439080,
+      "type": "file"
+    },
+    {
+      "path": "app\\library\\[book]\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836439163,
+      "type": "file"
+    },
+    {
+      "path": "app\\library\\search\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836439243,
+      "type": "file"
+    },
+    {
+      "path": "app\\library\\[book]\\[chapter]\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1780836439494,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\cloen\\.claude\\plans\\cryptic-growing-hamming.md",
+      "accessCount": 1,
+      "lastAccessed": 1780837079175,
+      "type": "file"
+    },
+    {
+      "path": "docs\\HARNESS.md",
+      "accessCount": 1,
+      "lastAccessed": 1780837282051,
+      "type": "file"
+    },
+    {
+      "path": "docs\\FEATURE_INTAKE.md",
+      "accessCount": 1,
+      "lastAccessed": 1780837282093,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }

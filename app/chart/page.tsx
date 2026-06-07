@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import BirthForm, { type BirthFormState } from '@/components/BirthForm';
 import TopBar, { type TimeView } from '@/components/chart/TopBar';
 import ChartBoard from '@/components/chart/ChartBoard';
-import InsightPanel, { type FocusState } from '@/components/insight/InsightPanel';
+import InsightPanel from '@/components/insight/InsightPanel';
 import PatternsCard from '@/components/PatternsCard';
 import FamousPersonCard from '@/components/FamousPersonCard';
 import ShareModal from '@/components/ShareModal';
@@ -30,8 +30,9 @@ export default function ChartPage() {
   const [liunianYear, setLiunianYear] = useState(new Date().getFullYear());
   const [liuyueMonth, setLiuyueMonth] = useState(new Date().getMonth() + 1);
 
-  // ── 聚焦状态（宫位/星曜/四化）────────────────────────────
-  const [focus, setFocus] = useState<FocusState | null>(null);
+  // ── 聚焦状态（宫位/四化）────────────────────────────
+  const [selectedPalace, setSelectedPalace] = useState<Palace | null>(null);
+  const [selectedSiHua, setSelectedSiHua] = useState<{ starName: string; siHua: string; view: TimeView } | null>(null);
 
   const { history, save: saveHistory, remove: removeHistory } = useHistory();
 
@@ -67,7 +68,8 @@ export default function ChartPage() {
       }
       const data: ZiweiChart = await res.json();
       setChart(data);
-      setFocus(null);
+      setSelectedPalace(null);
+      setSelectedSiHua(null);
       setView('mingpan');
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : '生成失败，请重试');
@@ -80,7 +82,8 @@ export default function ChartPage() {
   const handleReset = () => {
     setChart(null);
     setError('');
-    setFocus(null);
+    setSelectedPalace(null);
+    setSelectedSiHua(null);
     setSavedForm(null);
     setFormKey(k => k + 1);
     setView('mingpan');
@@ -113,15 +116,15 @@ export default function ChartPage() {
 
   // ── 命盘交互回调 ──────────────────────────────────────────
   const handleStarClick = (star: Star, palace: Palace) => {
-    setFocus({ type: 'star', label: `${star.name} · ${palace.name}`, star, palace });
+    setSelectedPalace(palace);
   };
 
   const handlePalaceClick = (palace: Palace) => {
-    setFocus({ type: 'palace', label: palace.name, palace });
+    setSelectedPalace(palace);
   };
 
-  const handleSiHuaBadgeClick = (starName: string, siHua: string) => {
-    setFocus({ type: 'sihua', label: `${starName} 化${siHua}`, siHua });
+  const handleSiHuaBadgeClick = (starName: string, siHua: string, siHuaView: TimeView) => {
+    setSelectedSiHua({ starName, siHua, view: siHuaView });
   };
 
   // ─────────────────────────────────────────────────────────
@@ -290,12 +293,9 @@ export default function ChartPage() {
             <div className="chart-workspace-left">
               <ChartBoard
                 chart={chart}
-                view={view}
-                liunianYear={liunianYear}
-                onStarClick={handleStarClick}
-                onPalaceClick={handlePalaceClick}
-                onSiHuaBadgeClick={handleSiHuaBadgeClick}
-                onTimeViewChange={setView}
+                onStarSelect={handleStarClick}
+                onPalaceSelect={handlePalaceClick}
+                onSiHuaClick={handleSiHuaBadgeClick}
               />
 
               {/* 底部操作区 */}
@@ -338,11 +338,8 @@ export default function ChartPage() {
               <PatternsCard chart={chart} />
               <InsightPanel
                 chart={chart}
-                view={view}
-                liunianYear={liunianYear}
-                liuyueMonth={liuyueMonth}
-                focus={focus}
-                onClearFocus={() => setFocus(null)}
+                selectedPalace={selectedPalace}
+                selectedSiHua={selectedSiHua}
               />
             </div>
 

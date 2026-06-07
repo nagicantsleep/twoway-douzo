@@ -7,6 +7,8 @@ import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from '@/components/TimeNav';
 
+export type { TimeView };
+
 interface TopBarProps {
   chart: ZiweiChart;
   view: TimeView;

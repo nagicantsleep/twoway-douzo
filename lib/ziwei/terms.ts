@@ -144,6 +144,23 @@ export const TERMS: Record<string, TermEntry> = {
 
   // ── bảng chỉ định khác ──
   '空宫': { vi: 'Không Cung', zh: '空宫' },
+
+  // ── UI labels trong TopBar ──
+  '返回': { vi: 'Quay Lại', zh: '返回' },
+  '紫微命盘': { vi: 'Tử Vi Mệnh Bàn', zh: '紫微命盘' },
+  '分享': { vi: 'Chia Sẻ', zh: '分享' },
+  '打印': { vi: 'In', zh: '打印' },
+  '流月': { vi: 'Lưu Nguyệt', zh: '流月' },
+  '月': { vi: 'Tháng', zh: '月' },
+  '已复制': { vi: 'Đã Sao Chép', zh: '已复制' },
+
+  // ── time navigation labels ──
+  '本命': { vi: 'Bản Mệnh', zh: '本命' },
+  '大限': { vi: 'Đại Hạn', zh: '大限' },
+  '流年': { vi: 'Lưu Niên', zh: '流年' },
+  '年': { vi: 'năm', zh: '年' },
+  '四化': { vi: 'Tứ Hóa', zh: '四化' },
+  '化': { vi: 'hóa', zh: '化' },
 };
 
 /**
@@ -151,7 +168,7 @@ export const TERMS: Record<string, TermEntry> = {
  * - Nếu tìm thấy → trả về bản dịch theo locale.
  * - Nếu không tìm thấy → trả về nguyên bản (tiếng Trung), không crash.
  */
-export function localizeTerm(term: string, locale: Locale): string {
+export function localizeTerm(term: string, locale: string): string {
   const entry = TERMS[term];
   if (!entry) return term;
   if (locale === 'vi') return entry.vi;

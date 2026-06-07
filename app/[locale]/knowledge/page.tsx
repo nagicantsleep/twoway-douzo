@@ -6,12 +6,19 @@
 import { Link } from '@/i18n/navigation';
 import { ALL_STARS, ALL_TOPICS, getKnowledge, STAR_BRIEF_SEO, STAR_TO_SLUG } from '@/lib/seo/knowledge';
 import { TOPIC_LABEL } from '@/lib/ziwei/db-analysis';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-  title: '紫微斗数知识库 · 14 主星 × 13 宫位 · 倪海夏正宗体系',
-  description: '基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断，含一句话定调、核心论断、命盘依据、经典出处。',
-  keywords: ['紫微斗数', '倪海夏', '倪海厦紫微斗数', '紫微斗数全集', '紫微斗数全书', '14 主星', '12 宫位'],
-};
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'knowledge' });
+  return {
+    title: t('seo.title'),
+    description: t('seo.description'),
+  };
+}
 
 export default function KnowledgeHomePage() {
   const STAR_DESCRIPTIONS_QUICK = STAR_BRIEF_SEO;

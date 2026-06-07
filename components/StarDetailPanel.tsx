@@ -2,6 +2,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Star } from '@/lib/ziwei/types';
 import { STAR_DESCRIPTIONS } from '@/lib/ziwei/constants';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { useLocale } from 'next-intl';
 
 interface StarDetailPanelProps {
   star: Star | null;
@@ -177,6 +179,7 @@ const siHuaColors: Record<string, string> = {
 };
 
 export default function StarDetailPanel({ star, palaceName, onClose }: StarDetailPanelProps) {
+  const locale = useLocale();
   const desc = star ? STAR_DESCRIPTIONS[star.name] : null;
   const detail = star ? STAR_DETAIL[star.name] : null;
   const typeConfig = star ? levelConfig[star.type] : null;
@@ -194,15 +197,15 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
           {/* 标题栏 */}
           <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--t-border)' }}>
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold" style={{ color: 'var(--t-gold)' }}>{star.name}</span>
+              <span className="text-xl font-bold" style={{ color: 'var(--t-gold)' }}>{localizeTerm(star.name, locale)}</span>
               {typeConfig && (
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${typeConfig.color}`}>
-                  {typeConfig.label}
+                  {localizeTerm(typeConfig.label, locale)}
                 </span>
               )}
               {star.siHua && (
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${siHuaColors[star.siHua] || ''}`}>
-                  化{star.siHua}
+                  {'化'}{localizeTerm(star.siHua, locale)}
                 </span>
               )}
             </div>

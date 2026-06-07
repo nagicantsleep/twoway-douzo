@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ZiweiChart, Palace, Star } from '@/lib/ziwei/types';
 import { BRANCHES, STEMS } from '@/lib/ziwei/constants';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { useLocale } from 'next-intl';
 import PalaceCell from './PalaceCell';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from './TimeNav';
 
@@ -53,6 +55,7 @@ function getSanFangSiZheng(branch: number): [number, number, number, number] {
 const ANIMATION_ORDER = [5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4];
 
 export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHuaClick }: ChartBoardProps) {
+  const locale = useLocale();
   const [selectedBranch, setSelectedBranch] = useState<number | null>(null);
   const [timeView, setTimeView] = useState<TimeView>('mingpan');
   const [liunianYear, setLiunianYear] = useState<number>(new Date().getFullYear());
@@ -158,11 +161,11 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           </div>
 
           <div className="text-center space-y-1">
-            <div className="text-[9px] tracking-[0.3em] font-medium" style={{ color: 'var(--t-gold)' }}>紫微斗数</div>
+              <div className="text-[9px] tracking-[0.3em] font-medium" style={{ color: 'var(--t-gold)' }}>{localizeTerm('紫微斗数', locale)}</div>
             <div className="text-[10px] space-y-0.5" style={{ color: 'var(--t-faint)' }}>
-              <div>命宫 <span style={{ color: 'var(--t-gold)', opacity: 0.7 }}>{BRANCHES[chart.mingGongBranch]}</span></div>
-              <div>身宫 <span className="text-sky-500/70">{BRANCHES[chart.shenGongBranch]}</span></div>
-              <div className="text-[9px]" style={{ color: 'var(--t-gold)', opacity: 0.75 }}>{chart.wuxingJuName}</div>
+              <div>{localizeTerm('命宫', locale)} <span style={{ color: 'var(--t-gold)', opacity: 0.7 }}>{localizeTerm(BRANCHES[chart.mingGongBranch], locale)}</span></div>
+              <div>{localizeTerm('身宫', locale)} <span className="text-sky-500/70">{localizeTerm(BRANCHES[chart.shenGongBranch], locale)}</span></div>
+              <div className="text-[9px]" style={{ color: 'var(--t-gold)', opacity: 0.75 }}>{localizeTerm(chart.wuxingJuName, locale)}</div>
             </div>
           </div>
 
@@ -172,8 +175,8 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
               <div className="border border-purple-500/30 rounded-lg px-3 py-1.5 text-center"
                 style={{ background: 'rgba(147,51,234,0.06)' }}>
                 <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">当前大限</div>
-                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}岁</div>
-                <div className="text-[9px] text-purple-500/60">{dx.palaceName}</div>
+                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}{locale === 'vi' ? ' tuổi' : '岁'}</div>
+                <div className="text-[9px] text-purple-500/60">{localizeTerm(dx.palaceName, locale)}</div>
               </div>
             );
           })()}
@@ -273,9 +276,12 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           { h: '化权', c: 'text-blue-500 border-blue-500/30' },
           { h: '化科', c: 'text-yellow-500 border-yellow-500/30' },
           { h: '化忌', c: 'text-red-500 border-red-500/30' },
-        ].map(({ h, c }) => (
-          <span key={h} className={`border px-1.5 py-0.5 rounded-full font-medium ${c}`}>{h}</span>
-        ))}
+        ].map(({ h, c }) => {
+          const siHuaChar = h.replace('化', '');
+          return (
+          <span key={h} className={`border px-1.5 py-0.5 rounded-full font-medium ${c}`}>{locale === 'vi' ? `${localizeTerm(siHuaChar, locale)} Hóa` : h}</span>
+          );
+        })}
         <span className="px-1.5 py-0.5 rounded-full" style={{ color: 'var(--t-faint)', border: '1px solid var(--t-border)' }}>
           点击宫位看三方四正
         </span>

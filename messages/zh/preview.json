@@ -1,0 +1,22 @@
+{
+  "pageTitle": "紫微卷轴 · 开场预览",
+  "subtitle": "刚才看到的卷轴效果会在每次进入主页时缓缓铺开。\n如果满意，告诉我，我把它接到主页 / 上线。",
+  "buttons": {
+    "replay": "再 播 放 一 次",
+    "enterHome": "进 入 原 版 首 页"
+  },
+  "links": {
+    "home": "原版 ↗",
+    "chart": "命盘",
+    "heming": "合盘"
+  },
+  "timelineTitle": "动画时间轴",
+  "timeline": {
+    "scroll": "0.0 ~ 1.7 s   卷轴从中央向两侧展开",
+    "content": "1.9 ~ 2.7 s   宣纸内容浮现（标题 + 副标 + 朱砂印）",
+    "pause": "2.7 ~ 3.5 s   停留欣赏",
+    "fadeOut": "3.5 ~ 4.2 s   整体淡出，进入主页",
+    "skipHint": "用户随时可点右下「跳过」直接进入主页。"
+  },
+  "badge": "SCROLL · INTRO · PREVIEW"
+}

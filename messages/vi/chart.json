@@ -1,0 +1,41 @@
+{
+  "title": {
+    "subtitle": "Zi Wei Dou Shu",
+    "chart": "Tử Vi Đẩu Số Mệnh Bàn",
+    "boardCenter": "Tử Vi Đẩu Số",
+    "ming": "Mệnh",
+    "shen": "Thân"
+  },
+  "board": {
+    "currentDaXian": "Đại hạn hiện tại",
+    "age": "tuổi",
+    "leapMonth": "nhuận",
+    "hint": "Nhấp vào cung để xem tam phương tứ chính",
+    "empty": "Trống"
+  },
+  "siHua": {
+    "lu": "Hóa Lộc",
+    "quan": "Hóa Quyền",
+    "ke": "Hóa Khoa",
+    "ji": "Hóa Kỵ"
+  },
+  "timeNav": {
+    "mingpan": "Bản mệnh",
+    "daxian": "Đại hạn",
+    "liunian": "Lưu niên",
+    "liuyue": "Lưu nguyệt",
+    "daxianPrefix": "Đại hạn {startAge}–{endAge}",
+    "yearSiHua": "{stemName} niên tứ hóa:",
+    "daxianSiHua": "Đại hạn · {stemName} niên tứ hóa:"
+  },
+  "topBar": {
+    "back": "Quay lại",
+    "pageTitle": "Tử Vi Mệnh Bàn",
+    "share": "Chia sẻ",
+    "print": "In ấn",
+    "copied": "Đã sao chép"
+  },
+  "legend": {
+    "hint": "Nhấp vào cung để xem tam phương tứ chính"
+  }
+}

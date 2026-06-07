@@ -1,4 +1,16 @@
-export const metadata = { title: '隐私政策 · 紫微命盘', description: '紫微命盘隐私政策' };
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: t('privacyTitle'),
+    description: t('privacyDescription'),
+  };
+}
 
 export default function PrivacyPage() {
   return (

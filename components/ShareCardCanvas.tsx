@@ -8,8 +8,11 @@
  */
 
 import type { ZiweiChart } from '@/lib/ziwei/types';
+import { useLocale } from 'next-intl';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { BRANCHES } from '@/lib/ziwei/constants';
 
-const BRANCH_NAMES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+// BRANCHES imported from constants, localized via localizeTerm
 
 // 紫微斗数 12 宫地支布局（按"地支盘"标准排列，固定）
 // 寅卯辰巳 → 上行
@@ -38,11 +41,12 @@ interface ShareCardProps {
 }
 
 export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardProps) {
+  const locale = useLocale();
   const mingPalace = chart.palaces.find(p => p.branch === chart.mingGongBranch);
   const mingMajorStars = mingPalace?.stars.filter(s => s.type === 'major').map(s => s.name) ?? [];
-  const mingStarStr = mingMajorStars.length > 0 ? mingMajorStars.join('·') : '空宫';
-  const mingBranchName = BRANCH_NAMES[chart.mingGongBranch] || '';
-  const shenBranchName = BRANCH_NAMES[chart.shenGongBranch] || '';
+  const mingStarStr = mingMajorStars.length > 0 ? mingMajorStars.map(n => localizeTerm(n, locale)).join('·') : localizeTerm('空宫', locale);
+  const mingBranchName = localizeTerm(BRANCHES[chart.mingGongBranch] || '', locale);
+  const shenBranchName = localizeTerm(BRANCHES[chart.shenGongBranch] || '', locale);
   const dx = chart.daXians?.[chart.currentDaXianIndex];
 
   // 把每个宫位组织成 12 个格子，按布局画
@@ -152,10 +156,10 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
                   alignItems: 'center',
                 }}>
                   <span style={{ fontWeight: cell.isMing ? 700 : 400 }}>
-                    {cell.palace?.name || ''}
-                    {cell.isShen ? '·身' : ''}
+                    {cell.palace?.name ? localizeTerm(cell.palace.name, locale) : ''}
+                    {cell.isShen ? '·' + localizeTerm('身', locale) : ''}
                   </span>
-                  <span style={{ fontSize: '7px', opacity: 0.7 }}>{BRANCH_NAMES[cell.branch]}</span>
+                  <span style={{ fontSize: '7px', opacity: 0.7 }}>{localizeTerm(BRANCHES[cell.branch], locale)}</span>
                 </div>
                 {/* 主星 */}
                 <div style={{
@@ -174,10 +178,10 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
                       letterSpacing: '0.02em',
                       lineHeight: 1.1,
                     }}>
-                      {s.name}{s.siHua ? <span style={{ fontSize: '8px', color: '#c45a2d', marginLeft: '1px' }}>{s.siHua}</span> : ''}
+                      {localizeTerm(s.name, locale)}{s.siHua ? <span style={{ fontSize: '8px', color: '#c45a2d', marginLeft: '1px' }}>{localizeTerm(s.siHua, locale)}</span> : ''}
                     </div>
                   )) : (
-                    <div style={{ fontSize: '9px', color: '#a89b7c', fontStyle: 'italic' }}>空宫</div>
+                    <div style={{ fontSize: '9px', color: '#a89b7c', fontStyle: 'italic' }}>{localizeTerm('空宫', locale)}</div>
                   )}
                 </div>
               </div>
@@ -197,10 +201,10 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
             borderRadius: '4px',
           }}>
             <div style={{ fontSize: '8px', color: '#a89b7c', letterSpacing: '0.2em', marginBottom: '4px' }}>ZI WEI</div>
-            <div style={{ fontSize: '14px', color: '#3d2f10', fontWeight: 600, letterSpacing: '0.1em' }}>紫微斗数</div>
-            <div style={{ fontSize: '10px', color: '#6b5d3f', marginTop: '6px' }}>命宫 · {mingBranchName}</div>
-            <div style={{ fontSize: '10px', color: '#6b5d3f' }}>身宫 · {shenBranchName}</div>
-            <div style={{ fontSize: '10px', color: '#6b5d3f', marginTop: '4px', fontWeight: 600 }}>{chart.wuxingJuName}</div>
+            <div style={{ fontSize: '14px', color: '#3d2f10', fontWeight: 600, letterSpacing: '0.1em' }}>{localizeTerm('紫微斗数', locale)}</div>
+            <div style={{ fontSize: '10px', color: '#6b5d3f', marginTop: '6px' }}>{localizeTerm('命宫', locale)} · {mingBranchName}</div>
+            <div style={{ fontSize: '10px', color: '#6b5d3f' }}>{localizeTerm('身宫', locale)} · {shenBranchName}</div>
+            <div style={{ fontSize: '10px', color: '#6b5d3f', marginTop: '4px', fontWeight: 600 }}>{localizeTerm(chart.wuxingJuName, locale)}</div>
           </div>
         </div>
 
@@ -208,7 +212,7 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           {/* 命宫主星 */}
           <div>
-            <div style={{ fontSize: '10px', color: '#a89b7c', letterSpacing: '0.25em', marginBottom: '2px' }}>命 宫 · {mingBranchName}</div>
+            <div style={{ fontSize: '10px', color: '#a89b7c', letterSpacing: '0.25em', marginBottom: '2px' }}>{localizeTerm('命宫', locale)} · {mingBranchName}</div>
             <div style={{
               fontSize: '52px',
               fontWeight: 800,
@@ -243,8 +247,8 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
                 marginBottom: '10px',
                 letterSpacing: '0.05em',
               }}>
-                <span style={{ color: '#a89b7c' }}>当前大限 </span>
-                <span style={{ fontWeight: 600 }}>{dx.startAge}–{dx.endAge} 岁 · {dx.palaceName}</span>
+                <span style={{ color: '#a89b7c' }}>{locale === 'vi' ? 'Đại Hạn Hiện Tại' : '当前大限'} </span>
+                <span style={{ fontWeight: 600 }}>{dx.startAge}–{dx.endAge} {locale === 'vi' ? 'tuổi' : '岁'} · {localizeTerm(dx.palaceName, locale)}</span>
               </div>
             )}
             <div style={{

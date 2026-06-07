@@ -7,11 +7,19 @@
 import { Link } from '@/i18n/navigation';
 import { ALL_BOOKS, TOTAL_PARAGRAPHS } from '@/lib/classics';
 import LibrarySearch from './LibrarySearch';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-  title: '倪师方法论 · 古籍原典库 · 紫微斗数全集 / 全书 / 骨髓赋',
-  description: '紫微斗数权威古籍全文检索：《紫微斗数全集》《紫微斗数全书》《骨髓赋》倪海夏《天纪》引证来源',
-};
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'library' });
+  return {
+    title: t('seo.title'),
+    description: t('seo.description'),
+  };
+}
 
 export default function LibraryHomePage() {
   return (

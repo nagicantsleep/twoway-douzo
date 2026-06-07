@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "appName": "Tử Vi Mệnh Bàn",
+    "heming": "Hợp bàn",
+    "chart": "Tạo mệnh bàn ngay"
+  },
+  "hero": {
+    "tag": "Tử Vi Đẩu Số · Ni Hà Hạ hệ thống",
+    "title": "Tử Vi Mệnh Bàn",
+    "subtitle": "Tử Vi vi môn · Thiên Địa Nhân vi lộ · Ni Hà Hạ vi sư",
+    "aiTag": "AI giải đáp · Tri hành hợp nhất",
+    "description": "Nhập năm tháng ngày giờ sinh, tạo lá số Tử Vi Đẩu Số cá nhân — các học phần Thiên Kỷ, Địa Kỷ, Nhân Kỷ sẽ dần mở ra.",
+    "cta": "Tạo mệnh bàn ngay",
+    "scrollMore": "Khám phá thêm"
+  },
+  "philosophy": {
+    "tag": "Mệnh · Vận · Quan",
+    "lines": [
+      "Ý nghĩa của việc sớm nhìn thấu số mệnh",
+      "không nằm ở việc biết trước tương lai",
+      "mà ở việc không ngừng nhận thức chính mình"
+    ],
+    "closing": "Cuối cùng viết nên kịch bản cuộc đời của chính mình"
+  },
+  "curriculum": {
+    "tag": "Giáo trình",
+    "title": "Ni Sư phương pháp luận · Từng bước mở ra",
+    "subtitle": "Từ Tử Vi nhập môn, dần mở Thiên Kỷ / Địa Kỷ / Nhân Kỷ học phần",
+    "ready": "Đã ra mắt",
+    "opens": "{month} sẽ mở",
+    "sections": {
+      "ziwei": "Tử Vi",
+      "tianji": "Thiên Kỷ",
+      "diji": "Địa Kỷ",
+      "renji": "Nhân Kỷ"
+    },
+    "descriptions": {
+      "ziwei": "14 Chủ tinh · 13 Cung vị · AI giải độc",
+      "tianji": "Tử Vi · Chu Dịch · Kỳ Môn Độn Giáp",
+      "diji": "Di cảo Ni Sư · Hậu bối bổ chú",
+      "renji": "Nội Kinh · Thương Hàn · Kim Quỹ · Châm Cứu"
+    }
+  },
+  "features": {
+    "chartSystem": {
+      "tag": "Hệ thống an sao",
+      "title": "Ni Hà Hạ chính tông\nTử Vi Đẩu Số",
+      "subtitle": "Không phải bản rút gọn, tuân thủ nghiêm ngặt truyền thừa Ni Hà Hạ",
+      "points": [
+        "An sao theo Ngũ hành cục, không dùng thuật toán rút gọn trên mạng",
+        "Mệnh cung nghịch số sinh thời, Thân cung thuận số sinh thời, đúng quy tắc giảng dạy",
+        "Thập tứ chủ tinh và Tứ hóa phi tinh diễn giải theo nguyên pháp, cấu trúc hoàn chỉnh có thể kiểm tra"
+      ]
+    },
+    "chartDisplay": {
+      "tag": "Trình bày mệnh bàn",
+      "title": "Đầy đủ Thập tứ chủ tinh\nTứ hóa phi tinh",
+      "subtitle": "Cấu trúc rõ ràng, nhìn một cái thấy ngay trục chính và trọng điểm",
+      "points": [
+        "Thập tứ chủ tinh đầy đủ nhập cung, quan hệ chủ tinh rõ ràng dễ đọc",
+        "Phụ tinh và Sát tinh hiển thị cùng màn hình, không thiếu thông tin then chốt",
+        "Phân cấp độ sáng Miếu/Vượng/Lợi/Hãm, nhận biết nhanh mạnh yếu",
+        "Nhấn vào bất kỳ chủ tinh nào để xem giảng giải chi tiết của Ni Hà Hạ"
+      ]
+    },
+    "aiInterpretation": {
+      "tag": "AI Giải độc",
+      "title": "Giải bàn chuyên sâu\nKhông chỉ là tính toán",
+      "subtitle": "Cơ sở tri thức Ni Hà Hạ × Claude AI",
+      "points": [
+        "Phân tích mệnh cách: xuất phát từ Mệnh cung chủ tinh, kết hợp Tam phương tứ chính, đưa ra đánh giá toàn diện về tính cách và nhân sinh cách cục",
+        "Sáu chiều giải độc: sự nghiệp, tình cảm hôn nhân, tài vận, sức khỏe, quan hệ gia đình, duyên con cái",
+        "Theo dõi Đại hạn Lưu niên: trọng điểm đại hạn 10 năm hiện tại, gợi ý cụ thể cho cung lưu niên năm nay",
+        "Tự do hỏi đáp: đặt câu hỏi trực tiếp về mệnh bàn của bạn"
+      ]
+    },
+    "patternRecognition": {
+      "tag": "Nhận diện cách cục",
+      "title": "Tự động phát hiện\nCách cục mệnh bàn",
+      "subtitle": "Từ tổ hợp tinh diệu phát hiện mệnh trung chú định",
+      "points": [
+        "Tự động nhận diện 11 cách cục kinh điển",
+        "Phát hiện chính xác các cách cục đặc biệt như Bổ Tịch Giáp Mệnh, Nhật Nguyệt Giáp Mệnh, kèm giải thích chuẩn theo Ni Hà Hạ",
+        "Tự động đánh dấu các trường hợp Tứ hóa nhập Mệnh cung, cung Thiên Di"
+      ]
+    }
+  },
+  "niHaixia": {
+    "philosophyTag": "Ni Haixia · Philosophy",
+    "philosophyTitle": "Thiên · Địa · Nhân",
+    "philosophyDesc": "Quan niệm cốt lõi của Ni Hà Hạ về số mệnh: Số mệnh chưa bao giờ là tất cả cuộc đời.\nÔng chia các lực lượng ảnh hưởng cuộc sống thành ba chiều kích quan trọng ngang nhau.",
+    "dimensions": [
+      {
+        "glyph": "Thiên",
+        "label": "Tiên thiên số mệnh",
+        "pct": "1/3",
+        "desc": "Tử Vi Đẩu Số tiết lộ là cách cục mệnh bàn tiên thiên của một người — bố cục tinh diệu do thời gian sinh quyết định, số Ngũ hành cục, chủ tinh Mệnh cung. Đây chỉ là một phần ba của số mệnh, là nền底色 của cuộc đời.",
+        "sub": "Mệnh bàn · Tinh diệu · Ngũ hành"
+      },
+      {
+        "glyph": "Địa",
+        "label": "Môi trường địa lý",
+        "pct": "1/3",
+        "desc": "Môi trường địa lý, thành thị, quốc gia, phong thủy cách cục, bối cảnh gia đình và cấu trúc xã hội — cùng tạo nên chiều kích thứ hai của số mệnh. Cùng một mệnh bàn, sinh ở nơi khác nhau, cảnh ngộ có thể khác xa.",
+        "sub": "Khu vực · Phong thủy · Hoàn cảnh"
+      },
+      {
+        "glyph": "Nhân",
+        "label": "Nhân tâm ý niệm",
+        "pct": "1/3",
+        "desc": "Ý chí cá nhân, tâm thái, lựa chọn và hành động mới là lực lượng chủ động nhất thay đổi số mệnh. Ni Sư nhấn mạnh: hiểu mệnh bàn là để làm người tốt hơn, chứ không phải ngồi chờ số phận an bài.",
+        "sub": "Ý chí · Lựa chọn · Hành động"
+      }
+    ],
+    "quote": "Số mệnh không phải tất cả cuộc đời, cộng thêm vị trí địa lý và nhân niệm mới là.",
+    "quoteAuthor": "— Ni Hà Hạ",
+    "teacherTag": "Master · 1953 – 2012",
+    "teacherTitle": "Ni Hà Hạ lão sư",
+    "teacherDesc": "Một trong những đại gia y thuật và thuật số có ảnh hưởng nhất cộng đồng Hoa ngữ đương đại\nSáng lập Hán Đường Trung Y Học Viện Hoa Kỳ · hai hệ thống giảng dạy «Nhân Kỷ» «Thiên Kỷ» lưu truyền thế gian",
+    "teacherInfo": [
+      { "label": "Sinh", "value": "1954", "sub": "Đài Loan" },
+      { "label": "Tạ thế", "value": "2012", "sub": "31/1 · Hưởng thọ 58" },
+      { "label": "Truyền thừa", "value": "Tử Vi Đẩu Số", "sub": "Kinh phương Trung Y · Kinh Dịch" }
+    ],
+    "teachings": [
+      {
+        "title": "Mệnh cung vi bản, tam phương vi dụng",
+        "body": "Ni Sư luôn nhấn mạnh, xem mệnh trước hết phải xem Mệnh cung. Chủ tinh Mệnh cung quyết định cách cục cơ bản và tính cách bẩm sinh của một người, Tam phương (Tài Bạch, Quan Lộc, Thiên Di) quyết định 'đất dụng võ' của người đó. Bốn cung liên động mới là bức tranh toàn cảnh cuộc đời."
+      },
+      {
+        "title": "Đối cung tá tinh, không thể coi nhẹ",
+        "body": "Điểm độc đáo của Ni Sư là coi trọng 'đối cung'. Bất kỳ cung nào nếu là không cung, nhất định phải mượn tinh diệu đối cung để luận đoán, đối diện Mệnh cung là Thiên Di cung, cả hai ảnh hưởng lẫn nhau."
+      },
+      {
+        "title": "Tứ hóa mới là bàn tay của số mệnh",
+        "body": "Tinh diệu chỉ là nền tảng, Tứ hóa (Hóa Lộc, Hóa Quyền, Hóa Khoa, Hóa Kỵ) mới là then chốt quyết định tốt xấu. Cùng một ngôi sao, có Hóa Lộc hay có Hóa Kỵ, quỹ đạo cuộc đời có thể hoàn toàn khác nhau."
+      },
+      {
+        "title": "Đại hạn mười năm, vận thế có tiết",
+        "body": "Ni Sư chia cuộc đời thành 12 đại hạn, mỗi đại hạn 10 năm. Ông cho rằng con người ở các đại hạn khác nhau, cơ ngộ hoàn toàn khác nhau. Hiểu mình đang ở đại hạn nào, cung đó có tinh diệu gì, mới thực sự nắm bắt được vận thế hiện tại."
+      }
+    ]
+  },
+  "compatibility": {
+    "tag": "Compatibility · Analysis",
+    "title": "Tử Vi Hợp Bàn",
+    "description": "Nhập thông tin sinh của hai người, AI dựa trên hệ thống Ni Hà Hạ phân tích tương tác Phu thê cung, tương dung Mệnh cung và tương tác tam phương tứ chính,\nđưa ra mức độ phù hợp tình cảm, khả thi hợp tác và lời khuyên tương tác tốt nhất.",
+    "tags": ["Phân tích phù hợp tình cảm", "Đánh giá hợp tác kinh doanh", "Giải mã duyên phận cha mẹ con cái", "Đánh giá tương thích tiền hôn nhân"],
+    "cta": "Bắt đầu phân tích hợp bàn"
+  },
+  "cta": {
+    "tag": "Bắt đầu hành trình mệnh bàn của bạn",
+    "title": "Lá số Tử Vi của bạn\nđang chờ được giải mã",
+    "description": "Nhập năm tháng ngày giờ sinh, trong vài giây tạo ra lá số cá nhân của bạn\nrồi AI sẽ dựa theo hệ thống Ni Hà Hạ giải thích chuyên sâu",
+    "freeChart": "Tạo mệnh bàn miễn phí",
+    "knowledgeLink": "✦ Tri thức Tử Vi Đẩu Số →",
+    "libraryLink": "📜 Cổ tịch nguyên điển khố →"
+  },
+  "footer": {
+    "academicSystem": "Ni Sư phương pháp luận · Học thuật hệ thống",
+    "disclaimer": "Tử Vi Mệnh Bàn · Dựa trên hệ thống chính tông Ni Hà Hạ · Chỉ để tham khảo, số mệnh nằm trong tay chính mình",
+    "disclaimerDetail": "Nền tảng này dựa trên nghiên cứu văn hóa truyền thống Trung Quốc, chỉ cung cấp tham khảo học tập.\nKhông cấu thành bất kỳ lời khuyên y tế, đầu tư, pháp lý hoặc quyết định quan trọng nào.",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "topics": {
+    "overview": "Mệnh cách",
+    "love": "Tình cảm",
+    "career": "Sự nghiệp",
+    "wealth": "Tài vận",
+    "health": "Sức khỏe",
+    "personality": "Tính cách"
+  },
+  "sectionTitles": {
+    "overview": "Mệnh cách tổng quan",
+    "personality": "Đặc điểm tính cách",
+    "mingInterpretation": "Mệnh lý giải độc"
+  },
+  "loading": "Đang phân tích mệnh cách…",
+  "error": "Phân tích tạm thời không khả dụng, vui lòng thử lại.",
+  "heming": {
+    "loading": "Đang so sánh hai lá số mệnh bàn…",
+    "error": "Phân tích tạm thời không khả dụng, vui lòng thử lại.",
+    "followUpHeader": "Tiếp tục hỏi về phân tích hợp bàn này",
+    "quickQuestions": [
+      "Mức độ phù hợp tình cảm thế nào?",
+      "Có thích hợp hợp tác kinh doanh không?",
+      "Kết hôn có phù hợp không?",
+      "Phương diện nào dễ mâu thuẫn nhất?",
+      "Tài vận có bổ trợ cho nhau không?"
+    ],
+    "submitButton": "Tiếp tục hỏi",
+    "submitButtonLoading": "Đang phân tích…",
+    "sectionLabel": "Phân tích hợp bàn · HEMING",
+    "pageTitle": "Tử Vi Hợp Bàn",
+    "headerSubtitle": "Tình cảm · Hợp tác · Cha mẹ con cái · Bạn bè",
+    "description": "Nhập thông tin sinh của hai người, AI dựa trên hệ thống Ni Hà Hạ phân tích mức độ phù hợp của hai lá số, xu hướng tình cảm và lời khuyên tương tác",
+    "ctaButton": "Bắt đầu phân tích hợp bàn",
+    "formError": "Vui lòng điền đầy đủ thông tin sinh của cả hai bên",
+    "partyA": "Bên A — {label}",
+    "partyB": "Bên B — {label}",
+    "followupPlaceholder": "Tiếp tục hỏi, ví dụ: Năm nào là giai đoạn quan trọng của hai người?",
+    "idleText": "Điền thông tin sinh của hai bên, sau đó nhấn nút bên dưới\nAI sẽ dựa trên hệ thống Ni Hà Hạ phân tích sâu mức độ phù hợp"
+  },
+  "palaceRoles": {
+    "ming": "Bản ngã, tính cách, tiên thiên cách cục",
+    "brothers": "Quan hệ anh em, cộng sự",
+    "spouse": "Quan hệ tình cảm, hôn nhân",
+    "children": "Duyên con cái, quan hệ cấp dưới",
+    "wealth": "Nguồn tài lộc, phương thức thu nhập",
+    "health": "Sức khỏe thể chất, tai nạn",
+    "travel": "Cơ hội ra ngoài, cách cục nhân tế",
+    "friends": "Bạn bè, quý nhân, tiểu nhân",
+    "career": "Thành tựu sự nghiệp, địa vị xã hội",
+    "property": "Bất động sản, môi trường gia đình",
+    "fortune": "Hưởng thụ tinh thần, phúc phận nội tâm",
+    "parents": "Quan hệ cha mẹ, văn thư khế ước"
+  },
+  "input": {
+    "placeholder": "Tiếp tục hỏi, như: Năm nay có nên đổi việc không?",
+    "submit": "Hỏi tiếp"
+  }
+}

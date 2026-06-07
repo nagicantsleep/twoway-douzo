@@ -14,6 +14,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
+  /** Build hreflang alternates dynamically from routing config */
+  const languages: Record<string, string> = {};
+  for (const l of routing.locales) {
+    languages[l] = `/${l}`;
+  }
+
   return {
     title: t('title'),
     description: t('description'),
@@ -21,10 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL('https://wdyziweidoushu666.com'),
     alternates: {
       canonical: `/${locale}`,
-      languages: {
-        vi: '/vi',
-        zh: '/zh',
-      },
+      languages,
     },
     openGraph: {
       title: t('ogTitle'),

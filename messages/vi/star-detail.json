@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "classical": "Nguyên văn cổ tịch",
+    "niHaixiaInterpretation": "Ni Hà Hạ lão sư giảng giải",
+    "career": "Phương hướng sự nghiệp",
+    "relationship": "Đặc điểm tình cảm",
+    "wealth": "Phân tích tài vận",
+    "health": "Gợi ý sức khỏe",
+    "bestPalace": "Cung vị tốt nhất",
+    "worstPalace": "Cung vị cần chú ý",
+    "starTraits": "Đặc tính tinh diệu"
+  },
+  "tags": {
+    "element": "Ngũ hành · {element}",
+    "nature": "Tính chất · {nature}",
+    "position": "Vị trí · {palace}",
+    "bright": "Miếu vượng",
+    "dim": "Lạc hãm",
+    "neutral": "Bình hòa",
+    "major": "Chủ tinh",
+    "lucky": "Cát tinh",
+    "sha": "Sát tinh",
+    "minor": "Tạp tinh"
+  },
+  "luckyStars": {
+    "wenchang": "Văn Xương nhập cung, chủ học nghiệp thi cử thuận lợi, văn thư ấn giám có lợi, thích hợp công việc liên quan văn tự. Cổ quyết: \"Văn Xương khoa giáp, chủ văn chương hiển đạt, gặp thi tất đỗ.\"",
+    "wenqu": "Văn Khúc nhập cung, chủ tài nghệ xuất chúng, tài ăn nói giỏi, thiện biểu đạt, thiên phú nghệ thuật mạnh. Cổ quyết: \"Văn Khúc vi tài nghệ chi tinh, năng văn năng vũ, khẩu tài thắng nhân.\"",
+    "zuofu": "Tả Phụ nhập cung, chủ quý nhân tương trợ, có người đề bạt, sự việc cung vị đó nhận được hỗ trợ hữu ý. Cổ quyết: \"Tả Phụ vi trợ lực chi tinh, tọa mệnh tắc quý nhân đa, phùng hung hóa cát.\"",
+    "youbi": "Hữu Bật nhập cung, chủ quý nhân tương trợ, nhiều quý nhân nữ, sự việc cung vị đó có người hiệp trợ. Cổ quyết: \"Hữu Bật vi âm trợ chi tinh, đa nữ tính quý nhân, hóa hiểm vi di.\"",
+    "tiankui": "Thiên Khôi nhập cung, chủ quý nhân sinh ban ngày, quý nhân nam nhiều, có lực hóa hung vi cát. Cổ quyết: \"Thiên Khôi vi Thiên Ất quý nhân, phùng chi tất hữu quý nhân phù trì.\"",
+    "tianyue": "Thiên Việt nhập cung, chủ quý nhân sinh ban đêm, quý nhân nữ nhiều, tăng thêm khí tường cát. Cổ quyết: \"Thiên Việt vi Ngọc Đường quý nhân, chủ âm trợ, nữ quý nhân đa.\"",
+    "lucun": "Lộc Tồn nhập cung, chủ tài lộc thủ thành, cung vị đó có tài khí, nhưng thuộc loại tài vận bảo thủ. Cổ quyết: \"Lộc Tồn vi tài lộc chi tinh, chủ thủ tài hữu dư, tiến tài ổn kiến.\"",
+    "tianma": "Thiên Mã nhập cung, chủ bôn ba động đãng, động trung cầu tài, thích hợp chủ động xuất kích, không thích hợp thủ chu đãi thỏ. Cổ quyết: \"Thiên Mã chủ động, phùng lộc tắc tài lộc song toàn, động trung sinh tài.\""
+  },
+  "shaStars": {
+    "dikong": "Địa Không nhập cung, chủ sự việc cung vị đó có cảm giác hụt hẫng, tinh thần tiêu hao, cần chú ý tâm lý sức khỏe. Cổ quyết: \"Địa Không chủ hư hao, nhập mệnh cung giả đa tinh thần mê mang, tu phòng không tưởng.\"",
+    "dijie": "Địa Kiếp nhập cung, chủ sự việc cung vị đó có tổn thất ngoài ý muốn, tài vật cần thận trọng, phòng tiểu nhân. Cổ quyết: \"Địa Kiếp chủ kiếp tài, nhập mệnh cung giả tài vận tổn hại, phòng ngoài ý chi thất.\"",
+    "huoxing": "Hỏa Tinh nhập cung, chủ sự việc cung vị đó nóng vội xung động, cảm xúc ba động, nhưng nếu gặp Tham Lang thì trái lại thành cát. Cổ quyết: \"Hỏa Tinh chủ cấp táo, nhiên ngộ Tham Lang đồng cung, phản vi Hỏa Tham cách, chủ bạo phát.\"",
+    "lingxing": "Linh Tinh nhập cung, chủ sự việc cung vị đó có ngầm trở ngại, phòng tiểu nhân sau lưng, mọi việc nên hạ thấp. Cổ quyết: \"Linh Tinh chủ ám sát, nhập mệnh giả đa ám trung thụ địch, tu phòng sau lưng thị phi.\"",
+    "qingyang": "Kình Dương nhập cung, chủ hình khắc, sự việc cung vị đó nhiều ba đảo, có huyết quang chi tai hoặc ngoài ý muốn. Cổ quyết: \"Kình Dương vi hình khắc chi tinh, nhập mệnh cung giả đa hình khắc, tu phòng ngoài ý huyết quang.\"",
+    "tuoluo": "Đà La nhập cung, chủ thị phi triền thân, sự việc cung vị đó kéo dài không dứt, mọi việc nên chuẩn bị sớm. Cổ quyết: \"Đà La chủ thị phi kéo dài, nhập mệnh cung giả tốc sự trì hoãn, tu phòng quấn quít không rõ.\""
+  },
+  "icons": {
+    "career": "◈",
+    "relationship": "♡",
+    "wealth": "◆",
+    "health": "☯"
+  }
+}

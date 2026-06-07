@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { BRANCHES, STEMS } from '@/lib/ziwei/constants';
 import { detectPatterns, getMingGongSummary } from '@/lib/ziwei/patterns';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { useLocale } from 'next-intl';
 
 interface ChartSummaryProps {
   chart: ZiweiChart;
@@ -18,6 +20,7 @@ const PatternLevelStyle = {
 export default function ChartSummary({ chart }: ChartSummaryProps) {
   const patterns = detectPatterns(chart);
   const { stars: mingStars, keywords, nature } = getMingGongSummary(chart);
+  const locale = useLocale();
   const currentDx = chart.daXians[chart.currentDaXianIndex];
 
   const siHuaSummary: { name: string; siHua: string; palaceName: string }[] = [];
@@ -47,29 +50,29 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
       <div className="card-glass rounded-xl p-5">
         <div className="text-[10px] tracking-widest mb-4 flex items-center gap-2" style={{ color: 'var(--t-faint)' }}>
           <span style={{ color: 'var(--t-gold)', opacity: 0.6 }}>✦</span>
-          命格总览
+          {localizeTerm('命格总览', locale)}
         </div>
 
         <div className="flex flex-wrap items-start gap-4">
           <div>
-            <div className="text-[9px] mb-1.5" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>命宫主星</div>
+            <div className="text-[9px] mb-1.5" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>{localizeTerm('命宫主星', locale)}</div>
             <div className="flex items-center gap-1">
               {mingStars.length > 0 ? (
                 mingStars.map(s => (
-                  <span key={s} className="font-bold text-lg" style={{ color: 'var(--t-gold)' }}>{s}</span>
+                  <span key={s} className="font-bold text-lg" style={{ color: 'var(--t-gold)' }}>{localizeTerm(s, locale)}</span>
                 ))
               ) : (
-                <span className="text-sm" style={{ color: 'var(--t-faint)' }}>空宫</span>
+                <span className="text-sm" style={{ color: 'var(--t-faint)' }}>{localizeTerm('空宫', locale)}</span>
               )}
             </div>
             {nature && (
-              <div className="text-[10px] mt-1" style={{ color: 'var(--t-gold)', opacity: 0.5 }}>{nature}</div>
+              <div className="text-[10px] mt-1" style={{ color: 'var(--t-gold)', opacity: 0.5 }}>{localizeTerm(nature, locale)}</div>
             )}
           </div>
 
           {keywords.length > 0 && (
             <div>
-              <div className="text-[9px] mb-1.5" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>性格特质</div>
+              <div className="text-[9px] mb-1.5" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>{localizeTerm('性格特质', locale)}</div>
               <div className="flex flex-wrap gap-1.5">
                 {keywords.map(k => (
                   <span key={k} className="text-[10px] px-2 py-0.5 rounded-full"
@@ -86,11 +89,11 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
           )}
 
           <div className="ml-auto text-right">
-            <div className="text-[9px] mb-1" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>五行局 · 当前大限</div>
-            <div className="text-[11px]" style={{ color: 'var(--t-text2)' }}>{chart.wuxingJuName}</div>
+            <div className="text-[9px] mb-1" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>{localizeTerm('五行局', locale)} · {localizeTerm('当前大限', locale)}</div>
+            <div className="text-[11px]" style={{ color: 'var(--t-text2)' }}>{localizeTerm(chart.wuxingJuName, locale)}</div>
             {currentDx && (
               <div className="text-[11px] text-purple-500 mt-0.5">
-                {currentDx.startAge}~{currentDx.endAge}岁 · {currentDx.palaceName}
+                {currentDx.startAge}~{currentDx.endAge}{localizeTerm('岁', locale)} · {localizeTerm(currentDx.palaceName, locale)}
               </div>
             )}
           </div>
@@ -98,13 +101,13 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
 
         <div className="mt-4 pt-3 flex flex-wrap gap-x-4 gap-y-1 text-[10px]"
           style={{ borderTop: '1px solid var(--t-border)', color: 'var(--t-faint)' }}>
-          <span>公历 {chart.birthInfo.year}-{chart.birthInfo.month}-{chart.birthInfo.day}</span>
+          <span>{localizeTerm('公历', locale)} {chart.birthInfo.year}-{chart.birthInfo.month}-{chart.birthInfo.day}</span>
           <span>
-            农历 {chart.lunarInfo.lunarYear}年{chart.lunarInfo.isLeapMonth ? '闰' : ''}
-            {chart.lunarInfo.lunarMonth}月{chart.lunarInfo.lunarDay}日
+            {localizeTerm('农历', locale)} {chart.lunarInfo.lunarYear}{localizeTerm('年', locale)}{chart.lunarInfo.isLeapMonth ? localizeTerm('闰', locale) : ''}
+            {chart.lunarInfo.lunarMonth}{localizeTerm('月', locale)}{chart.lunarInfo.lunarDay}{localizeTerm('日', locale)}
           </span>
-          <span>{STEMS[chart.lunarInfo.yearStem]}{BRANCHES[chart.lunarInfo.yearBranch]}年 · {BRANCHES[chart.birthInfo.hour]}时</span>
-          <span>命宫{BRANCHES[chart.mingGongBranch]} · 身宫{BRANCHES[chart.shenGongBranch]}</span>
+          <span>{localizeTerm(STEMS[chart.lunarInfo.yearStem], locale)}{localizeTerm(BRANCHES[chart.lunarInfo.yearBranch], locale)}{localizeTerm('年', locale)} · {localizeTerm(BRANCHES[chart.birthInfo.hour], locale)}{localizeTerm('时', locale)}</span>
+          <span>{localizeTerm('命宫', locale)}{localizeTerm(BRANCHES[chart.mingGongBranch], locale)} · {localizeTerm('身宫', locale)}{localizeTerm(BRANCHES[chart.shenGongBranch], locale)}</span>
         </div>
       </div>
       </motion.div>
@@ -119,7 +122,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
         <div className="card-glass rounded-xl p-4">
           <div className="text-[10px] tracking-widest mb-3 flex items-center gap-2" style={{ color: 'var(--t-faint)' }}>
             <span style={{ color: 'var(--t-gold)', opacity: 0.6 }}>◆</span>
-            本命四化
+            {localizeTerm('本命四化', locale)}
           </div>
           <div className="grid grid-cols-2 gap-2">
             {siHuaSummary.map(({ name, siHua, palaceName }) => {
@@ -135,10 +138,10 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                   className="flex items-center justify-between px-3 py-2 rounded-lg text-[10px]"
                   style={{ background: c.bg, border: `1px solid ${c.border}`, color: c.text }}
                 >
-                  <span className="font-medium">{name}</span>
+                  <span className="font-medium">{localizeTerm(name, locale)}</span>
                   <div className="flex items-center gap-1.5 text-right">
-                    <span style={{ opacity: 0.6 }} className="text-[9px]">{palaceName.replace('宫', '')}</span>
-                    <span className="font-bold">化{siHua}</span>
+                    <span style={{ opacity: 0.6 }} className="text-[9px]">{localizeTerm(palaceName, locale).replace('Cung ', '').replace('宫', '')}</span>
+                    <span className="font-bold">{localizeTerm('化', locale)}{localizeTerm(siHua, locale)}</span>
                   </div>
                 </div>
               );
@@ -158,8 +161,8 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
         <div className="card-glass rounded-xl p-4">
           <div className="text-[10px] tracking-widest mb-3 flex items-center gap-2" style={{ color: 'var(--t-faint)' }}>
             <span style={{ color: 'var(--t-gold)', opacity: 0.6 }}>◉</span>
-            格局识别
-            <span className="text-[9px] ml-auto" style={{ color: 'var(--t-faint)', opacity: 0.75 }}>{patterns.length}个格局</span>
+            {localizeTerm('格局识别', locale)}
+            <span className="text-[9px] ml-auto" style={{ color: 'var(--t-faint)', opacity: 0.75 }}>{patterns.length}{localizeTerm('个格局', locale)}</span>
           </div>
           <div className="space-y-2">
             {patterns.map((p, i) => {
@@ -174,11 +177,11 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${st.dot}`} />
-                    <span className={`text-[11px] font-medium ${st.label}`}>{p.name}</span>
+                    <span className={`text-[11px] font-medium ${st.label}`}>{localizeTerm(p.name, locale)}</span>
                     <div className="flex gap-1 ml-auto">
                       {p.palaces.slice(0, 2).map(pa => (
                         <span key={pa} className={`text-[8px] px-1.5 py-px rounded-full border ${st.badge}`}>
-                          {pa.replace('宫', '')}
+                          {localizeTerm(pa, locale).replace('Cung ', '').replace('宫', '')}
                         </span>
                       ))}
                     </div>
@@ -191,21 +194,21 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                     <div className="mt-2 pl-3.5 space-y-0.5">
                       {p.conditions.required.length > 0 && (
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
-                          <span className="font-medium" style={{ color: 'var(--t-gold)' }}>必须</span>
+                          <span className="font-medium" style={{ color: 'var(--t-gold)' }}>{localizeTerm('必须', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
                           {p.conditions.required.join('、')}
                         </div>
                       )}
                       {p.conditions.bonus && p.conditions.bonus.length > 0 && (
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
-                          <span className="font-medium text-emerald-500">加分</span>
+                          <span className="font-medium text-emerald-500">{localizeTerm('加分', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
                           {p.conditions.bonus.join('、')}
                         </div>
                       )}
                       {p.conditions.breaking && p.conditions.breaking.length > 0 && (
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
-                          <span className="font-medium text-orange-500">破格</span>
+                          <span className="font-medium text-orange-500">{localizeTerm('破格', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
                           {p.conditions.breaking.join('、')}
                         </div>
@@ -215,7 +218,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
 
                   {p.source && (
                     <div className="text-[9px] mt-1.5 pl-3.5" style={{ color: 'var(--t-faint)', opacity: 0.5 }}>
-                      出处 · {p.source}
+                      {localizeTerm('出处', locale)} · {p.source}
                     </div>
                   )}
                 </motion.div>
@@ -235,7 +238,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
       <div className="card-glass rounded-xl p-4">
         <div className="text-[10px] tracking-widest mb-3 flex items-center gap-2" style={{ color: 'var(--t-faint)' }}>
           <span className="text-purple-500/60">◎</span>
-          大限运程
+          {localizeTerm('大限运程', locale)}
         </div>
         <div className="grid grid-cols-3 gap-2">
           {chart.daXians.slice(0, 9).map((dx, i) => {
@@ -253,7 +256,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                 }}
               >
                 <div className="font-mono tabular-nums">{dx.startAge}~{dx.endAge}</div>
-                <div className="text-[9px] mt-0.5" style={{ opacity: 0.7 }}>{dx.palaceName.replace('宫', '')}</div>
+                <div className="text-[9px] mt-0.5" style={{ opacity: 0.7 }}>{localizeTerm(dx.palaceName, locale).replace('Cung ', '').replace('宫', '')}</div>
               </div>
             );
           })}

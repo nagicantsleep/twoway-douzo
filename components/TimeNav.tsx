@@ -2,6 +2,8 @@
 import { motion } from 'framer-motion';
 import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { useLocale } from 'next-intl';
 
 export type TimeView = 'mingpan' | 'daxian' | 'liunian';
 
@@ -44,6 +46,7 @@ export default function TimeNav({
   onViewChange,
   onYearChange,
 }: TimeNavProps) {
+  const locale = useLocale();
   const currentDx = chart.daXians[chart.currentDaXianIndex];
 
   // 计算当前叠加四化信息

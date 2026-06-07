@@ -2,6 +2,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Star } from '@/lib/ziwei/types';
 import { STAR_DESCRIPTIONS } from '@/lib/ziwei/constants';
+import { localizeTerm } from '@/lib/ziwei/terms';
+import { useLocale } from 'next-intl';
 
 interface StarDetailPanelProps {
   star: Star | null;
@@ -177,6 +179,7 @@ const siHuaColors: Record<string, string> = {
 };
 
 export default function StarDetailPanel({ star, palaceName, onClose }: StarDetailPanelProps) {
+  const locale = useLocale();
   const desc = star ? STAR_DESCRIPTIONS[star.name] : null;
   const detail = star ? STAR_DETAIL[star.name] : null;
   const typeConfig = star ? levelConfig[star.type] : null;
@@ -194,15 +197,15 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
           {/* 标题栏 */}
           <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--t-border)' }}>
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold" style={{ color: 'var(--t-gold)' }}>{star.name}</span>
+              <span className="text-xl font-bold" style={{ color: 'var(--t-gold)' }}>{localizeTerm(star.name, locale)}</span>
               {typeConfig && (
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${typeConfig.color}`}>
-                  {typeConfig.label}
+                  {localizeTerm(typeConfig.label, locale)}
                 </span>
               )}
               {star.siHua && (
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${siHuaColors[star.siHua] || ''}`}>
-                  化{star.siHua}
+                  {localizeTerm('化', locale)}{localizeTerm(star.siHua, locale)}
                 </span>
               )}
             </div>
@@ -214,15 +217,15 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {desc && (
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  `五行 · ${desc.element}`,
-                  `性质 · ${desc.nature}`,
-                  ...(palaceName ? [`位置 · ${palaceName}`] : []),
-                  ...(star.brightness ? [star.brightness === 'bright' ? '庙旺' : star.brightness === 'dim' ? '落陷' : '平和'] : []),
+                  `${localizeTerm('五行', locale)} · ${localizeTerm(desc.element, locale)}`,
+                  `${localizeTerm('性质', locale)} · ${localizeTerm(desc.nature, locale)}`,
+                  ...(palaceName ? [`${localizeTerm('位置', locale)} · ${localizeTerm(palaceName, locale)}`] : []),
+                  ...(star.brightness ? [localizeTerm(star.brightness === 'bright' ? '庙旺' : star.brightness === 'dim' ? '落陷' : '平和', locale)] : []),
                 ].map(tag => (
                   <div key={tag} className="text-[10px] px-2 py-1 rounded-full"
                     style={{
                       border: '1px solid var(--t-border)',
-                      color: tag.includes('庙旺') ? '#eab308' : tag.includes('落陷') ? '#ef4444' : 'var(--t-text2)',
+                      color: tag.includes('庙旺') || tag.includes('Miếu Vượng') ? '#eab308' : tag.includes('落陷') || tag.includes('Lạc Hãm') ? '#ef4444' : 'var(--t-text2)',
                     }}>
                     {tag}
                   </div>
@@ -233,9 +236,9 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {/* 关键词 */}
             {desc && (
               <div>
-                <div className="text-[10px] tracking-widest mb-1.5" style={{ color: 'var(--t-faint)' }}>星曜特质</div>
+                <div className="text-[10px] tracking-widest mb-1.5" style={{ color: 'var(--t-faint)' }}>{localizeTerm('星曜特质', locale)}</div>
                 <div className="flex flex-wrap gap-1.5">
-                  {desc.keywords.split('·').map(k => (
+                  {desc.keywords.split('·').filter(k => k.trim()).map(k => (
                     <span key={k} className="text-[11px] px-2 py-0.5 rounded-full"
                       style={{ color: 'var(--t-gold)', border: '1px solid rgba(212,168,67,0.2)', background: 'rgba(212,168,67,0.06)' }}>
                       {k.trim()}
@@ -249,7 +252,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {detail && (
               <div className="rounded-xl p-3" style={{ background: 'rgba(212,168,67,0.04)', border: '1px solid rgba(212,168,67,0.12)' }}>
                 <div className="text-[10px] tracking-widest mb-1.5 flex items-center gap-1" style={{ color: 'var(--t-gold)', opacity: 0.7 }}>
-                  古书原文
+                  {localizeTerm('古书原文', locale)}
                 </div>
                 <p className="text-[11px] leading-relaxed italic" style={{ color: 'var(--t-gold)', opacity: 0.8 }}>{detail.classical}</p>
               </div>
@@ -261,7 +264,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
                 <div>
                   <div className="text-[10px] tracking-widest mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--t-faint)' }}>
                     <span className="w-3 h-px inline-block" style={{ background: 'var(--t-border-acc)' }} />
-                    倪海夏老师解读
+                    {localizeTerm('倪海夏老师解读', locale)}
                     <span className="w-3 h-px inline-block" style={{ background: 'var(--t-border-acc)' }} />
                   </div>
                   <p className="text-xs leading-relaxed" style={{ color: 'var(--t-text2)' }}>{detail.niHaixia}</p>
@@ -277,7 +280,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
                     <div key={item.label} className="card-inner rounded-lg p-3">
                       <div className="text-[10px] mb-1 flex items-center gap-1" style={{ color: 'var(--t-faint)' }}>
                         <span>{item.icon}</span>
-                        <span>{item.label}</span>
+                        <span>{localizeTerm(item.label, locale)}</span>
                       </div>
                       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--t-text2)' }}>{item.value}</p>
                     </div>
@@ -286,11 +289,11 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
 
                 <div className="grid grid-cols-2 gap-2">
                   <div className="text-[10px] p-2.5 rounded-lg" style={{ border: '1px solid rgba(74,222,128,0.15)', background: 'rgba(74,222,128,0.05)' }}>
-                    <div className="text-emerald-500 mb-0.5 font-medium">最佳宫位</div>
+                    <div className="text-emerald-500 mb-0.5 font-medium">{localizeTerm('最佳宫位', locale)}</div>
                     <div className="text-emerald-500/70">{detail.bestPalace}</div>
                   </div>
                   <div className="text-[10px] p-2.5 rounded-lg" style={{ border: '1px solid rgba(248,113,113,0.15)', background: 'rgba(248,113,113,0.05)' }}>
-                    <div className="text-red-500 mb-0.5 font-medium">注意宫位</div>
+                    <div className="text-red-500 mb-0.5 font-medium">{localizeTerm('注意宫位', locale)}</div>
                     <div className="text-red-500/70">{detail.worstPalace}</div>
                   </div>
                 </div>

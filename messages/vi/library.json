@@ -1,0 +1,40 @@
+{
+  "seo": {
+    "title": "Ni sư phương pháp luận · Cổ tịch nguyên điển khố · Tử Vi Đẩu Số Toàn Tập / Toàn Thư / Tủy Phú",
+    "description": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số uy tín:《Tử Vi Đẩu Số Toàn Tập》《Tử Vi Đẩu Số Toàn Thư》《Tủy Phú》—— nguồn dẫn chứng《Thiên Kỷ》của Ni Hà Hạ"
+  },
+  "header": {
+    "sectionLabel": "CỔ TỊCH NGUYÊN ĐIỂN KHỐ · CLASSICS",
+    "title": "Ni Sư phương pháp luận · Cổ tịch nguyên điển khố",
+    "countTemplate": "{count} bộ cổ tịch · tổng cộng {paragraphs} đoạn tinh hoa",
+    "subtitle": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số"
+  },
+  "nav": {
+    "back": "← Quay lại trang chủ",
+    "backToLibrary": "← Thư viện cổ tịch",
+    "chart": "Tạo mệnh bàn →",
+    "home": "Trang chủ →",
+    "searchResults": "Kết quả tìm kiếm"
+  },
+  "about": {
+    "sectionTitle": "Về thư viện này",
+    "description": "Các cổ tịch được sưu tầm đều là bản công cộng (bản in đời Minh).\nNội dung đang được hoàn thiện, sẽ bổ sung toàn bộ《Tử Vi Đẩu Số Toàn Tập》và mục lục trích dẫn《Thiên Kỷ》của Ni Hà Hạ.\nNếu phát hiện sai sót vui lòng liên hệ chúng tôi.",
+    "footerContact": "Nếu phát hiện sai sót vui lòng liên hệ chúng tôi",
+    "enterLink": "Vào xem →",
+    "usageHint": "Mục lục chương",
+    "searchPlaceholder": "Tìm kiếm"
+  },
+  "bookMeta": {
+    "chapters": "{chapters} chương",
+    "paragraphs": "{paragraphs} đoạn tinh hoa"
+  },
+  "search": {
+    "pageTitle": "Tìm kiếm · Cổ tịch nguyên điển khố",
+    "keyword": "Từ khóa tìm kiếm",
+    "resultsCount": "Tìm thấy {count} kết quả trùng khớp",
+    "noResultsTitle": "Chưa tìm thấy từ khóa này trong cổ tịch đã sưu tầm",
+    "noResultsHint": "Chúng tôi đang liên tục bổ sung nội dung. Có thể thử tìm kiếm:",
+    "emptyQuery": "Vui lòng nhập từ khóa cần tìm kiếm",
+    "enterQuery": "Nhập từ khóa"
+  }
+}

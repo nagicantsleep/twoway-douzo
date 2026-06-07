@@ -1,0 +1,30 @@
+{
+  "card": {
+    "title": "Tử Vi Mệnh Bàn",
+    "sloganLine1": "Tử Vi vi môn · Thiên Địa Nhân vi lộ",
+    "sloganLine2": "Ni Hà Hạ vi sư · AI giải đáp bạn học",
+    "sloganCta": "Quét mã tạo mệnh bàn của bạn →",
+    "currentDaxian": "Đại hạn hiện tại",
+    "age": "tuổi",
+    "subtitle": "Ni Hà Hạ chính tông · ZI WEI",
+    "emptyPalace": "Trống",
+    "centerLabel": "ZI WEI"
+  },
+  "gender": {
+    "male": "Nam mệnh",
+    "female": "Nữ mệnh"
+  },
+  "modal": {
+    "title": "✦ Chia sẻ mệnh bàn",
+    "snsHint": "↑ Dùng được trên Moments / WeChat / Douyin / Xiaohongshu",
+    "download": "⬇ Tải ảnh chia sẻ",
+    "downloading": "Đang tạo…",
+    "copyLink": "🔗 Sao chép liên kết mệnh bàn",
+    "copied": "✓ Đã sao chép liên kết",
+    "usageTitle": "Mẹo sử dụng:",
+    "usageLine1": "· Tải ảnh có thể đăng Moments / Douyin / Xiaohongshu",
+    "usageLine2": "· Sao chép liên kết gửi cho bạn bè WeChat, họ mở ra để bắt đầu mệnh bàn của mình",
+    "done": "Xong",
+    "error": "Tạo ảnh thất bại, vui lòng chụp màn hình hoặc làm mới thử lại"
+  }
+}

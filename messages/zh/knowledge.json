@@ -1,0 +1,45 @@
+{
+  "seo": {
+    "title": "紫微斗数知识库 · 14 主星 × 13 宫位 · 倪海夏正宗体系",
+    "description": "基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断。"
+  },
+  "pageTitle": "紫微斗数知识库 · 14 主星 × 13 宫位 · 倪海夏正宗体系",
+  "pageDescription": "基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断，含一句话定调、核心论断、命盘依据、经典出处。",
+  "heroTitle": "紫微斗数知识库",
+  "heroSubtitle": "14 主星 × 13 宫位 = {count} 项专题",
+  "heroNote": "基于倪海夏《天纪》体系编纂 · 含古籍引证",
+  "section": {
+    "stars": "十四主星"
+  },
+  "backToHome": "← 首页",
+  "header": "倪师方法论 · 知识库",
+  "linkToLibrary": "古籍 →",
+  "starSuffix": "星",
+  "enterPrefix": "入",
+  "detailButton": "查看详情",
+  "page": {
+    "header": "倪师方法论 · 知识库",
+    "backToHome": "← 首页",
+    "goToChart": "起盘 →",
+    "breadcrumbHome": "首页",
+    "breadcrumbKnowledge": "知识库",
+    "topicDetail": "{topicLabel} · 倪海夏体系详解",
+    "ctaTitle": "想看你自己命盘的{topicLabel}？",
+    "ctaSubtitle": "输入生辰起盘 · 倪师正宗解读 · AI 答疑伴学",
+    "ctaButton": "立即起盘 →",
+    "relatedStarTopics": "{star}星的其他宫位解读",
+    "relatedStarTopicLink": "{star}入{palace}",
+    "relatedPalaceTopics": "其他主星入{palace}宫的解读",
+    "relatedPalaceTopicLink": "{star}入{palace}",
+    "classicsLinkTitle": "想读原典？",
+    "classicsLink": "查阅古籍原典库 — 紫微斗数全集 / 全书 / 骨髓赋 →",
+    "footer": "紫微研究 · 基于倪海夏正宗体系 · 仅供学习参考",
+    "footerDisclaimer": "本平台不构成任何医疗、投资、法律或重大决策建议",
+    "sections": {
+      "dingdiao": "一句话定调",
+      "lundian": "核心论断",
+      "yiju": "命盘依据",
+      "chuchu": "经典出处"
+    }
+  }
+}

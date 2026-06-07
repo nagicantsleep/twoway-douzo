@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
+import { localizeTerm } from '@/lib/ziwei/terms';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from '@/components/TimeNav';
 
 export type { TimeView };
@@ -42,6 +44,7 @@ export default function TopBar({
   copied = false,
 }: TopBarProps) {
   const router = useRouter();
+  const locale = useLocale();
   const currentDx = chart.daXians[chart.currentDaXianIndex];
 
   const getOverlayInfo = (): { stemName: string; overlay: Record<string, string> } | null => {
@@ -92,7 +95,7 @@ export default function TopBar({
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--tx-3)'; }}
         >
           <span style={{ fontSize: '16px' }}>‹</span>
-          <span>返回</span>
+          <span>{localizeTerm('返回', locale)}</span>
         </button>
 
         <div style={{ width: '1px', height: '20px', background: 'var(--bdr-med)' }} />
@@ -101,17 +104,17 @@ export default function TopBar({
           className="text-[12px] tracking-[0.2em]"
           style={{ color: 'var(--ac)' }}
         >
-          紫微命盘
+          {localizeTerm('紫微命盘', locale)}
         </span>
 
         <div className="flex-1" />
 
         <div className="flex items-center gap-1.5">
           {onShare && (
-            <ActionButton onClick={onShare} label="分享" />
+            <ActionButton onClick={onShare} label={localizeTerm('分享', locale)} />
           )}
           {onExport && (
-            <ActionButton onClick={onExport} label="打印" />
+            <ActionButton onClick={onExport} label={localizeTerm('打印', locale)} />
           )}
         </div>
       </div>
@@ -131,7 +134,7 @@ export default function TopBar({
           className="flex items-center justify-center gap-2"
           style={{ padding: '0 20px 10px' }}
         >
-          <span className="text-[10px]" style={{ color: 'var(--t-faint)' }}>流月</span>
+          <span className="text-[10px]" style={{ color: 'var(--t-faint)' }}>{localizeTerm('流月', locale)}</span>
           <button
             onClick={() => onMonthChange(((liuyueMonth - 2 + 12) % 12) + 1)}
             className="text-[10px] w-5 h-5 flex items-center justify-center rounded cursor-pointer bg-transparent border-none"
@@ -143,7 +146,7 @@ export default function TopBar({
             className="text-[11px] font-mono min-w-[32px] text-center"
             style={{ color: 'var(--t-gold)' }}
           >
-            {liuyueMonth}月
+            {liuyueMonth}{localizeTerm('月', locale)}
           </span>
           <button
             onClick={() => onMonthChange((liuyueMonth % 12) + 1)}
@@ -167,7 +170,7 @@ export default function TopBar({
             border: '1px solid rgba(74,222,128,0.3)',
           }}
         >
-          ✓ 已复制
+          ✓ {localizeTerm('已复制', locale)}
         </motion.div>
       )}
     </div>

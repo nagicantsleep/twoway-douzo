@@ -1,0 +1,67 @@
+{
+  "pageTitle": "Tạo Tử Vi Mệnh Bàn",
+  "subtitle": "Nhập năm tháng ngày giờ sinh · Dương lịch",
+  "titleAccent": "── Nhập sinh thần bát tự ──",
+  "loading": {
+    "generating": "Đang tạo Tử Vi Mệnh Bàn…",
+    "submit": "Tạo mệnh bàn · Giải mã số mệnh"
+  },
+  "error": {
+    "generateFailed": "Tạo mệnh bàn thất bại",
+    "retry": "Tạo thất bại, vui lòng thử lại"
+  },
+  "reset": "Tạo lại mệnh bàn",
+  "history": {
+    "title": "Mệnh bàn đã xem"
+  },
+  "calendar": {
+    "solar": "Dương lịch",
+    "lunar": "Âm lịch"
+  },
+  "labels": {
+    "year": "Năm",
+    "month": "Tháng",
+    "day": "Ngày",
+    "hour": "giờ",
+    "minute": "phút",
+    "yearShort": "năm",
+    "monthShort": "tháng",
+    "dayShort": "ngày",
+    "hourSuffix": "giờ"
+  },
+  "mingShen": {
+    "ming": "Mệnh",
+    "shen": "Thân",
+    "mingGong": "Mệnh cung",
+    "shenGong": "Thân cung"
+  },
+  "summary": {
+    "section": "Ngũ hành cục · Đại hạn hiện tại",
+    "wuxingJu": "Ngũ hành cục"
+  },
+  "field": {
+    "name": "Họ tên (không bắt buộc)",
+    "namePlaceholder": "Nhập họ tên",
+    "birthDate": "Ngày sinh (dương lịch)",
+    "birthPlace": "Nơi sinh (để hiệu chỉnh giờ mặt trời thực)",
+    "province": "Tỉnh / Thành phố",
+    "city": "Thành phố",
+    "selectProvinceFirst": "Chọn tỉnh trước",
+    "birthTime": "Giờ sinh (giờ Bắc Kinh)",
+    "trueSolar": "Giờ mặt trời thực → {hourName} ({range})",
+    "unknownTime": "Không biết giờ sinh, lấy giờ Tý (23:00–01:00) để tạo mệnh bàn",
+    "gender": "Giới tính",
+    "male": "Nam",
+    "female": "Nữ",
+    "locationInfo": "{city} · Kinh độ {longitude}°Đ · Chênh lệch {offset} phút",
+    "locationHint": "* Ni Hà Hạ dùng giờ mặt trời thực, nên điền nơi sinh để tự động hiệu chỉnh",
+    "unknownHour": "Không rõ giờ sinh"
+  },
+  "errorMessages": {
+    "selectYear": "Vui lòng chọn năm sinh",
+    "yearRange": "Năm trong khoảng 1900–2026",
+    "selectMonth": "Vui lòng chọn tháng",
+    "selectDay": "Vui lòng chọn ngày",
+    "invalidDay": "Tháng {month} không có ngày {day}"
+  }
+}

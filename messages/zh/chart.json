@@ -1,0 +1,29 @@
+{
+  "pageTitle": "紫微命盘",
+  "back": "返回",
+  "boardTitle": "紫微斗数命盘",
+  "boardCenterTitle": "紫微斗数",
+  "mingGongLabel": "命宫",
+  "shenGongLabel": "身宫",
+  "currentDaxian": "当前大限",
+  "ageSuffix": "岁",
+  "leapMonth": "闰",
+  "sihua": {
+    "lu": "化禄",
+    "quan": "化权",
+    "ke": "化科",
+    "ji": "化忌"
+  },
+  "clickHint": "点击宫位看三方四正",
+  "tabs": {
+    "mingpan": "本命",
+    "daxian": "大限",
+    "liunian": "流年"
+  },
+  "yearSiHua": "年四化：",
+  "share": "分享",
+  "print": "打印",
+  "liuyue": "流月",
+  "copied": "✓ 已复制",
+  "ziWeiDouShu": "Zi Wei Dou Shu"
+}

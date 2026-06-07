@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "Tri thức Tử Vi Đẩu Số · 14 Chủ tinh × 13 Cung vị · Ni Hà Hạ chính tông",
+    "description": "Dựa trên hệ thống《Thiên Kỷ》của Ni Hà Hạ và cổ tịch《Tử Vi Đẩu Số Toàn Tập》《Tủy Phú》biên soạn tri thức Tử Vi Đẩu Số. Bao gồm luận đoán hoàn chỉnh của 14 Chủ tinh tại 13 cung vị."
+  },
+  "header": {
+    "sectionLabel": "KNOWLEDGE BASE",
+    "title": "Tri thức Tử Vi Đẩu Số",
+    "countTemplate": "14 Chủ tinh × 13 Cung vị = {count} chuyên mục",
+    "subtitle": "Biên soạn dựa trên hệ thống《Thiên Kỷ》của Ni Hà Hạ · Kèm dẫn chứng cổ tịch",
+    "backLink": "← Trang chủ",
+    "siteLabel": "Ni Sư phương pháp luận · Tri thức khố"
+  },
+  "starSection": {
+    "header": "Thập tứ chủ tinh",
+    "label": "ZI WEI · 14 STARS"
+  },
+  "topicLink": {
+    "template": "Nhập {palaceName} · {topicLabel}"
+  },
+  "links": {
+    "classics": "Cổ tịch →"
+  }
+}

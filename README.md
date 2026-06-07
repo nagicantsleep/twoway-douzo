@@ -123,6 +123,23 @@ Expand-Archive combined.zip
 
 14 主星 × 12 宫位的结构化知识数据，可用于内容生成或知识库构建。
 
+### Đa ngôn ngữ (i18n)
+
+Hỗ trợ hai ngôn ngữ với **next-intl**:
+
+| Đường dẫn | URL |
+|-----------|-----|
+| Tiếng Việt | `https://wdyziweidoushu666.com/vi/...` |
+| Tiếng Trung | `https://wdyziweidoushu666.com/zh/...` |
+
+Kiến trúc:
+
+- **`i18n/routing.ts`** — `defineRouting({ locales: ['vi','zh'], localePrefix: 'always' })`
+- **`i18n/request.ts`** — load messages từ `messages/{locale}/*.json` (10 namespaces)
+- **`i18n/navigation.ts`** — `createNavigation(routing)` → Link, useRouter, redirect locale-aware
+- **`messages/{vi,zh}/*.json`** — 10 namespace files: `common`, `chart`, `form`, `home`, `insight`, `knowledge`, `library`, `preview`, `share`, `star-detail`
+- **`lib/ziwei/terms.ts`** — Bảng phiên âm Hán-Việt ~100 thuật ngữ Tử Vi + `localizeTerm(term, locale)`
+
 ---
 
 ## 未包含的部分

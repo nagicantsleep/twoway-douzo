@@ -161,6 +161,26 @@ export const TERMS: Record<string, TermEntry> = {
   '年': { vi: 'năm', zh: '年' },
   '四化': { vi: 'Tứ Hóa', zh: '四化' },
   '化': { vi: 'hóa', zh: '化' },
+
+  // ── star detail panel labels ──
+  '星曜特质': { vi: 'Tinh Diệu Đặc Chất', zh: '星曜特质' },
+  '古书原文': { vi: 'Cổ Thư Nguyên Văn', zh: '古书原文' },
+  '倪海夏老师解读': { vi: 'Ni Hải Hạ Lão Sư Giải Độc', zh: '倪海夏老师解读' },
+  '事业方向': { vi: 'Sự Nghiệp Phương Hướng', zh: '事业方向' },
+  '感情特质': { vi: 'Cảm Tình Đặc Chất', zh: '感情特质' },
+  '财运分析': { vi: 'Tài Vận Phân Tích', zh: '财运分析' },
+  '健康提示': { vi: 'Kiện Khang Đề Thị', zh: '健康提示' },
+  '最佳宫位': { vi: 'Tối Gia Cung Vị', zh: '最佳宫位' },
+  '注意宫位': { vi: 'Chú Ý Cung Vị', zh: '注意宫位' },
+  '五行': { vi: 'Ngũ Hành', zh: '五行' },
+  '性质': { vi: 'Tính Chất', zh: '性质' },
+  '位置': { vi: 'Vị Trí', zh: '位置' },
+  '庙旺': { vi: 'Miếu Vượng', zh: '庙旺' },
+  '落陷': { vi: 'Lạc Hãm', zh: '落陷' },
+  '平和': { vi: 'Bình Hòa', zh: '平和' },
+  '中性偏吉': { vi: 'Trung Tính Thiên Cát', zh: '中性偏吉' },
+  '凶中带吉': { vi: 'Hung Trung Đới Cát', zh: '凶中带吉' },
+  '中性': { vi: 'Trung Tính', zh: '中性' },
 };
 
 /**

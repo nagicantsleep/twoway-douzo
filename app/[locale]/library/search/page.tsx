@@ -4,41 +4,61 @@
 
 import { Link } from '@/i18n/navigation';
 import { searchClassics, getParagraphById } from '@/lib/classics';
+import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: '搜索 · 古籍原典库',
-};
+type Props = { params: Promise<{ locale: string }> };
 
-export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'library' });
+  return {
+    title: t('search.pageTitle'),
+  };
+}
+
+export default async function SearchPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { locale } = await params;
   const sp = await searchParams;
+  const t = await getTranslations({ locale, namespace: 'library' });
   const q = sp.q?.trim() || '';
   const hits = q ? searchClassics(q, 50) : [];
+  const emptyLabel = t('search.emptyLabel');
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
       <div className="px-6 py-4 flex items-center justify-between"
         style={{ borderBottom: '1px solid rgba(184,146,42,0.15)', background: 'var(--bg-page)' }}>
         <Link href="/library" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.3em', textDecoration: 'none' }}>
-          ← 古籍库
+          {t('nav.backToLibrary')}
         </Link>
         <div style={{ fontSize: '12px', color: 'var(--tx-3)', letterSpacing: '0.2em' }}>
-          搜索结果
+          {t('nav.searchResults')}
         </div>
         <Link href="/" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em', textDecoration: 'none' }}>
-          首页 →
+          {t('nav.home')}
         </Link>
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
         <div className="text-center mb-10">
           <div style={{ fontSize: '13px', color: 'var(--tx-3)', letterSpacing: '0.15em', marginBottom: '4px' }}>
-            搜索关键词
+            {t('search.keyword')}
           </div>
           <h1 style={{ fontSize: 'clamp(22px, 3.5vw, 32px)', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.1em' }}>
-            「{q || '（空）'}」
+            「{q || emptyLabel}」
           </h1>
           <div style={{ fontSize: '12px', color: 'var(--tx-3)', marginTop: '8px' }}>
-            共找到 <strong style={{ color: 'var(--ac)' }}>{hits.length}</strong> 条古籍原文匹配
+            {t.rich('search.resultsCount', {
+              count: hits.length,
+              strong: (chunks) => <strong style={{ color: 'var(--ac)' }}>{chunks}</strong>,
+            })}
           </div>
         </div>
 
@@ -54,14 +74,14 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             <div style={{ fontSize: '40px', marginBottom: '12px', opacity: 0.4 }}>📜</div>
             {q ? (
               <>
-                <div style={{ fontSize: '14px', marginBottom: '6px' }}>暂未在已收录古籍中找到这个关键词</div>
+                <div style={{ fontSize: '14px', marginBottom: '6px' }}>{t('search.noResultsTitle')}</div>
                 <div style={{ fontSize: '11px', color: 'var(--tx-3)', lineHeight: 1.7 }}>
-                  我们持续补充内容中。可尝试搜索：<br />
-                  <span style={{ color: 'var(--ac)' }}>七杀朝斗 / 双禄朝垣 / 化忌 / 紫微 / 命宫 / 机月同梁</span>
+                  {t('search.noResultsHint')}<br />
+                  <span style={{ color: 'var(--ac)' }}>{t('search.suggestions')}</span>
                 </div>
               </>
             ) : (
-              <div style={{ fontSize: '13px' }}>请输入要搜索的关键词</div>
+              <div style={{ fontSize: '13px' }}>{t('search.emptyQuery')}</div>
             )}
           </div>
         ) : (

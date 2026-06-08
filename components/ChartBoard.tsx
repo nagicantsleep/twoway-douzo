@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocale, useTranslations } from 'next-intl';
 import type { ZiweiChart, Palace, Star } from '@/lib/ziwei/types';
 import { BRANCHES, STEMS } from '@/lib/ziwei/constants';
 import { localizeTerm } from '@/lib/ziwei/terms';
-import { useLocale } from 'next-intl';
 import PalaceCell from './PalaceCell';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from './TimeNav';
 
@@ -56,6 +56,8 @@ const ANIMATION_ORDER = [5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4];
 
 export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHuaClick }: ChartBoardProps) {
   const locale = useLocale();
+  const t = useTranslations('insight.title');
+  const tBoard = useTranslations('insight.board');
   const [selectedBranch, setSelectedBranch] = useState<number | null>(null);
   const [timeView, setTimeView] = useState<TimeView>('mingpan');
   const [liunianYear, setLiunianYear] = useState<number>(new Date().getFullYear());
@@ -111,7 +113,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           Zi Wei Dou Shu
         </div>
         <h2 className="text-sm tracking-[0.25em] font-medium" style={{ color: 'var(--t-gold)' }}>
-          {chart.birthInfo.name ? `${chart.birthInfo.name} · ` : ''}紫微斗数命盘
+          {chart.birthInfo.name ? `${chart.birthInfo.name} · ` : ''}{t('chart')}
         </h2>
       </motion.div>
 
@@ -174,15 +176,15 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
             return (
               <div className="border border-purple-500/30 rounded-lg px-3 py-1.5 text-center"
                 style={{ background: 'rgba(147,51,234,0.06)' }}>
-                <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">当前大限</div>
-                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}{locale === 'vi' ? ' tuổi' : '岁'}</div>
+                <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">{tBoard('currentDaXian')}</div>
+                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}{locale === 'vi' ? ' ' + tBoard('age') : '岁'}</div>
                 <div className="text-[9px] text-purple-500/60">{localizeTerm(dx.palaceName, locale)}</div>
               </div>
             );
           })()}
 
           <div className="text-[8px] text-center leading-relaxed font-mono" style={{ color: 'var(--t-faint)', opacity: 0.75 }}>
-            {chart.lunarInfo.lunarYear}·{chart.lunarInfo.isLeapMonth ? '闰' : ''}
+            {chart.lunarInfo.lunarYear}·{chart.lunarInfo.isLeapMonth ? tBoard('leapChar') : ''}
             {chart.lunarInfo.lunarMonth}·{chart.lunarInfo.lunarDay}
           </div>
         </motion.div>
@@ -283,7 +285,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           );
         })}
         <span className="px-1.5 py-0.5 rounded-full" style={{ color: 'var(--t-faint)', border: '1px solid var(--t-border)' }}>
-          点击宫位看三方四正
+          {tBoard('hint')}
         </span>
       </motion.div>
     </div>

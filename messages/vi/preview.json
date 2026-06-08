@@ -3,11 +3,10 @@
     "title": "Tử Vi Quyển Trục · Xem trước khai màn",
     "tag": "SCROLL · INTRO · PREVIEW"
   },
-  "description": "Hiệu ứng cuộn giấy bạn vừa thấy sẽ từ từ展开 mỗi khi vào trang chủ.",
+  "description": "Hiệu ứng cuộn giấy bạn vừa thấy sẽ từ từ triển khai mỗi khi vào trang chủ.\nNếu hài lòng, hãy cho tôi biết, tôi sẽ kết nối nó với trang chủ / triển khai.",
   "actions": {
     "replay": "Phát lại",
-    "enterHome": "Vào trang chủ gốc",
-    "skip": "Bỏ qua"
+    "enterHome": "Vào trang chủ gốc"
   },
   "links": {
     "original": "Trang gốc ↗",
@@ -17,10 +16,10 @@
   "timeline": {
     "title": "Dòng thời gian hoạt ảnh",
     "items": [
-      "0.0 ~ 1.7s  Cuộn giấy mở ra từ trung tâm sang hai bên",
-      "1.9 ~ 2.7s  Nội dung giấy tuyên xuất hiện (tiêu đề + phụ đề + ấn chu sa)",
-      "2.7 ~ 3.5s  Dừng lại thưởng thức",
-      "3.5 ~ 4.2s  Toàn bộ mờ dần, vào trang chủ"
+      "· 0.0 ~ 1.7 s &nbsp;&nbsp;Cuộn giấy mở ra từ trung tâm sang hai bên",
+      "· 1.9 ~ 2.7 s &nbsp;&nbsp;Nội dung giấy tuyên xuất hiện (tiêu đề + phụ đề + ấn chu sa)",
+      "· 2.7 ~ 3.5 s &nbsp;&nbsp;Dừng lại thưởng thức",
+      "· 3.5 ~ 4.2 s &nbsp;&nbsp;Toàn bộ mờ dần, vào trang chủ"
     ],
     "skipHint": "Người dùng có thể nhấp 'Bỏ qua' ở góc dưới bên phải bất cứ lúc nào để vào thẳng trang chủ."
   }

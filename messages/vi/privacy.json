@@ -1,0 +1,62 @@
+{
+  "title": "Chính Sách Bảo Mật",
+  "section1": {
+    "title": "1. Thông tin chúng tôi thu thập",
+    "intro": "Để cung cấp dịch vụ an sao và giải mã Tử Vi, chúng tôi có thể thu thập các thông tin sau:",
+    "items": [
+      "<strong>Thông tin mệnh bàn cần thiết</strong>: Họ tên (tùy chọn), ngày tháng năm sinh dương lịch, giờ sinh, giới tính, kinh độ nơi sinh",
+      "<strong>Thông tin tài khoản (sau đăng ký)</strong>: Số điện thoại (dùng cho xác minh SMS và dịch vụ thành viên)",
+      "<strong>Thông tin tương tác</strong>: Lượt click, lượt xem, lịch sử mệnh bàn của bạn trên trang",
+      "<strong>Thông tin phản hồi</strong>: Đánh giá 'chính xác / không chính xác' và phản hồi văn bản của bạn về nội dung giải độc",
+      "<strong>Thông tin thanh toán</strong>: Khi mua thành viên hoặc dịch vụ đơn lẻ, được xử lý qua bên thứ ba (Alipay / WeChat Pay), nền tảng không lưu trữ số thẻ hoặc mật khẩu đầy đủ"
+    ]
+  },
+  "section2": {
+    "title": "2. Cách chúng tôi sử dụng thông tin",
+    "items": [
+      "Thông tin mệnh bàn chỉ được dùng cho lần giải độc này và lịch sử mệnh bàn dưới tài khoản của bạn",
+      "Số điện thoại dùng cho đăng ký, đăng nhập, thông báo đơn hàng",
+      "Thông tin phản hồi dùng để liên tục cải thiện chất lượng nội dung mệnh lý (phân tích tổng hợp sau khi ẩn danh)",
+      "Dữ liệu tổng hợp có thể được dùng cho nghiên cứu ngành và tối ưu hóa nền tảng"
+    ]
+  },
+  "section3": {
+    "title": "3. Chia sẻ thông tin và bên thứ ba",
+    "intro": "Trừ các trường hợp sau, chúng tôi không chia sẻ thông tin cá nhân của bạn với bên thứ ba:",
+    "items": [
+      "Nhà cung cấp dịch vụ thanh toán (Alipay / WeChat Pay): xử lý thanh toán đơn hàng",
+      "Nhà cung cấp dịch vụ SMS (ví dụ Aliyun SMS): gửi mã xác minh",
+      "Nhà cung cấp dịch vụ đám mây (ví dụ Vercel / Cloudflare / Aliyun): vận hành kỹ thuật",
+      "Dịch vụ giải độc AI (ví dụ Anthropic Claude): xử lý hội thoại 'hỏi tự do' của bạn (đã ẩn danh)",
+      "Cơ quan tư pháp hoặc cơ quan chính phủ theo yêu cầu hợp pháp của pháp luật"
+    ]
+  },
+  "section4": {
+    "title": "4. Bảo mật thông tin",
+    "body": "Chúng tôi áp dụng các biện pháp kỹ thuật và quản lý phổ biến trong ngành để bảo vệ thông tin của bạn (mã hóa truyền HTTPS, lưu trữ mã hóa cơ sở dữ liệu, kiểm soát quyền truy cập, v.v.). Tuy nhiên, xin lưu ý rằng truyền tải qua internet không thể đảm bảo an toàn 100%."
+  },
+  "section5": {
+    "title": "5. Quyền của bạn",
+    "items": [
+      "<strong>Truy vấn</strong>: Có thể xem tất cả mệnh bàn lịch sử và đơn hàng qua trung tâm tài khoản",
+      "<strong>Xóa</strong>: Liên hệ chăm sóc khách hàng để xóa mệnh bàn cụ thể dưới tài khoản / hủy tài khoản",
+      "<strong>Xuất</strong>: Có thể yêu cầu xuất toàn bộ dữ liệu cá nhân của bạn"
+    ]
+  },
+  "section6": {
+    "title": "6. Cookie và bộ nhớ cục bộ",
+    "body": "Trang này sử dụng cookie / localStorage để: lưu tùy chọn chủ đề tối / sáng của bạn, lịch sử mệnh bàn gần đây, trạng thái đăng nhập thành viên. Bạn có thể tắt trong cài đặt trình duyệt, nhưng một số chức năng có thể bị ảnh hưởng."
+  },
+  "section7": {
+    "title": "7. Người chưa thành niên",
+    "body": "Nội dung mệnh lý của nền tảng hướng đến người dùng từ 18 tuổi trở lên. Người chưa thành niên vui lòng sử dụng dưới sự đồng ý của người giám hộ, và không được dùng kết quả giải độc cho các quyết định lớn trong đời."
+  },
+  "section8": {
+    "title": "8. Thay đổi chính sách",
+    "body": "Chính sách này có thể được cập nhật không định kỳ. Thay đổi quan trọng sẽ được thông báo bằng cách nổi bật. Tiếp tục sử dụng đồng nghĩa với việc đồng ý với phiên bản đã cập nhật."
+  },
+  "footer": {
+    "termsLink": "Điều khoản dịch vụ",
+    "homeLink": "Trang chủ"
+  }
+}

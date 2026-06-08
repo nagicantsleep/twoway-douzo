@@ -177,4 +177,10 @@ Khi bắt đầu task mới, đọc theo thứ tự:
 5. `docs/TRACE_SPEC.md` (trace quality tiers)
 6. `scripts/bin/harness-cli query matrix` (trạng thái stories hiện tại)
 
+### 9. Quyịn tắc vận hành process
+
+- **KHÔNG** tự chạy `taskkill` (hay bất kể lệnh kill process nào) để dừng tiến trình `node`/`next`/`next dev` nhằm restart project. Việc kill node đột ngột có thể phá vỡ các tiến trình khác của user (IDE, MCP servers, dev tools khác) và mất state chưa persist.
+- Khi cần restart Next.js: ưu tiên hot-reload của Next tự xử lý; nếu thật sự cần kill, **phải hỏi user trước** và chỉ kill đúng PID của tiến trình do chính session này spawn, không kill theo tên image.
+- Các thao tác ngoài project (kill process hệ thống, xóa cache ngoài `.next`, thay đổi global config) đều phải có xác nhận của user
+
 <!-- SYNC NOTICE: CLAUDE.md and AGENTS.md share workflow content when both exist. Edit BOTH together when changing repo workflow rules. Tool-managed blocks (<!-- gitnexus:* -->, <!-- HARNESS:* -->) may be regenerated into only one file by their tools. After running those tools, manually re-sync the other file if needed. -->

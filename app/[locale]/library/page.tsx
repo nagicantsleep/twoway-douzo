@@ -21,20 +21,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function LibraryHomePage() {
+export default async function LibraryHomePage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'library' });
+
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
       {/* 顶栏 */}
       <div className="px-6 py-4 flex items-center justify-between"
         style={{ borderBottom: '1px solid rgba(184,146,42,0.15)', background: 'var(--bg-page)' }}>
         <Link href="/" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.3em', textDecoration: 'none' }}>
-          ← 返回首页
+          {t('nav.back')}
         </Link>
         <div style={{ fontSize: '12px', color: 'var(--tx-3)', letterSpacing: '0.3em' }}>
-          古籍原典库 · CLASSICS
+          {t('header.sectionLabel')}
         </div>
         <Link href="/chart" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em', textDecoration: 'none' }}>
-          起盘 →
+          {t('nav.chart')}
         </Link>
       </div>
 
@@ -46,11 +49,14 @@ export default function LibraryHomePage() {
           <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to left, transparent, rgba(184,146,42,0.4))' }} />
         </div>
         <h1 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.15em', marginBottom: '12px' }}>
-          倪师方法论 · 古籍原典库
+          {t('header.title')}
         </h1>
         <p style={{ fontSize: '14px', color: 'var(--tx-2)', letterSpacing: '0.1em', maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
-          紫微斗数权威古籍全文检索<br />
-          收录 <strong style={{ color: 'var(--ac)' }}>{ALL_BOOKS.length}</strong> 部古籍 · 共 <strong style={{ color: 'var(--ac)' }}>{TOTAL_PARAGRAPHS}</strong> 段精华
+          {t('header.subtitle')}<br />
+          {t.rich('header.countTemplate', {
+            count: ALL_BOOKS.length,
+            paragraphs: TOTAL_PARAGRAPHS,
+          })}
         </p>
       </div>
 
@@ -88,9 +94,9 @@ export default function LibraryHomePage() {
                 {book.intro}
               </div>
               <div style={{ display: 'flex', gap: '12px', fontSize: '11px', color: 'var(--tx-3)' }}>
-                <span>{book.chapters.length} 章节</span>
+                <span>{t('bookMeta.chapters', { chapters: book.chapters.length })}</span>
                 <span style={{ color: 'rgba(184,146,42,0.4)' }}>·</span>
-                <span>{book.chapters.reduce((s, c) => s + c.paragraphs.length, 0)} 段精华</span>
+                <span>{t('bookMeta.paragraphs', { paragraphs: book.chapters.reduce((s, c) => s + c.paragraphs.length, 0) })}</span>
               </div>
               <div style={{
                 display: 'inline-flex',
@@ -100,7 +106,7 @@ export default function LibraryHomePage() {
                 letterSpacing: '0.15em',
                 fontWeight: 500,
               }}>
-                进入查阅 →
+                {t('about.enterLink')}
               </div>
             </Link>
           ))}
@@ -109,12 +115,10 @@ export default function LibraryHomePage() {
         {/* 底部说明 */}
         <div style={{ marginTop: '60px', padding: '24px', background: 'rgba(184,146,42,0.05)', borderRadius: '10px', textAlign: 'center' }}>
           <div style={{ fontSize: '11px', color: 'var(--ac-dim)', fontWeight: 600, letterSpacing: '0.15em', marginBottom: '8px' }}>
-            关于本库
+            {t('about.sectionTitle')}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.8, maxWidth: '600px', margin: '0 auto' }}>
-            所收录古籍均为公版（明代刊本）。<br />
-            内容持续完善，未来将补全《紫微斗数全集》全本与倪海夏《天纪》引证目录。<br />
-            如发现任何错误请联系我们。
+          <div style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.8, maxWidth: '600px', margin: '0 auto', whiteSpace: 'pre-line' }}>
+            {t('about.description')}
           </div>
         </div>
       </div>

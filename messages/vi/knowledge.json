@@ -13,7 +13,8 @@
   },
   "starSection": {
     "header": "Thập tứ chủ tinh",
-    "label": "ZI WEI · 14 STARS"
+    "label": "ZI WEI · 14 STARS",
+    "starSuffix": " tinh"
   },
   "topicLink": {
     "template": "Nhập {palaceName} · {topicLabel}"

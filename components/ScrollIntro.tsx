@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface ScrollIntroProps {
   onComplete: () => void;
@@ -8,9 +9,15 @@ interface ScrollIntroProps {
   skipLabel?: string;
 }
 
-const BEIDOU = ['天枢', '天璇', '天玑', '天权', '玉衡', '开阳', '摇光'];
-
-export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: ScrollIntroProps) {
+export default function ScrollIntro({ onComplete, skipLabel }: ScrollIntroProps) {
+  const t = useTranslations('home.scrollIntro');
+  const resolvedSkip = skipLabel ?? t('skip');
+  const BEIDOU = (t.raw('beidou') as string[]) ?? [];
+  const sealName = t('seal');
+  const tagline = t('tagline');
+  const footer = t('footer');
+  const bigTitle = t('title');
+  const subtitle = t('subtitle');
   // visible：整个 intro 是否在显示
   // unrolled：卷轴是否已展开（控制内容浮现）
   const [visible, setVisible] = useState(true);
@@ -159,7 +166,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                   textShadow: '0 1px 0 rgba(255,250,235,0.3)',
                   whiteSpace: 'nowrap',
                 }}>
-                  紫微命盘
+                  {bigTitle}
                 </h1>
 
                 {/* 副标 楷体 */}
@@ -172,7 +179,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                   marginBottom: '6px',
                   whiteSpace: 'nowrap',
                 }}>
-                  观 天 之 象 · 察 人 之 命
+                  {tagline}
                 </div>
                 <div style={{
                   fontSize: 'clamp(11px, 1.2vw, 14px)',
@@ -182,7 +189,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                   whiteSpace: 'nowrap',
                   opacity: 0.85,
                 }}>
-                  倪海夏《天纪》正宗体系
+                  {footer}
                 </div>
 
                 {/* 朱砂方印 */}
@@ -208,8 +215,12 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                     fontSize: 'clamp(11px, 1.2vw, 13px)',
                   }}
                 >
-                  <div style={{ display: 'flex', gap: '0' }}><span>王</span><span>多</span></div>
-                  <div style={{ display: 'flex', gap: '0' }}><span>鱼</span><span>印</span></div>
+                  <div style={{ display: 'flex', gap: '0' }}>
+                    {Array.from(sealName).slice(0, 2).map((ch, i) => <span key={i}>{ch}</span>)}
+                  </div>
+                  <div style={{ display: 'flex', gap: '0' }}>
+                    {Array.from(sealName).slice(2, 4).map((ch, i) => <span key={i}>{ch}</span>)}
+                  </div>
                 </motion.div>
 
                 {/* 底部装饰：八卦 */}
@@ -310,7 +321,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
               e.currentTarget.style.color = 'rgba(232,220,196,0.55)';
             }}
           >
-            {skipLabel} →
+            {resolvedSkip} →
           </button>
         </motion.div>
       )}

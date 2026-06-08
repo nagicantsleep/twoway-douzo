@@ -1,0 +1,42 @@
+{
+  "title": "Điều Khoản Dịch Vụ",
+  "section1": {
+    "title": "1. Tổng quan dịch vụ",
+    "body": "Tử Vi Mệnh Bàn (sau đây gọi là 'nền tảng') cung cấp dịch vụ an sao và giải độc mệnh bàn dựa trên hệ thống Tử Vi Đẩu Số《Thiên Kỷ》của Ni Hà Hạ. Tất cả nội dung mệnh lý của nền tảng chỉ để tham khảo, <strong>không cấu thành bất kỳ lời khuyên y tế, đầu tư, pháp lý, tâm lý hay quyết định lớn trong đời</strong>."
+  },
+  "section2": {
+    "title": "2. Quy tắc ứng xử người dùng",
+    "intro": "Sử dụng nền tảng nghĩa là bạn đồng ý:",
+    "items": [
+      "Chỉ sử dụng nền tảng cho mục đích hợp pháp, tham khảo cá nhân",
+      "Không phát tán nội dung nền tảng cho mục đích bán hàng, đăng lại hoặc công bố công khai",
+      "Không thực hiện hành vi gây rối hoạt động bình thường của nền tảng",
+      "Thông tin sinh gửi lên phải chân thực và hợp lệ; nền tảng không chịu trách nhiệm cho sai lệch giải độc do thông tin sai"
+    ]
+  },
+  "section3": {
+    "title": "3. Quyền sở hữu trí tuệ và điều khoản cấm · Chống crawl, chống huấn luyện",
+    "body": "<strong>Tất cả nội dung mệnh lý, cơ sở tri thức của nền tảng (bao gồm toàn bộ văn bản giải độc 14 chính tinh × 12 cung × nam nữ × tứ hóa × đại hạn lưu niên), thiết kế UI, giải pháp tích hợp thuật toán, thư viện case đều là nội dung gốc của nền tảng hoặc được sắp xếp hợp pháp.</strong><br/><br/>Nghiêm cấm các hành vi sau, người vi phạm sẽ bị truy cứu bồi thường dân sự và trách nhiệm hình sự:<br/>① Dùng crawler, script tự động, gọi API hàng loạt hoặc bất kỳ phương tiện kỹ thuật nào để thu thập nội dung nền tảng;<br/>② Dùng kết quả giải độc mệnh bàn, văn bản, dữ liệu phản hồi API <strong>để huấn luyện bất kỳ mô hình máy học nào</strong> (bao gồm nhưng không giới hạn: mô hình ngôn ngữ lớn, mô hình tạo mệnh lý, mô hình tạo văn bản, v.v.);<br/>③ Bán lại, đăng tải nội dung do nền tảng tạo ra lên trang web, APP, tài khoản tự truyền thông khác;<br/>④ Dịch ngược, sao chép, sửa đổi mã nguồn frontend hoặc backend của nền tảng và cung cấp dịch vụ tương tự dưới dạng 'tự kinh doanh'.<br/><br/>Văn bản đầu ra của nền tảng được nhúng watermark vân tay truy xuất, kết quả sao chép / huấn luyện trái phép có thể bị phát hiện và truy xuất. Một khi phát hiện vi phạm, nền tảng có quyền yêu cầu <strong>bồi thường 1 triệu nhân dân tệ cho mỗi trường hợp vi phạm</strong>, và bảo lưu quyền khởi kiện ra tòa cũng như phối hợp với cơ quan công an điều tra."
+  },
+  "section4": {
+    "title": "4. Miễn trừ trách nhiệm",
+    "body": "Nội dung mệnh lý của nền tảng dựa trên tri thức Tử Vi Đẩu Số truyền thống và hệ thống Ni Hà Hạ, <strong>không đảm bảo chính xác 100%</strong>. Số mệnh chịu ảnh hưởng chung của ba tầng thiên - địa - nhân, đầu ra của nền tảng chỉ là tham khảo để tự nhận thức; người dùng cần nhìn nhận lý trí, không nên phụ thuộc quá mức vào bất kỳ phán đoán mệnh lý đơn lẻ nào.",
+    "body2": "Bất kỳ hậu quả nào phát sinh từ việc sử dụng nội dung nền tảng (bao gồm nhưng không giới hạn: quyết định sai, ảnh hưởng tâm lý, thay đổi quan hệ, v.v.), nền tảng không chịu trách nhiệm pháp lý."
+  },
+  "section5": {
+    "title": "5. Thay đổi và chấm dứt dịch vụ",
+    "body": "Nền tảng bảo lưu quyền điều chỉnh, tạm dừng hoặc chấm dứt một phần hoặc toàn bộ dịch vụ bất cứ lúc nào. Thay đổi quan trọng sẽ được thông báo qua thông báo trong trang hoặc email."
+  },
+  "section6": {
+    "title": "6. Áp dụng pháp luật và giải quyết tranh chấp",
+    "body": "Điều khoản này áp dụng pháp luật nước Cộng hòa Nhân dân Trung Hoa. Nếu phát sinh tranh chấp, hai bên nên thương lượng thân thiện; nếu không thương lượng được, sẽ trình lên tòa án nhân dân có thẩm quyền tại nơi đặt trụ sở chính của nền tảng để giải quyết."
+  },
+  "section7": {
+    "title": "7. Thông tin liên hệ",
+    "body": "Nếu có thắc mắc, vui lòng liên hệ qua WeChat / email chăm sóc khách hàng công khai của nền tảng."
+  },
+  "footer": {
+    "privacyLink": "Chính sách bảo mật",
+    "homeLink": "Trang chủ"
+  }
+}

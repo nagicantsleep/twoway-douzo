@@ -23,5 +23,29 @@
   "privacyTitle": "隐私政策 · 紫微命盘",
   "privacyDescription": "紫微命盘隐私政策",
   "termsTitle": "服务条款 · 紫微命盘",
-  "termsDescription": "紫微命盘服务条款与用户协议"
+  "termsDescription": "紫微命盘服务条款与用户协议",
+  "famous": {
+    "tag": "名人命盘",
+    "yearGender": "{year}年 · {gender}",
+    "male": "男命",
+    "female": "女命",
+    "highlights": "命盘亮点：",
+    "disclaimer": "⚠️ 出生时辰为公开文献估算值，仅供研究参考。下方 AI 解读基于此命盘自动生成，与本人无关。"
+  },
+  "patterns": {
+    "title": "格局识别（严格古书条件）",
+    "count": "{count}个",
+    "required": "必须",
+    "bonus": "加分",
+    "breaking": "破格",
+    "source": "出处 · {source}"
+  },
+  "share": {
+    "inProgress": "分享功能正在完善中（隐私脱敏方案）— 公测版本将正式开放"
+  },
+  "legal": {
+    "backHome": "返回首页",
+    "siteLabel": "紫微命盘",
+    "updatedAt": "最后更新：2026年4月"
+  }
 }

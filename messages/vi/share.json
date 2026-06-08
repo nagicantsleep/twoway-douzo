@@ -26,5 +26,6 @@
     "usageLine2": "· Sao chép liên kết gửi cho bạn bè WeChat, họ mở ra để bắt đầu mệnh bàn của mình",
     "done": "Xong",
     "error": "Tạo ảnh thất bại, vui lòng chụp màn hình hoặc làm mới thử lại"
-  }
+  },
+  "filename": "TuViMenhBan_{timestamp}.png"
 }

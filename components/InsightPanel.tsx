@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import type { ZiweiChart, Palace } from '@/lib/ziwei/types';
 import type { TimeView } from './TimeNav';
 
@@ -22,13 +23,13 @@ interface InsightPanelProps {
   selectedSiHua?: SelectedSiHua | null;
 }
 
-const TOPICS = [
-  { key: 'overview',     label: '命格' },
-  { key: 'love',        label: '感情' },
-  { key: 'career',      label: '事业' },
-  { key: 'wealth',      label: '财运' },
-  { key: 'health',      label: '健康' },
-  { key: 'personality', label: '性格' },
+const TOPIC_KEYS = [
+  'overview',
+  'love',
+  'career',
+  'wealth',
+  'health',
+  'personality',
 ] as const;
 
 const TOPIC_PROMPTS: Record<string, string> = {
@@ -129,19 +130,19 @@ const TOPIC_PROMPTS: Record<string, string> = {
 天赋优势，以及需要面对的人生功课。`,
 };
 
-const PALACE_ROLES: Record<string, string> = {
-  '命宫':   '自我、性格、先天格局',
-  '兄弟宫': '兄弟关系、合伙人',
-  '夫妻宫': '感情关系、婚姻状态',
-  '子女宫': '子女缘分、下属关系',
-  '财帛宫': '财运来源、收入方式',
-  '疾厄宫': '身体健康、意外',
-  '迁移宫': '外出机遇、人际格局',
-  '交友宫': '朋友圈、贵人、小人',
-  '官禄宫': '事业成就、社会地位',
-  '田宅宫': '不动产、家庭环境',
-  '福德宫': '精神享受、内心福分',
-  '父母宫': '父母关系、文书契约',
+const PALACE_NAME_TO_ROLE_KEY: Record<string, string> = {
+  '命宫': 'ming',
+  '兄弟宫': 'brothers',
+  '夫妻宫': 'spouse',
+  '子女宫': 'children',
+  '财帛宫': 'wealth',
+  '疾厄宫': 'health',
+  '迁移宫': 'travel',
+  '交友宫': 'friends',
+  '官禄宫': 'career',
+  '田宅宫': 'property',
+  '福德宫': 'fortune',
+  '父母宫': 'parents',
 };
 
 /** Render AI markdown: **【Title】** → gold header, **bold** → strong */
@@ -183,6 +184,10 @@ function AiContent({ text, streaming }: { text: string; streaming?: boolean }) {
 }
 
 export default function InsightPanel({ chart, selectedPalace, selectedSiHua }: InsightPanelProps) {
+  const tPanel = useTranslations('insight.panel');
+  const tTopics = useTranslations('insight.topics');
+  const tRoles = useTranslations('insight.palaceRoles');
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -220,8 +225,9 @@ export default function InsightPanel({ chart, selectedPalace, selectedSiHua }: I
     const majorStars = selectedPalace.stars.filter(s => s.type === 'major');
     const starDesc = majorStars.length > 0
       ? majorStars.map(s => `${s.name}${s.siHua ? '化' + s.siHua : ''}`).join('、')
-      : '空宫（借对宫）';
-    const role = PALACE_ROLES[selectedPalace.name] ?? '';
+      : tPanel('emptyPalace');
+    const roleKey = PALACE_NAME_TO_ROLE_KEY[selectedPalace.name];
+    const role = roleKey ? tRoles(roleKey as any) : '';
 
     const prompt = `请重点分析【${selectedPalace.name}】（主管：${role}），该宫主星为${starDesc}，按以下结构输出：
 
@@ -251,8 +257,8 @@ ${selectedPalace.name}在命盘中的意义，以及这种星曜配置的整体�
     const palaceOfStar = chart.palaces.find(p =>
       p.stars.some(s => s.name === selectedSiHua.starName)
     );
-    const palaceName = palaceOfStar?.name ?? '未知宫位';
-    const viewLabel = selectedSiHua.view === 'daxian' ? '大限' : '流年';
+    const palaceName = palaceOfStar?.name ?? tPanel('unknownPalace');
+    const viewLabel = selectedSiHua.view === 'daxian' ? tPanel('daXian') : tPanel('liuNian');
 
     const prompt = `请分析【${viewLabel}${selectedSiHua.starName}化${selectedSiHua.siHua}】的飞化影响，按以下结构输出：
 
@@ -310,7 +316,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
         }
       }
     } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: '解读失败，请稍后重试。' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: tPanel('errorFallback') }]);
     } finally {
       setLoading(false);
       loadingRef.current = false;
@@ -350,12 +356,12 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
       {/* ── Topic buttons ── */}
       <div className="flex-shrink-0 px-2 pt-2.5 pb-2" style={{ borderBottom: '1px solid var(--t-border)' }}>
         <div className="grid grid-cols-6 gap-1">
-          {TOPICS.map(t => {
-            const isActive = activeTopic === t.key;
+          {TOPIC_KEYS.map(key => {
+            const isActive = activeTopic === key;
             return (
               <button
-                key={t.key}
-                onClick={() => handleTopicClick(t.key)}
+                key={key}
+                onClick={() => handleTopicClick(key)}
                 disabled={loading}
                 className="py-1.5 text-[10px] font-medium rounded-lg transition-all duration-150 disabled:opacity-40"
                 style={{
@@ -364,7 +370,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
                   color: isActive ? 'var(--t-gold)' : 'var(--t-faint)',
                 }}
               >
-                {t.label}
+                {tTopics(key as any)}
               </button>
             );
           })}
@@ -378,7 +384,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center">
             <div className="text-4xl mb-3" style={{ color: 'var(--t-gold)', opacity: 0.1 }}>✦</div>
-            <p className="text-[10px] animate-pulse" style={{ color: 'var(--t-faint)' }}>命格解读生成中…</p>
+            <p className="text-[10px] animate-pulse" style={{ color: 'var(--t-faint)' }}>{tPanel('emptyLoading')}</p>
           </div>
         )}
 
@@ -421,7 +427,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
                   style={{ color: 'var(--t-faint)' }}
                 >
                   <span style={{ color: 'var(--t-gold)', opacity: 0.4 }}>✦</span>
-                  命理解读
+                  {tPanel('label')}
                 </div>
                 <AiContent text={msg.content} streaming={loading && isLastMsg} />
               </motion.div>
@@ -438,7 +444,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
-            placeholder="继续追问，如：今年适合换工作吗？"
+            placeholder={tPanel('followUpPlaceholder')}
             disabled={loading}
             className="flex-1 rounded-lg px-3 py-2 text-[11px] focus:outline-none transition-colors"
             style={{
@@ -457,7 +463,7 @@ ${selectedSiHua.starName}化${selectedSiHua.siHua}落在【${palaceName}】，�
               color: 'var(--t-gold)',
             }}
           >
-            {loading ? '…' : '追问'}
+            {loading ? tPanel('loadingButton') : tPanel('askButton')}
           </button>
         </div>
       </div>

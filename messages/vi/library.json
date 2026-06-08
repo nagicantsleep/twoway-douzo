@@ -6,8 +6,8 @@
   "header": {
     "sectionLabel": "CỔ TỊCH NGUYÊN ĐIỂN KHỐ · CLASSICS",
     "title": "Ni Sư phương pháp luận · Cổ tịch nguyên điển khố",
-    "countTemplate": "{count} bộ cổ tịch · tổng cộng {paragraphs} đoạn tinh hoa",
-    "subtitle": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số"
+    "subtitle": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số uy tín",
+    "countTemplate": "Thu thập {count} bộ cổ tịch · tổng cộng {paragraphs} đoạn tinh hoa"
   },
   "nav": {
     "back": "← Quay lại trang chủ",
@@ -35,6 +35,19 @@
     "noResultsTitle": "Chưa tìm thấy từ khóa này trong cổ tịch đã sưu tầm",
     "noResultsHint": "Chúng tôi đang liên tục bổ sung nội dung. Có thể thử tìm kiếm:",
     "emptyQuery": "Vui lòng nhập từ khóa cần tìm kiếm",
-    "enterQuery": "Nhập từ khóa"
+    "enterQuery": "Nhập từ khóa",
+    "emptyLabel": "（Trống）",
+    "suggestions": "Thất Sát Triêu Đẩu / Song Lộc Triêu Viên / Hóa Kỵ / Tử Vi / Mệnh Cung / Cơ Nguyệt Đồng Lương"
+  },
+  "book": {
+    "chapters": "{count} chương",
+    "segments": "{count} đoạn tinh hoa",
+    "enterLink": "Vào xem →",
+    "dynastyAuthor": "{dynasty} · {author}",
+    "backLink": "← Thư viện cổ tịch",
+    "chaptersLabel": "CHAPTERS · Mục lục chương",
+    "homeLink": "Trang chủ →",
+    "bookHeader": "《{title}》",
+    "paragraphCount": "{count} đoạn"
   }
 }

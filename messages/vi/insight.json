@@ -1,4 +1,44 @@
 {
+  "title": {
+    "subtitle": "Zi Wei Dou Shu",
+    "chart": "Tử Vi Đẩu Số Mệnh Bàn",
+    "boardCenter": "Tử Vi Đẩu Số",
+    "ming": "Mệnh",
+    "shen": "Thân"
+  },
+  "board": {
+    "currentDaXian": "Đại hạn hiện tại",
+    "age": "tuổi",
+    "leapMonth": "nhuận",
+    "hint": "Nhấp vào cung để xem tam phương tứ chính",
+    "empty": "Trống",
+    "leapChar": "nhuận"
+  },
+  "siHua": {
+    "lu": "Hóa Lộc",
+    "quan": "Hóa Quyền",
+    "ke": "Hóa Khoa",
+    "ji": "Hóa Kỵ"
+  },
+  "timeNav": {
+    "mingpan": "Bản mệnh",
+    "daxian": "Đại hạn",
+    "liunian": "Lưu niên",
+    "liuyue": "Lưu nguyệt",
+    "daxianPrefix": "Đại hạn {startAge}–{endAge}",
+    "yearSiHua": "{stemName} niên tứ hóa:",
+    "daxianSiHua": "Đại hạn · {stemName} niên tứ hóa:"
+  },
+  "topBar": {
+    "back": "Quay lại",
+    "pageTitle": "Tử Vi Mệnh Bàn",
+    "share": "Chia sẻ",
+    "print": "In ấn",
+    "copied": "Đã sao chép"
+  },
+  "legend": {
+    "hint": "Nhấp vào cung để xem tam phương tứ chính"
+  },
   "topics": {
     "overview": "Mệnh cách",
     "love": "Tình cảm",
@@ -14,6 +54,24 @@
   },
   "loading": "Đang phân tích mệnh cách…",
   "error": "Phân tích tạm thời không khả dụng, vui lòng thử lại.",
+  "palaceRoles": {
+    "ming": "Bản ngã, tính cách, tiên thiên cách cục",
+    "brothers": "Quan hệ anh em, cộng sự",
+    "spouse": "Quan hệ tình cảm, hôn nhân",
+    "children": "Duyên con cái, quan hệ cấp dưới",
+    "wealth": "Nguồn tài lộc, phương thức thu nhập",
+    "health": "Sức khỏe thể chất, tai nạn",
+    "travel": "Cơ hội ra ngoài, cách cục nhân tế",
+    "friends": "Bạn bè, quý nhân, tiểu nhân",
+    "career": "Thành tựu sự nghiệp, địa vị xã hội",
+    "property": "Bất động sản, môi trường gia đình",
+    "fortune": "Hưởng thụ tinh thần, phúc phận nội tâm",
+    "parents": "Quan hệ cha mẹ, văn thư khế ước"
+  },
+  "input": {
+    "placeholder": "Tiếp tục hỏi, như: Năm nay có nên đổi việc không?",
+    "submit": "Hỏi tiếp"
+  },
   "heming": {
     "loading": "Đang so sánh hai lá số mệnh bàn…",
     "error": "Phân tích tạm thời không khả dụng, vui lòng thử lại.",
@@ -38,22 +96,36 @@
     "followupPlaceholder": "Tiếp tục hỏi, ví dụ: Năm nào là giai đoạn quan trọng của hai người?",
     "idleText": "Điền thông tin sinh của hai bên, sau đó nhấn nút bên dưới\nAI sẽ dựa trên hệ thống Ni Hà Hạ phân tích sâu mức độ phù hợp"
   },
-  "palaceRoles": {
-    "ming": "Bản ngã, tính cách, tiên thiên cách cục",
-    "brothers": "Quan hệ anh em, cộng sự",
-    "spouse": "Quan hệ tình cảm, hôn nhân",
-    "children": "Duyên con cái, quan hệ cấp dưới",
-    "wealth": "Nguồn tài lộc, phương thức thu nhập",
-    "health": "Sức khỏe thể chất, tai nạn",
-    "travel": "Cơ hội ra ngoài, cách cục nhân tế",
-    "friends": "Bạn bè, quý nhân, tiểu nhân",
-    "career": "Thành tựu sự nghiệp, địa vị xã hội",
-    "property": "Bất động sản, môi trường gia đình",
-    "fortune": "Hưởng thụ tinh thần, phúc phận nội tâm",
-    "parents": "Quan hệ cha mẹ, văn thư khế ước"
+  "chat": {
+    "title": "AI Giải mã mệnh bàn",
+    "subtitle": "Ni Hà Hạ chính tông Tử Vi Đẩu Số · Giải pháp tuệ giác",
+    "emptyHint1": "Mệnh bàn đã tạo, có thể hỏi trực tiếp",
+    "emptyHint2": "hoặc chọn câu hỏi phổ biến bên dưới để bắt đầu giải",
+    "reader": "Thầy mệnh lý ·",
+    "placeholder": "Nhập câu hỏi, ví dụ: Vận tình cảm của tôi thế nào?",
+    "send": "Giải",
+    "errorRequest": "Yêu cầu thất bại, vui lòng thử lại",
+    "errorStream": "Không có dòng phản hồi, vui lòng thử lại",
+    "presetQuestions": [
+      "Mệnh cách tổng thể của tôi ra sao? Đặc điểm tính cách là gì?",
+      "Vận tình cảm hôn nhân của tôi thế nào?",
+      "Sự nghiệp tài vận của tôi thế nào? Phù hợp hướng nào?",
+      "Đại hạn hiện tại của tôi ra sao?",
+      "Sức khỏe cần lưu ý gì?",
+      "Lưu niên năm nay vận thế thế nào?"
+    ],
+    "errorFallback": "Giải thất bại, vui lòng kiểm tra cấu hình API hoặc thử lại sau."
   },
-  "input": {
-    "placeholder": "Tiếp tục hỏi, như: Năm nay có nên đổi việc không?",
-    "submit": "Hỏi tiếp"
+  "panel": {
+    "label": "Giải mệnh lý",
+    "emptyLoading": "Đang tạo giải mệnh cách…",
+    "followUpPlaceholder": "Tiếp tục hỏi, ví dụ: Năm nay có nên đổi việc không?",
+    "askButton": "Hỏi tiếp",
+    "loadingButton": "…",
+    "errorFallback": "Giải thất bại, vui lòng thử lại sau.",
+    "emptyPalace": "Không cung (mượn đối cung)",
+    "unknownPalace": "Cung chưa rõ",
+    "daXian": "Đại hạn",
+    "liuNian": "Lưu niên"
   }
 }

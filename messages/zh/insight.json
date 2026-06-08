@@ -1,5 +1,45 @@
 {
   "panelTitle": "AI 解读",
+  "title": {
+    "subtitle": "Zi Wei Dou Shu",
+    "chart": "紫微斗数命盘",
+    "boardCenter": "紫微斗数",
+    "ming": "命",
+    "shen": "身"
+  },
+  "board": {
+    "currentDaXian": "当前大限",
+    "age": "岁",
+    "leapMonth": "闰",
+    "hint": "点击宫位看三方四正",
+    "empty": "空",
+    "leapChar": "闰"
+  },
+  "siHua": {
+    "lu": "化禄",
+    "quan": "化权",
+    "ke": "化科",
+    "ji": "化忌"
+  },
+  "timeNav": {
+    "mingpan": "命盘",
+    "daxian": "大限",
+    "liunian": "流年",
+    "liuyue": "流月",
+    "daxianPrefix": "大限 {startAge}–{endAge}",
+    "yearSiHua": "{stemName}年四化：",
+    "daxianSiHua": "大限 · {stemName}年四化："
+  },
+  "topBar": {
+    "back": "返回",
+    "pageTitle": "紫微命盘",
+    "share": "分享",
+    "print": "打印",
+    "copied": "已复制"
+  },
+  "legend": {
+    "hint": "点击宫位看三方四正"
+  },
   "topics": {
     "overview": "命格",
     "love": "感情",
@@ -54,5 +94,37 @@
     },
     "formError": "请先填写双方完整出生信息",
     "error": "分析暂时不可用，请重试。"
+  },
+  "chat": {
+    "title": "AI 命盘解读",
+    "subtitle": "倪海夏正宗紫微斗数 · 智慧解析",
+    "emptyHint1": "命盘已生成，可直接提问",
+    "emptyHint2": "或从下方选择常见问题开始解读",
+    "reader": "命理师 ·",
+    "placeholder": "输入问题，如：我的感情运势如何？",
+    "send": "解读",
+    "errorRequest": "请求失败，请稍后重试",
+    "errorStream": "无响应流，请稍后重试",
+    "presetQuestions": [
+      "我的整体命格如何？性格特点是什么？",
+      "我的感情婚姻运势如何？",
+      "我的事业财运如何？适合什么方向？",
+      "我现在的大限运势如何？",
+      "我的健康需要注意什么？",
+      "今年的流年运势如何？"
+    ],
+    "errorFallback": "解读失败，请检查API配置或稍后重试。"
+  },
+  "panel": {
+    "label": "命理解读",
+    "emptyLoading": "命格解读生成中…",
+    "followUpPlaceholder": "继续追问，如：今年适合换工作吗？",
+    "askButton": "追问",
+    "loadingButton": "…",
+    "errorFallback": "解读失败，请稍后重试。",
+    "emptyPalace": "空宫（借对宫）",
+    "unknownPalace": "未知宫位",
+    "daXian": "大限",
+    "liuNian": "流年"
   }
 }

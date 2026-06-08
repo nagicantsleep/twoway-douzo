@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import type { Theme } from '@/components/ThemeProvider';
 import { FAMOUS_PERSONS, FAMOUS_CATEGORIES, type FamousPerson } from '@/lib/ziwei/famous';
 
@@ -34,6 +35,7 @@ const CATEGORY_TITLES: Record<string, string> = {
 };
 
 export default function FamousCharts({ colors, theme }: FamousChartsProps) {
+  const t = useTranslations('home');
   const c = colors;
   return (
     <section className="relative z-10 px-6 md:px-10 lg:px-14 py-20">
@@ -102,7 +104,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
                           letterSpacing: '0.15em',
                         }}
                       >
-                        {person.year}年生
+                        {t('famousCharts.yearTemplate', { year: person.year })}
                       </span>
                     </div>
                     <p

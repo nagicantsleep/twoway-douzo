@@ -1,16 +1,17 @@
 {
-  "modalTitle": "✦ 分享命盘",
-  "downloadButton": "⬇ 下载分享图",
-  "downloading": "生成中…",
-  "copyLink": "🔗 复制命盘链接",
-  "copied": "✓ 已复制链接",
-  "downloadError": "图片生成失败，请截图保存或刷新重试",
-  "tips": {
-    "title": "使用提示：",
-    "line1": "下载图片可发朋友圈 / 抖音 / 小红书",
-    "line2": "复制链接发给微信好友，对方点开看自己的盘起点"
+  "modal": {
+    "title": "✦ 分享命盘",
+    "snsHint": "朋友圈 / 微信 / 抖音 / 小红书 都能用",
+    "download": "⬇ 下载分享图",
+    "downloading": "生成中…",
+    "copyLink": "🔗 复制命盘链接",
+    "copied": "✓ 已复制链接",
+    "usageTitle": "使用提示：",
+    "usageLine1": "· 下载图片可发朋友圈 / 抖音 / 小红书",
+    "usageLine2": "· 复制链接发给微信好友，对方点开看自己的盘起点",
+    "done": "完成",
+    "error": "图片生成失败，请截图保存或刷新重试"
   },
-  "socialHint": "朋友圈 / 微信 / 抖音 / 小红书 都能用",
   "card": {
     "title": "紫微命盘",
     "subtitle": "倪海夏正宗 · ZI WEI",

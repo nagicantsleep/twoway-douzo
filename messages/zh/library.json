@@ -8,17 +8,54 @@
   "heroTitle": "倪师方法论 · 古籍原典库",
   "heroSubtitle": "紫微斗数权威古籍全文检索\n收录 {bookCount} 部古籍 · 共 {paragraphCount} 段精华",
   "backToHome": "← 返回首页",
-  "header": "古籍原典库 · CLASSICS",
-  "linkToChart": "起盘 →",
+  "header": {
+    "sectionLabel": "古籍原典库 · CLASSICS",
+    "title": "倪师方法论 · 古籍原典库",
+    "subtitle": "紫微斗数权威古籍全文检索",
+    "countTemplate": "收录 {count} 部古籍 · 共 {paragraphs} 段精华"
+  },
+  "nav": {
+    "back": "← 返回首页",
+    "backToLibrary": "← 古籍库",
+    "chart": "起盘 →",
+    "home": "首页 →",
+    "searchResults": "搜索结果"
+  },
+  "about": {
+    "sectionTitle": "关于本库",
+    "description": "所收录古籍均为公版（明代刊本）。\n内容持续完善，未来将补全《紫微斗数全集》全本与倪海夏《天纪》引证目录。\n如发现任何错误请联系我们。",
+    "footerContact": "如发现任何错误请联系我们",
+    "enterLink": "进入查阅 →",
+    "usageHint": "章节目录",
+    "searchPlaceholder": "搜索"
+  },
+  "bookMeta": {
+    "chapters": "{chapters} 章节",
+    "paragraphs": "{paragraphs} 段精华"
+  },
   "search": {
     "placeholder": "搜索",
-    "button": "搜索"
+    "button": "搜索",
+    "pageTitle": "搜索 · 古籍原典库",
+    "keyword": "搜索关键词",
+    "resultsCount": "共找到 {count} 条古籍原文匹配",
+    "noResultsTitle": "暂未在已收录古籍中找到这个关键词",
+    "noResultsHint": "我们持续补充内容中。可尝试搜索：",
+    "emptyQuery": "请输入要搜索的关键词",
+    "enterQuery": "输入关键词",
+    "emptyLabel": "（空）",
+    "suggestions": "七杀朝斗 / 双禄朝垣 / 化忌 / 紫微 / 命宫 / 机月同梁"
   },
   "book": {
     "chapters": "{count} 章节",
     "segments": "{count} 段精华",
     "enterLink": "进入查阅 →",
-    "dynastyAuthor": "{dynasty} · {author}"
+    "dynastyAuthor": "{dynasty} · {author}",
+    "backLink": "← 古籍库",
+    "chaptersLabel": "CHAPTERS · 章节目录",
+    "homeLink": "首页 →",
+    "bookHeader": "《{title}》",
+    "paragraphCount": "{count} 段"
   },
   "footer": {
     "title": "关于本库",

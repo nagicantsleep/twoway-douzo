@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import BirthForm, { type BirthFormState } from '@/components/BirthForm';
 import TopBar, { type TimeView } from '@/components/chart/TopBar';
 import ChartBoard from '@/components/chart/ChartBoard';
@@ -15,6 +16,8 @@ import { useHistory } from '@/lib/ziwei/history';
 
 export default function ChartPage() {
   const router = useRouter();
+  const t = useTranslations('form');
+  const tShare = useTranslations('common.share');
 
   // ── 命盘状态 ──────────────────────────────────────────────
   const [chart, setChart] = useState<ZiweiChart | null>(null);
@@ -64,7 +67,7 @@ export default function ChartPage() {
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error ?? '命盘生成失败');
+        throw new Error(data.error ?? t('error.generateFailed'));
       }
       const data: ZiweiChart = await res.json();
       setChart(data);
@@ -72,7 +75,7 @@ export default function ChartPage() {
       setSelectedSiHua(null);
       setView('mingpan');
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : '生成失败，请重试');
+      setError(e instanceof Error ? e.message : t('error.retry'));
     } finally {
       setLoading(false);
     }
@@ -97,7 +100,7 @@ export default function ChartPage() {
   //                  ② 用户主动选择分享多少信息
   //                  ③ 链接生成短码避免 URL 暴露
   const handleShare = () => {
-    alert('分享功能正在完善中（隐私脱敏方案）— 公测版本将正式开放');
+    alert(tShare('inProgress'));
   };
 
   // 计算分享 URL（OG 卡片图改为前端 Canvas 渲染，不再走 SSR）
@@ -161,10 +164,10 @@ export default function ChartPage() {
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--tx-3)'; }}
             >
               <span style={{ fontSize: '16px' }}>‹</span>
-              <span>返回</span>
+              <span>{t('back')}</span>
             </button>
             <div style={{ width: '1px', height: '20px', background: 'var(--bdr-med)' }} />
-            <span style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em' }}>紫微命盘</span>
+            <span style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em' }}>{t('pageTitle')}</span>
           </header>
 
           {/* 表单内容 */}
@@ -174,10 +177,10 @@ export default function ChartPage() {
                 ☯
               </div>
               <h1 style={{ fontSize: '20px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--tx-0)', marginBottom: '8px' }}>
-                起紫微命盘
+                {t('pageTitle')}
               </h1>
               <p style={{ fontSize: '12px', color: 'var(--tx-3)', letterSpacing: '0.05em' }}>
-                输入出生年月日时 · 以公历为准
+                {t('subtitle')}
               </p>
             </div>
 
@@ -216,7 +219,7 @@ export default function ChartPage() {
             {history.length > 0 && (
               <div style={{ marginTop: '40px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: 'var(--tx-3)' }}>历史命盘</span>
+                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: 'var(--tx-3)' }}>{t('history.title')}</span>
                   <div style={{ flex: 1, height: '1px', background: 'var(--bdr)' }} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -319,7 +322,7 @@ export default function ChartPage() {
                     el.style.borderColor = 'var(--bdr)';
                   }}
                 >
-                  重新起盘
+                  {t('reset')}
                 </button>
               </div>
             </div>

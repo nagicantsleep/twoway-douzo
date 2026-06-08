@@ -23,5 +23,29 @@
   "privacyTitle": "Chính Sách Bảo Mật · Tử Vi Mệnh Bàn",
   "privacyDescription": "Chính sách bảo mật của ứng dụng Tử Vi Mệnh Bàn",
   "termsTitle": "Điều Khoản Dịch Vụ · Tử Vi Mệnh Bàn",
-  "termsDescription": "Điều khoản dịch vụ và thỏa thuận người dùng của Tử Vi Mệnh Bàn"
+  "termsDescription": "Điều khoản dịch vụ và thỏa thuận người dùng của Tử Vi Mệnh Bàn",
+  "famous": {
+    "tag": "Mệnh Bàn Danh Nhân",
+    "yearGender": "Sinh năm {year} · {gender}",
+    "male": "Nam mệnh",
+    "female": "Nữ mệnh",
+    "highlights": "Điểm sáng mệnh bàn:",
+    "disclaimer": "⚠️ Giờ sinh là giá trị ước tính từ tư liệu công khai, chỉ để tham khảo nghiên cứu. Giải độc AI bên dưới được tạo tự động dựa trên mệnh bàn này, không liên quan đến cá nhân thực."
+  },
+  "patterns": {
+    "title": "Nhận diện cách cục (điều kiện cổ tịch nghiêm ngặt)",
+    "count": "{count} cách",
+    "required": "Bắt buộc",
+    "bonus": "Cộng điểm",
+    "breaking": "Phá cách",
+    "source": "Xuất xứ · {source}"
+  },
+  "share": {
+    "inProgress": "Chức năng chia sẻ đang hoàn thiện (giải pháp ẩn danh hóa) — sẽ chính thức mở ở phiên bản beta công khai"
+  },
+  "legal": {
+    "backHome": "Trang chủ",
+    "siteLabel": "Tử Vi Mệnh Bàn",
+    "updatedAt": "Cập nhật lần cuối: Tháng 4 năm 2026"
+  }
 }

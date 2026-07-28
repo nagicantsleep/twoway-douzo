@@ -4,10 +4,11 @@
  */
 
 import { Link } from '@/i18n/navigation';
-import { ALL_STARS, ALL_TOPICS, getKnowledge, STAR_BRIEF_SEO, STAR_TO_SLUG } from '@/lib/seo/knowledge';
-import { TOPIC_LABEL } from '@/lib/ziwei/db-analysis';
+import { ALL_STARS, ALL_TOPICS, getKnowledge, starBriefSeo, STAR_TO_SLUG } from '@/lib/seo/knowledge';
+import { topicLabel } from '@/lib/ziwei/db-analysis';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { localizeTerm } from '@/lib/ziwei/terms';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -79,7 +80,7 @@ export default async function KnowledgeHomePage({ params }: Props) {
               className="hover:shadow-md hover:border-amber-400"
             >
               <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.15em' }}>
-                {star}
+                {localizeTerm(star, locale)}
               </div>
             </Link>
           ))}
@@ -96,18 +97,18 @@ export default async function KnowledgeHomePage({ params }: Props) {
             }}>
               <div className="flex items-baseline gap-3 mb-2">
                 <span style={{ fontSize: '20px', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.1em' }}>
-                  {star}{t('starSection.starSuffix')}
+                  {localizeTerm(star, locale)}{t('starSection.starSuffix')}
                 </span>
                 <span style={{ fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.15em' }}>
                   {t('starSection.label')}
                 </span>
               </div>
               <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, marginBottom: '12px' }}>
-                {STAR_BRIEF_SEO[star] || ''}
+                {starBriefSeo(star, locale)}
               </p>
               <div className="flex flex-wrap gap-2">
                 {ALL_TOPICS.map(t2 => {
-                  const k = getKnowledge(star, t2);
+                  const k = getKnowledge(star, t2, locale);
                   if (!k.exists) return null;
                   return (
                     <Link
@@ -123,7 +124,10 @@ export default async function KnowledgeHomePage({ params }: Props) {
                         textDecoration: 'none',
                       }}
                     >
-                      {t('topicLink.template', { palaceName: k.palaceName, topicLabel: TOPIC_LABEL[t2] })}
+                      {t('topicLink.template', {
+                        palaceName: localizeTerm(k.palaceName, locale),
+                        topicLabel: topicLabel(t2, locale),
+                      })}
                     </Link>
                   );
                 })}

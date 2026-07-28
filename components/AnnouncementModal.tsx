@@ -1,27 +1,26 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
-// 公告版本号——以后想再弹新公告，改这里就行（旧版 key 失效，新版重新弹一次）
+// Cập nhật version để hiện lại thông báo mới
 const ANNOUNCEMENT_VERSION = '2026-05-01';
 const STORAGE_KEY = `announcement_seen_${ANNOUNCEMENT_VERSION}`;
 
 export default function AnnouncementModal() {
-  // 默认不开，client 端 useEffect 检查 localStorage 后立即决定是否弹出。
-  // 没看过 → 立即覆盖首页；看过 → 不再弹。
+  const t = useTranslations('announcement');
   const [open, setOpen] = useState(false);
-  const [decided, setDecided] = useState(false); // hydration 完成标志
+  const [decided, setDecided] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
       const seen = localStorage.getItem(STORAGE_KEY);
       if (!seen) setOpen(true);
-    } catch { /* localStorage 可能被禁，忽略 */ }
+    } catch { /* skip */ }
     setDecided(true);
   }, []);
 
-  // 公告打开时锁住 body 滚动，防止背后首页可滚（仪式感更强）
   useEffect(() => {
     if (typeof document === 'undefined') return;
     if (open) {
@@ -46,7 +45,6 @@ export default function AnnouncementModal() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          // 不点击外部关闭——强制用户按"我知道了"按钮才能进入首页
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
             background: 'rgba(20,12,2,0.88)',
@@ -76,7 +74,7 @@ export default function AnnouncementModal() {
               fontFamily: '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif',
             }}
           >
-            {/* 顶部装饰 + 关闭按钮 */}
+            {/* Header */}
             <div style={{
               padding: '22px 28px 14px',
               borderBottom: '1px solid rgba(184,146,42,0.15)',
@@ -85,14 +83,14 @@ export default function AnnouncementModal() {
               position: 'relative',
             }}>
               <div style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#b8922a', opacity: 0.7, marginBottom: '6px' }}>
-                A LETTER TO USERS
+                {t('letterLabel')}
               </div>
               <h2 style={{ fontSize: '19px', fontWeight: 700, color: '#3d2f10', letterSpacing: '0.08em', margin: 0 }}>
-                致正在使用这个平台的你
+                {t('title')}
               </h2>
               <button
                 onClick={close}
-                aria-label="关闭"
+                aria-label={t('closeAria')}
                 style={{
                   position: 'absolute', top: '14px', right: '16px',
                   width: '28px', height: '28px',
@@ -106,7 +104,7 @@ export default function AnnouncementModal() {
               >×</button>
             </div>
 
-            {/* 限时免费 banner（最关键信息，置顶强调）*/}
+            {/* Banner */}
             <div style={{
               margin: '14px 22px 0',
               padding: '12px 16px',
@@ -117,16 +115,16 @@ export default function AnnouncementModal() {
               textAlign: 'center',
             }}>
               <div style={{ fontSize: '10px', letterSpacing: '0.3em', color: '#c45a2d', marginBottom: '4px', fontWeight: 600 }}>
-                LIMITED TIME · 限时回馈
+                {t('bannerLabel')}
               </div>
               <div style={{ fontSize: '14px', color: '#8b3a1a', fontWeight: 600, lineHeight: 1.6 }}>
-                <span style={{ fontSize: '16px', color: '#c45a2d', fontWeight: 700 }}>5 月 1 日 — 5 月 8 日</span>
+                <span style={{ fontSize: '16px', color: '#c45a2d', fontWeight: 700 }}>{t('date')}</span>
                 <br />
-                平台全部功能 + AI 提问 全部免费开放
+                <span dangerouslySetInnerHTML={{ __html: t.raw('features') }} />
               </div>
             </div>
 
-            {/* 正文（可滚动）*/}
+            {/* Body */}
             <div style={{
               padding: '18px 28px 24px',
               overflowY: 'auto',
@@ -135,15 +133,9 @@ export default function AnnouncementModal() {
               color: '#5a4a30',
               flex: 1,
             }}>
-              <p style={{ margin: '0 0 12px' }}>
-                说实话，我真的没想到会有这么大的流量。
-              </p>
-              <p style={{ margin: '0 0 12px' }}>
-                最开始做这个平台，我的初心其实很简单：在 AI 时代，把倪师这套原本复杂、门槛很高的体系，尽量做得更简单、更高效、更容易理解。
-              </p>
-              <p style={{ margin: '0 0 12px' }}>
-                不一定每个人都要先学很久、看很多书，才能接触这些内容。我们希望通过这个平台，让大家用更轻松的方式，获得一些对自我、人生阶段、选择方向的参考和启发。
-              </p>
+              <p style={{ margin: '0 0 12px' }}>{t('p1')}</p>
+              <p style={{ margin: '0 0 12px' }}>{t('p2')}</p>
+              <p style={{ margin: '0 0 12px' }}>{t('p3')}</p>
               <p style={{
                 margin: '0 0 12px',
                 padding: '10px 14px',
@@ -153,26 +145,20 @@ export default function AnnouncementModal() {
                 fontStyle: 'italic',
                 color: '#7a5e2a',
               }}>
-                倪师曾说过一句话：人怎么可能发明出完全没有用的东西呢？
+                {t('quote')}
               </p>
-              <p style={{ margin: '0 0 12px' }}>
-                我一直觉得，易经如此，紫微斗数也是如此。它们真正有价值的地方，不是让人被某个结果困住，而是让我们更早看见自己的性格惯性、人生课题和选择方向。看见之后，才有机会调整；理解之后，才有机会变得更好。
-              </p>
-              <p style={{ margin: '0 0 12px' }}>
-                至于那些说&ldquo;你当下在看这些，其实也是命运的一部分&rdquo;之类的话，我就不多评价了。
-              </p>
-              <p style={{ margin: '0 0 12px' }}>
-                这几天账号被小红书抬走了，<strong style={{ color: '#c45a2d' }}>5 月 3 号开始恢复正常更新。</strong>
-              </p>
+              <p style={{ margin: '0 0 12px' }}>{t('p4')}</p>
+              <p style={{ margin: '0 0 12px' }}>{t('p5')}</p>
+              <p style={{ margin: '0 0 12px' }} dangerouslySetInnerHTML={{ __html: t.raw('p6') }} />
               <p style={{ margin: '0 0 16px', color: '#3d2f10', fontWeight: 500 }}>
-                最后，真心祝愿大家都能越来越了解自己，越来越爱自己，也越来越有能力爱身边的人。
+                {t('p7')}
               </p>
               <p style={{ margin: 0, textAlign: 'right', fontSize: '13px', color: '#7a5e2a' }}>
-                ——谢谢大家 🙏
+                {t('signoff')}
               </p>
             </div>
 
-            {/* 底部按钮 */}
+            {/* Footer button */}
             <div style={{
               padding: '14px 22px',
               borderTop: '1px solid rgba(184,146,42,0.15)',
@@ -197,7 +183,7 @@ export default function AnnouncementModal() {
                   boxShadow: '0 4px 12px rgba(184,146,42,0.3)',
                 }}
               >
-                我知道了
+                {t('ackBtn')}
               </button>
             </div>
           </motion.div>

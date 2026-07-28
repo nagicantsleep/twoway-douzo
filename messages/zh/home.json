@@ -1,6 +1,6 @@
 {
   "themeToggle": { "dark": "暗色", "light": "亮色", "ariaLabelDark": "切换亮色主题", "ariaLabelLight": "切换暗色主题" },
-  "nav": { "title": "紫微命盘", "appName": "紫微命盘", "heming": "合盘", "chart": "立即起盘" },
+  "nav": { "appName": "紫微命盘", "title": "紫微命盘", "heming": "合盘", "chart": "立即起盘" },
   "hero": { "tag": "紫微斗数 · 倪海夏体系", "title": "紫微命盘", "subtitle": "紫微为门 · 天地人为路 · 倪海夏为师", "aiTag": "AI 答疑 · 知行合一", "description": "输入出生年月日时，生成专属紫微斗数命盘 — 后续天纪、地纪、人纪学习模块陆续开放。", "cta": "立即起盘", "scrollMore": "探索更多" },
   "announcement": { "date": "5/1 — 5/8", "label": "限时回馈", "features": "全部功能 + AI 提问", "free": "全免费" },
   "philosophy": { "tag": "命 · 运 · 观", "lines": ["提前窥探命运的意义", "不在于预知未来", "而在于不断认识自己"], "closing": "最终书写属于自己的人生剧本" },

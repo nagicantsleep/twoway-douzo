@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useRouter } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { localizeTerm } from '@/lib/ziwei/terms';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from '@/components/TimeNav';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export type { TimeView };
 
@@ -45,6 +46,8 @@ export default function TopBar({
 }: TopBarProps) {
   const router = useRouter();
   const locale = useLocale();
+  const tTop = useTranslations('chart.topBar');
+  const tNav = useTranslations('chart.timeNav');
   const currentDx = chart.daXians[chart.currentDaXianIndex];
 
   const getOverlayInfo = (): { stemName: string; overlay: Record<string, string> } | null => {
@@ -95,7 +98,7 @@ export default function TopBar({
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--tx-3)'; }}
         >
           <span style={{ fontSize: '16px' }}>‹</span>
-          <span>{localizeTerm('返回', locale)}</span>
+          <span>{tTop('back')}</span>
         </button>
 
         <div style={{ width: '1px', height: '20px', background: 'var(--bdr-med)' }} />
@@ -104,17 +107,19 @@ export default function TopBar({
           className="text-[12px] tracking-[0.2em]"
           style={{ color: 'var(--ac)' }}
         >
-          {localizeTerm('紫微命盘', locale)}
+          {tTop('pageTitle')}
         </span>
 
         <div className="flex-1" />
 
+        <LocaleSwitcher />
+
         <div className="flex items-center gap-1.5">
           {onShare && (
-            <ActionButton onClick={onShare} label={localizeTerm('分享', locale)} />
+            <ActionButton onClick={onShare} label={tTop('share')} />
           )}
           {onExport && (
-            <ActionButton onClick={onExport} label={localizeTerm('打印', locale)} />
+            <ActionButton onClick={onExport} label={tTop('print')} />
           )}
         </div>
       </div>
@@ -134,7 +139,7 @@ export default function TopBar({
           className="flex items-center justify-center gap-2"
           style={{ padding: '0 20px 10px' }}
         >
-          <span className="text-[10px]" style={{ color: 'var(--t-faint)' }}>{localizeTerm('流月', locale)}</span>
+          <span className="text-[10px]" style={{ color: 'var(--t-faint)' }}>{tNav('liuyue')}</span>
           <button
             onClick={() => onMonthChange(((liuyueMonth - 2 + 12) % 12) + 1)}
             className="text-[10px] w-5 h-5 flex items-center justify-center rounded cursor-pointer bg-transparent border-none"
@@ -170,7 +175,7 @@ export default function TopBar({
             border: '1px solid rgba(74,222,128,0.3)',
           }}
         >
-          ✓ {localizeTerm('已复制', locale)}
+          ✓ {tTop('copied')}
         </motion.div>
       )}
     </div>

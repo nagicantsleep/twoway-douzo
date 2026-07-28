@@ -4,8 +4,9 @@ import { routing } from './routing';
 
 /** Namespace files được tách theo domain để dễ maintain */
 const NAMESPACES = [
-  'common', 'chart', 'form', 'home', 'insight', 'knowledge',
-  'library', 'preview', 'share', 'star-detail',
+  'announcement', 'common', 'chart', 'form', 'home', 'insight',
+  'knowledge', 'library', 'preview', 'privacy', 'share', 'star-detail',
+  'terms',
 ] as const;
 
 /** Merge nhiều namespace JSON thành một object messages */

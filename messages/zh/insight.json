@@ -1,5 +1,4 @@
 {
-  "panelTitle": "AI 解读",
   "title": {
     "subtitle": "Zi Wei Dou Shu",
     "chart": "紫微斗数命盘",
@@ -22,7 +21,7 @@
     "ji": "化忌"
   },
   "timeNav": {
-    "mingpan": "命盘",
+    "mingpan": "本命",
     "daxian": "大限",
     "liunian": "流年",
     "liuyue": "流月",
@@ -48,20 +47,13 @@
     "health": "健康",
     "personality": "性格"
   },
-  "loading": {
-    "analyzing": "正在分析命盘…",
-    "thinking": "思考中…"
+  "sectionTitles": {
+    "overview": "命格总览",
+    "personality": "性格特点",
+    "mingInterpretation": "命理解读"
   },
-  "error": {
-    "general": "分析暂时不可用，请重试。",
-    "failed": "请先正确起盘",
-    "retry": "重试"
-  },
-  "input": {
-    "placeholder": "输入你的问题，如：今年能换工作吗？",
-    "send": "发送",
-    "sending": "发送中…"
-  },
+  "loading": "正在分析命盘…",
+  "error": "分析暂时不可用，请重试。",
   "palaceRoles": {
     "ming": "自我、性格、先天格局",
     "brothers": "兄弟关系、合伙人",
@@ -69,22 +61,21 @@
     "children": "子女缘分、下属关系",
     "wealth": "财运来源、收入方式",
     "health": "身体健康、意外",
-    "migration": "外出机遇、人际格局",
+    "travel": "外出机遇、人际格局",
     "friends": "朋友圈、贵人、小人",
     "career": "事业成就、社会地位",
     "property": "不动产、家庭环境",
     "fortune": "精神享受、内心福分",
     "parents": "父母关系、文书契约"
   },
+  "input": {
+    "placeholder": "继续追问，如：今年适合换工作吗？",
+    "submit": "追问"
+  },
   "heming": {
-    "title": "合盘分析 · HEMING",
-    "description": "填好双方出生信息后，点击下方按钮\nAI 将基于倪海夏体系深度分析两人缘分匹配度",
-    "startButton": "开始合盘分析",
-    "analyzing": "正在对比双方命盘…",
-    "followUp": "针对此次合盘继续追问",
-    "placeholder": "继续追问，如：哪几年是两人感情关键期？",
-    "submitQuestion": "继续追问",
-    "questioning": "分析中…",
+    "loading": "正在对比双方命盘…",
+    "error": "分析暂时不可用，请重试。",
+    "followUpHeader": "针对此次合盘继续追问",
     "quickQuestions": {
       "loveMatch": "感情匹配度如何？",
       "business": "适合合伙创业吗？",
@@ -92,8 +83,23 @@
       "conflict": "哪方面最容易产生矛盾？",
       "wealth": "财运是否互补？"
     },
+    "submitButton": "继续追问",
+    "submitButtonLoading": "分析中…",
+    "sectionLabel": "合盘分析 · HEMING",
+    "pageTitle": "紫微合盘",
+    "headerSubtitle": "感情 · 合作 · 亲子 · 朋友",
+    "description": "输入双方出生信息，AI 基于倪海夏体系分析两人缘分匹配度、感情走向与相处建议",
+    "ctaButton": "开始合盘分析",
     "formError": "请先填写双方完整出生信息",
-    "error": "分析暂时不可用，请重试。"
+    "partyA": "甲方 — {label}",
+    "partyB": "乙方 — {label}",
+    "followupPlaceholder": "继续追问，如：哪几年是两人感情关键期？",
+    "idleText": "填好双方出生信息后，点击下方按钮\nAI 将基于倪海夏体系深度分析两人缘分匹配度",
+    "analyzing": "正在对比双方命盘…",
+    "followUp": "针对此次合盘继续追问",
+    "placeholder": "继续追问，如：哪几年是两人感情关键期？",
+    "questioning": "分析中…",
+    "submitQuestion": "继续追问"
   },
   "chat": {
     "title": "AI 命盘解读",

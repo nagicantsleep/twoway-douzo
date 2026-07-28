@@ -3,20 +3,25 @@
     "title": "紫微斗数知识库 · 14 主星 × 13 宫位 · 倪海夏正宗体系",
     "description": "基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断。"
   },
-  "pageTitle": "紫微斗数知识库 · 14 主星 × 13 宫位 · 倪海夏正宗体系",
-  "pageDescription": "基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断，含一句话定调、核心论断、命盘依据、经典出处。",
-  "heroTitle": "紫微斗数知识库",
-  "heroSubtitle": "14 主星 × 13 宫位 = {count} 项专题",
-  "heroNote": "基于倪海夏《天纪》体系编纂 · 含古籍引证",
-  "section": {
-    "stars": "十四主星"
+  "header": {
+    "sectionLabel": "KNOWLEDGE BASE",
+    "title": "紫微斗数知识库",
+    "countTemplate": "14 主星 × 13 宫位 = {count} 项专题",
+    "subtitle": "基于倪海夏《天纪》体系编纂 · 含古籍引证",
+    "backLink": "← 首页",
+    "siteLabel": "倪师方法论 · 知识库"
   },
-  "backToHome": "← 首页",
-  "header": "倪师方法论 · 知识库",
-  "linkToLibrary": "古籍 →",
-  "starSuffix": "星",
-  "enterPrefix": "入",
-  "detailButton": "查看详情",
+  "starSection": {
+    "header": "十四主星",
+    "label": "ZI WEI · 14 STARS",
+    "starSuffix": "星"
+  },
+  "topicLink": {
+    "template": "入{palaceName} · {topicLabel}"
+  },
+  "links": {
+    "classics": "古籍 →"
+  },
   "page": {
     "header": "倪师方法论 · 知识库",
     "backToHome": "← 首页",
@@ -24,6 +29,12 @@
     "breadcrumbHome": "首页",
     "breadcrumbKnowledge": "知识库",
     "topicDetail": "{topicLabel} · 倪海夏体系详解",
+    "articleTitle": "{star}入{palace}宫 · {topicLabel} · 倪海夏体系详解",
+    "articleDescriptionFallback": "{star}入{palace}宫的紫微斗数解读 — 基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》。",
+    "jsonLdAuthor": "紫微研究 · 倪海夏正宗",
+    "jsonLdPublisher": "紫微研究",
+    "jsonLdSection": "紫微斗数 · 倪海夏体系",
+    "jsonLdKeywordRoot": "紫微斗数",
     "ctaTitle": "想看你自己命盘的{topicLabel}？",
     "ctaSubtitle": "输入生辰起盘 · 倪师正宗解读 · AI 答疑伴学",
     "ctaButton": "立即起盘 →",

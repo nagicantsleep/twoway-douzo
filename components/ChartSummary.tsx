@@ -3,6 +3,12 @@ import { motion } from 'framer-motion';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { BRANCHES, STEMS } from '@/lib/ziwei/constants';
 import { detectPatterns, getMingGongSummary } from '@/lib/ziwei/patterns';
+import {
+  localizePatternConditionItem,
+  localizePatternDescription,
+  localizePatternName,
+  localizePatternSource,
+} from '@/lib/ziwei/pattern-i18n';
 import { localizeTerm } from '@/lib/ziwei/terms';
 import { useLocale } from 'next-intl';
 
@@ -177,7 +183,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${st.dot}`} />
-                    <span className={`text-[11px] font-medium ${st.label}`}>{localizeTerm(p.name, locale)}</span>
+                    <span className={`text-[11px] font-medium ${st.label}`}>{localizePatternName(p.name, locale)}</span>
                     <div className="flex gap-1 ml-auto">
                       {p.palaces.slice(0, 2).map(pa => (
                         <span key={pa} className={`text-[8px] px-1.5 py-px rounded-full border ${st.badge}`}>
@@ -187,7 +193,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                     </div>
                   </div>
                   <p className="text-[10px] leading-relaxed pl-3.5" style={{ color: 'var(--t-text2)' }}>
-                    {p.description}
+                    {localizePatternDescription(p, locale)}
                   </p>
 
                   {p.conditions && (
@@ -196,21 +202,21 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                           <span className="font-medium" style={{ color: 'var(--t-gold)' }}>{localizeTerm('必须', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
-                          {p.conditions.required.join('、')}
+                          {p.conditions.required.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                         </div>
                       )}
                       {p.conditions.bonus && p.conditions.bonus.length > 0 && (
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                           <span className="font-medium text-emerald-500">{localizeTerm('加分', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
-                          {p.conditions.bonus.join('、')}
+                          {p.conditions.bonus.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                         </div>
                       )}
                       {p.conditions.breaking && p.conditions.breaking.length > 0 && (
                         <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                           <span className="font-medium text-orange-500">{localizeTerm('破格', locale)}</span>
                           <span style={{ opacity: 0.6 }}> · </span>
-                          {p.conditions.breaking.join('、')}
+                          {p.conditions.breaking.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                         </div>
                       )}
                     </div>
@@ -218,7 +224,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
 
                   {p.source && (
                     <div className="text-[9px] mt-1.5 pl-3.5" style={{ color: 'var(--t-faint)', opacity: 0.5 }}>
-                      {localizeTerm('出处', locale)} · {p.source}
+                      {localizeTerm('出处', locale)} · {localizePatternSource(p.source, locale)}
                     </div>
                   )}
                 </motion.div>

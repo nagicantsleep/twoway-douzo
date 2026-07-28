@@ -1,16 +1,17 @@
 /**
  * 自动生成 sitemap.xml
  *
- * Mỗi đường dẫn được nhân đôi cho mỗi locale (vi, zh).
+ * Mỗi đường dẫn được nhân đôi cho mỗi locale (zh primary, vi second).
  * next-intl localePrefix: 'always' nên URL chuẩn luôn có locale prefix.
  */
 
 import type { MetadataRoute } from 'next';
 import { ALL_BOOKS } from '@/lib/classics';
 import { getAllKnowledgeRoutes } from '@/lib/seo/knowledge';
+import { routing } from '@/i18n/routing';
 
 const BASE_URL = 'https://wdyziweidoushu666.com';
-const LOCALES = ['vi', 'zh'];
+const LOCALES = [...routing.locales];
 
 function localize(path: string, locale: string): string {
   return `${BASE_URL}/${locale}${path}`;

@@ -1,42 +1,70 @@
 {
   "pageTitle": "起紫微命盘",
   "subtitle": "输入出生年月日时 · 以公历为准",
-  "formTitle": "── 输入生辰八字 ──",
-  "error": "命盘生成失败",
-  "errorRetry": "生成失败，请重试",
+  "titleAccent": "── 输入生辰八字 ──",
+  "back": "返回",
+  "loading": {
+    "generating": "紫微起盘中…",
+    "submit": "立即起盘 · 解命运密码"
+  },
+  "error": {
+    "generateFailed": "命盘生成失败",
+    "retry": "生成失败，请重试"
+  },
   "reset": "重新起盘",
-  "history": "历史命盘",
-  "fields": {
+  "history": {
+    "title": "历史命盘"
+  },
+  "calendar": {
+    "solar": "公历",
+    "lunar": "农历"
+  },
+  "labels": {
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "hour": "时",
+    "minute": "分",
+    "yearShort": "年",
+    "monthShort": "月",
+    "dayShort": "日",
+    "hourSuffix": "时"
+  },
+  "mingShen": {
+    "ming": "命",
+    "shen": "身",
+    "mingGong": "命宫",
+    "shenGong": "身宫"
+  },
+  "summary": {
+    "section": "五行局 · 大限当前",
+    "wuxingJu": "五行局",
+    "unknownHour": "时辰不详"
+  },
+  "field": {
     "name": "姓名（可选）",
     "namePlaceholder": "请输入姓名",
-    "year": "年份",
-    "month": "月份",
-    "day": "日期",
     "birthDate": "出生日期（公历）",
     "birthPlace": "出生地点（用于真太阳时校正）",
     "province": "省份 / 直辖市",
     "city": "城市",
-    "selectCity": "先选省份",
+    "selectProvinceFirst": "先选省份",
+    "selectCity": "选择城市",
+    "birthTime": "出生时间（北京时间）",
+    "trueSolar": "真太阳时 → {hourName}（{range}）",
+    "unknownTime": "不知道出生时间，以子时（23:00–01:00）起盘",
     "gender": "性别",
     "male": "男",
-    "female": "女"
+    "female": "女",
+    "locationInfo": "{city} · 经度 {longitude}°E · 时差 {offset} 分钟",
+    "locationHint": "* 倪海夏批命用真太阳时，建议填写出生地以自动校正时辰"
   },
-  "time": {
-    "birthTime": "出生时间（北京时间）",
-    "clockHour": "时",
-    "clockMinute": "分",
-    "trueSunTime": "真太阳时 → ",
-    "unknownTime": "不知道出生时间，以子时（23:00–01:00）起盘"
-  },
-  "location": {
-    "hint": "* 倪海夏批命用真太阳时，建议填写出生地以自动校正时辰",
-    "selectCity": "（请选择城市）",
-    "longitude": "经度",
-    "timeOffset": "时差",
-    "minutes": "分钟"
-  },
-  "summary": {
-    "unknownHour": "时辰不详"
+  "errorMessages": {
+    "selectYear": "请选择出生年份",
+    "yearRange": "年份范围：1900–2026",
+    "selectMonth": "请选择月份",
+    "selectDay": "请选择日期",
+    "invalidDay": "{month}月没有{day}日"
   },
   "submit": "立即起盘 · 解命运密码",
   "submitting": "紫微起盘中…",
@@ -45,6 +73,6 @@
     "yearRange": "年份范围：1900–2026",
     "selectMonth": "请选择月份",
     "selectDay": "请选择日期",
-    "invalidDay": "{m}月没有{d}日"
+    "invalidDay": "{month}月没有{day}日"
   }
 }

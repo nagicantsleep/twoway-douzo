@@ -21,5 +21,36 @@
   },
   "links": {
     "classics": "Cổ tịch →"
+  },
+  "page": {
+    "header": "Ni Sư phương pháp luận · Tri thức khố",
+    "backToHome": "← Trang chủ",
+    "goToChart": "Tạo mệnh bàn →",
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbKnowledge": "Tri thức",
+    "topicDetail": "{topicLabel} · Giải chi tiết hệ thống Ni Hà Hạ",
+    "articleTitle": "{star} nhập {palace} · {topicLabel} · Giải chi tiết hệ thống Ni Hà Hạ",
+    "articleDescriptionFallback": "Giải Tử Vi Đẩu Số {star} nhập {palace} — dựa hệ thống Thiên Kỷ của Ni Hà Hạ và cổ tịch.",
+    "jsonLdAuthor": "Nghiên cứu Tử Vi · Chính tông Ni Hà Hạ",
+    "jsonLdPublisher": "Nghiên cứu Tử Vi",
+    "jsonLdSection": "Tử Vi Đẩu Số · Hệ thống Ni Hà Hạ",
+    "jsonLdKeywordRoot": "Tử Vi Đẩu Số",
+    "ctaTitle": "Muốn xem {topicLabel} trên mệnh bàn của bạn?",
+    "ctaSubtitle": "Nhập sinh thì tạo bàn · Giải chính tông Ni Sư · AI hỏi đáp kèm học",
+    "ctaButton": "Tạo mệnh bàn ngay →",
+    "relatedStarTopics": "Giải cung vị khác của tinh {star}",
+    "relatedStarTopicLink": "{star} nhập {palace}",
+    "relatedPalaceTopics": "Chủ tinh khác nhập cung {palace}",
+    "relatedPalaceTopicLink": "{star} nhập {palace}",
+    "classicsLinkTitle": "Muốn đọc nguyên điển?",
+    "classicsLink": "Tra cứu cổ tịch nguyên điển — Tử Vi Đẩu Số Toàn Tập / Toàn Thư / Tủy Phú →",
+    "footer": "Nghiên cứu Tử Vi · Dựa trên hệ thống chính tông Ni Hà Hạ · Chỉ để tham khảo học tập",
+    "footerDisclaimer": "Nền tảng này không cấu thành bất kỳ lời khuyên y tế, đầu tư, pháp lý hoặc quyết định quan trọng nào",
+    "sections": {
+      "dingdiao": "Một câu định điệu",
+      "lundian": "Luận đoán cốt lõi",
+      "yiju": "Căn cứ mệnh bàn",
+      "chuchu": "Xuất xứ kinh điển"
+    }
   }
 }

@@ -1,7 +1,7 @@
 # US-021: Tooling: verify-no-hardcode + diff-message-keys
 
 **Lane**: tiny
-**Status**: planned
+**Status**: implemented
 **Initiative**: I02
 
 ## Scope

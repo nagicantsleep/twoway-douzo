@@ -1,29 +1,41 @@
 {
-  "pageTitle": "紫微命盘",
-  "back": "返回",
-  "boardTitle": "紫微斗数命盘",
-  "boardCenterTitle": "紫微斗数",
-  "mingGongLabel": "命宫",
-  "shenGongLabel": "身宫",
-  "currentDaxian": "当前大限",
-  "ageSuffix": "岁",
-  "leapMonth": "闰",
-  "sihua": {
+  "title": {
+    "subtitle": "Zi Wei Dou Shu",
+    "chart": "紫微斗数命盘",
+    "boardCenter": "紫微斗数",
+    "ming": "命",
+    "shen": "身"
+  },
+  "board": {
+    "currentDaXian": "当前大限",
+    "age": "岁",
+    "leapMonth": "闰",
+    "hint": "点击宫位看三方四正",
+    "empty": "空"
+  },
+  "siHua": {
     "lu": "化禄",
     "quan": "化权",
     "ke": "化科",
     "ji": "化忌"
   },
-  "clickHint": "点击宫位看三方四正",
-  "tabs": {
+  "timeNav": {
     "mingpan": "本命",
     "daxian": "大限",
-    "liunian": "流年"
+    "liunian": "流年",
+    "liuyue": "流月",
+    "daxianPrefix": "大限 {startAge}–{endAge}",
+    "yearSiHua": "{stemName}年四化：",
+    "daxianSiHua": "大限 · {stemName}年四化："
   },
-  "yearSiHua": "年四化：",
-  "share": "分享",
-  "print": "打印",
-  "liuyue": "流月",
-  "copied": "✓ 已复制",
-  "ziWeiDouShu": "Zi Wei Dou Shu"
+  "topBar": {
+    "back": "返回",
+    "pageTitle": "紫微命盘",
+    "share": "分享",
+    "print": "打印",
+    "copied": "已复制"
+  },
+  "legend": {
+    "hint": "点击宫位看三方四正"
+  }
 }

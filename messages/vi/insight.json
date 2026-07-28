@@ -76,13 +76,13 @@
     "loading": "Đang so sánh hai lá số mệnh bàn…",
     "error": "Phân tích tạm thời không khả dụng, vui lòng thử lại.",
     "followUpHeader": "Tiếp tục hỏi về phân tích hợp bàn này",
-    "quickQuestions": [
-      "Mức độ phù hợp tình cảm thế nào?",
-      "Có thích hợp hợp tác kinh doanh không?",
-      "Kết hôn có phù hợp không?",
-      "Phương diện nào dễ mâu thuẫn nhất?",
-      "Tài vận có bổ trợ cho nhau không?"
-    ],
+    "quickQuestions": {
+      "loveMatch": "Mức độ phù hợp tình cảm thế nào?",
+      "business": "Có thích hợp hợp tác kinh doanh không?",
+      "marriage": "Kết hôn có phù hợp không?",
+      "conflict": "Phương diện nào dễ mâu thuẫn nhất?",
+      "wealth": "Tài vận có bổ trợ cho nhau không?"
+    },
     "submitButton": "Tiếp tục hỏi",
     "submitButtonLoading": "Đang phân tích…",
     "sectionLabel": "Phân tích hợp bàn · HEMING",
@@ -94,7 +94,12 @@
     "partyA": "Bên A — {label}",
     "partyB": "Bên B — {label}",
     "followupPlaceholder": "Tiếp tục hỏi, ví dụ: Năm nào là giai đoạn quan trọng của hai người?",
-    "idleText": "Điền thông tin sinh của hai bên, sau đó nhấn nút bên dưới\nAI sẽ dựa trên hệ thống Ni Hà Hạ phân tích sâu mức độ phù hợp"
+    "idleText": "Điền thông tin sinh của hai bên, sau đó nhấn nút bên dưới\nAI sẽ dựa trên hệ thống Ni Hà Hạ phân tích sâu mức độ phù hợp",
+    "analyzing": "Đang so sánh hai lá số mệnh bàn…",
+    "followUp": "Tiếp tục hỏi về phân tích hợp bàn này",
+    "placeholder": "Tiếp tục hỏi, ví dụ: Năm nào là giai đoạn quan trọng của hai người?",
+    "questioning": "Đang phân tích…",
+    "submitQuestion": "Tiếp tục hỏi"
   },
   "chat": {
     "title": "AI Giải mã mệnh bàn",

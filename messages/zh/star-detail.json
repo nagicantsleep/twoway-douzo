@@ -1,33 +1,27 @@
 {
-  "pageTitle": "星曜详解",
-  "labels": {
-    "mainStar": "主星",
-    "luckyStar": "吉星",
-    "shaStar": "煞星",
-    "minorStar": "杂星"
-  },
-  "brightness": {
-    "bright": "庙旺",
-    "dim": "落陷",
-    "neutral": "平和"
-  },
-  "tags": {
-    "element": "五行 · {element}",
-    "nature": "性质 · {nature}",
-    "location": "位置 · {palace}"
-  },
   "sections": {
-    "characteristics": "星曜特质",
-    "classicalText": "古书原文",
-    "niHaixia": "倪海夏老师解读",
+    "classical": "古书原文",
+    "niHaixiaInterpretation": "倪海夏老师解读",
     "career": "事业方向",
     "relationship": "感情特质",
     "wealth": "财运分析",
     "health": "健康提示",
     "bestPalace": "最佳宫位",
-    "worstPalace": "注意宫位"
+    "worstPalace": "注意宫位",
+    "starTraits": "星曜特质"
   },
-  "siHuaPrefix": "化{type}",
+  "tags": {
+    "element": "五行 · {element}",
+    "nature": "性质 · {nature}",
+    "position": "位置 · {palace}",
+    "bright": "庙旺",
+    "dim": "落陷",
+    "neutral": "平和",
+    "major": "主星",
+    "lucky": "吉星",
+    "sha": "煞星",
+    "minor": "杂星"
+  },
   "luckyStars": {
     "wenchang": "文昌入宫，主学业考试顺利，文书印鉴有利，宜从事文字相关工作。古诀：「文昌科甲，主文章显达，逢考必第。」",
     "wenqu": "文曲入宫，主才艺出众，口才佳，善于表达，艺术天赋强。古诀：「文曲为才艺之星，能文能武，口才胜人。」",
@@ -45,5 +39,11 @@
     "lingxing": "铃星入宫，主该宫位事项有暗中阻碍，防背后小人，凡事宜低调。古诀：「铃星主暗煞，入命者多暗中受敌，须防背后是非。」",
     "qingyang": "擎羊入宫，主刑克，该宫位事项多波折，有血光之灾或意外。古诀：「擎羊为刑克之星，入命宫者多刑克，须防意外血光。」",
     "tuoluo": "陀罗入宫，主是非缠身，该宫位事项拖延不决，凡事宜早做准备。古诀：「陀罗主是非拖延，入命宫者做事迟缓，须防纠缠不清。」"
+  },
+  "icons": {
+    "career": "◈",
+    "relationship": "♡",
+    "wealth": "◆",
+    "health": "☯"
   }
 }

@@ -3,11 +3,6 @@
     "title": "倪师方法论 · 古籍原典库 · 紫微斗数全集 / 全书 / 骨髓赋",
     "description": "紫微斗数权威古籍全文检索：《紫微斗数全集》《紫微斗数全书》《骨髓赋》倪海夏《天纪》引证来源"
   },
-  "pageTitle": "倪师方法论 · 古籍原典库 · 紫微斗数全集 / 全书 / 骨髓赋",
-  "pageDescription": "紫微斗数权威古籍全文检索：《紫微斗数全集》《紫微斗数全书》《骨髓赋》倪海夏《天纪》引证来源",
-  "heroTitle": "倪师方法论 · 古籍原典库",
-  "heroSubtitle": "紫微斗数权威古籍全文检索\n收录 {bookCount} 部古籍 · 共 {paragraphCount} 段精华",
-  "backToHome": "← 返回首页",
   "header": {
     "sectionLabel": "古籍原典库 · CLASSICS",
     "title": "倪师方法论 · 古籍原典库",
@@ -56,9 +51,5 @@
     "homeLink": "首页 →",
     "bookHeader": "《{title}》",
     "paragraphCount": "{count} 段"
-  },
-  "footer": {
-    "title": "关于本库",
-    "description": "所收录古籍均为公版（明代刊本）。\n内容持续完善，未来将补全《紫微斗数全集》全本与倪海夏《天纪》引证目录。\n如发现任何错误请联系我们。"
   }
 }

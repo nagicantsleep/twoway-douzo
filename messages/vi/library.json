@@ -29,6 +29,8 @@
     "paragraphs": "{paragraphs} đoạn tinh hoa"
   },
   "search": {
+    "placeholder": "Tìm kiếm",
+    "button": "Tìm",
     "pageTitle": "Tìm kiếm · Cổ tịch nguyên điển khố",
     "keyword": "Từ khóa tìm kiếm",
     "resultsCount": "Tìm thấy {count} kết quả trùng khớp",

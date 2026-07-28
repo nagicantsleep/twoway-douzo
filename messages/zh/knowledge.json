@@ -4,7 +4,7 @@
     "description": "基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》编纂的紫微斗数知识库。覆盖 14 主星在 13 个宫位的完整论断。"
   },
   "header": {
-    "sectionLabel": "KNOWLEDGE BASE",
+    "sectionLabel": "知识库",
     "title": "紫微斗数知识库",
     "countTemplate": "14 主星 × 13 宫位 = {count} 项专题",
     "subtitle": "基于倪海夏《天纪》体系编纂 · 含古籍引证",
@@ -13,7 +13,7 @@
   },
   "starSection": {
     "header": "十四主星",
-    "label": "ZI WEI · 14 STARS",
+    "label": "紫微 · 十四主星",
     "starSuffix": "星"
   },
   "topicLink": {

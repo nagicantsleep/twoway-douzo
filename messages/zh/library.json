@@ -4,7 +4,7 @@
     "description": "紫微斗数权威古籍全文检索：《紫微斗数全集》《紫微斗数全书》《骨髓赋》倪海夏《天纪》引证来源"
   },
   "header": {
-    "sectionLabel": "古籍原典库 · CLASSICS",
+    "sectionLabel": "古籍原典库",
     "title": "倪师方法论 · 古籍原典库",
     "subtitle": "紫微斗数权威古籍全文检索",
     "countTemplate": "收录 {count} 部古籍 · 共 {paragraphs} 段精华"
@@ -47,7 +47,7 @@
     "enterLink": "进入查阅 →",
     "dynastyAuthor": "{dynasty} · {author}",
     "backLink": "← 古籍库",
-    "chaptersLabel": "CHAPTERS · 章节目录",
+    "chaptersLabel": "章节目录",
     "homeLink": "首页 →",
     "bookHeader": "《{title}》",
     "paragraphCount": "{count} 段"

@@ -1,10 +1,10 @@
 # US-026: Pattern conditions/source + library chapter chrome
 
 **Lane**: normal  
-**Status**: planned → implemented  
+**Status**: implemented  
 **Initiative**: I02  
 **Intake**: #19  
-**Backlog**: #10
+**Backlog**: #10 (closed)
 
 ## Scope
 

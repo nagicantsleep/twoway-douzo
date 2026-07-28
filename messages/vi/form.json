@@ -1,6 +1,7 @@
 {
   "pageTitle": "Tạo Tử Vi Mệnh Bàn",
   "subtitle": "Nhập năm tháng ngày giờ sinh · Dương lịch",
+  "back": "Quay lại",
   "titleAccent": "── Nhập sinh thần bát tự ──",
   "loading": {
     "generating": "Đang tạo Tử Vi Mệnh Bàn…",
@@ -37,7 +38,8 @@
   },
   "summary": {
     "section": "Ngũ hành cục · Đại hạn hiện tại",
-    "wuxingJu": "Ngũ hành cục"
+    "wuxingJu": "Ngũ hành cục",
+    "unknownHour": "Giờ không rõ"
   },
   "field": {
     "name": "Họ tên (không bắt buộc)",
@@ -47,6 +49,7 @@
     "province": "Tỉnh / Thành phố",
     "city": "Thành phố",
     "selectProvinceFirst": "Chọn tỉnh trước",
+    "selectCity": "Chọn thành phố",
     "birthTime": "Giờ sinh (giờ Bắc Kinh)",
     "trueSolar": "Giờ mặt trời thực → {hourName} ({range})",
     "unknownTime": "Không biết giờ sinh, lấy giờ Tý (23:00–01:00) để tạo mệnh bàn",
@@ -54,10 +57,18 @@
     "male": "Nam",
     "female": "Nữ",
     "locationInfo": "{city} · Kinh độ {longitude}°Đ · Chênh lệch {offset} phút",
-    "locationHint": "* Ni Hà Hạ dùng giờ mặt trời thực, nên điền nơi sinh để tự động hiệu chỉnh",
-    "unknownHour": "Không rõ giờ sinh"
+    "locationHint": "* Ni Hà Hạ dùng giờ mặt trời thực, nên điền nơi sinh để tự động hiệu chỉnh"
   },
   "errorMessages": {
+    "selectYear": "Vui lòng chọn năm sinh",
+    "yearRange": "Năm trong khoảng 1900–2026",
+    "selectMonth": "Vui lòng chọn tháng",
+    "selectDay": "Vui lòng chọn ngày",
+    "invalidDay": "Tháng {month} không có ngày {day}"
+  },
+  "submit": "Tạo mệnh bàn · Giải mã số mệnh",
+  "submitting": "Đang tạo Tử Vi Mệnh Bàn…",
+  "validation": {
     "selectYear": "Vui lòng chọn năm sinh",
     "yearRange": "Năm trong khoảng 1900–2026",
     "selectMonth": "Vui lòng chọn tháng",

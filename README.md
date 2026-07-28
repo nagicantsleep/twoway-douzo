@@ -123,22 +123,26 @@ Expand-Archive combined.zip
 
 14 主星 × 12 宫位的结构化知识数据，可用于内容生成或知识库构建。
 
-### Đa ngôn ngữ (i18n)
+### Đa ngôn ngữ (i18n) · 中越双语
 
-Hỗ trợ hai ngôn ngữ với **next-intl**:
+Hỗ trợ **tiếng Trung (chính)** và **tiếng Việt** với **next-intl**
+（中文为默认语言，越南语为第二语言）:
 
-| Đường dẫn | URL |
+| Ngôn ngữ | URL |
 |-----------|-----|
-| Tiếng Việt | `https://wdyziweidoushu666.com/vi/...` |
-| Tiếng Trung | `https://wdyziweidoushu666.com/zh/...` |
+| 中文 (zh) · primary | `https://wdyziweidoushu666.com/zh/...` |
+| Tiếng Việt (vi) | `https://wdyziweidoushu666.com/vi/...` |
+
+`/` redirects → `/zh`. Dùng nút **中文 | Tiếng Việt** trên nav / chart top bar để chuyển locale.
 
 Kiến trúc:
 
-- **`i18n/routing.ts`** — `defineRouting({ locales: ['vi','zh'], localePrefix: 'always' })`
-- **`i18n/request.ts`** — load messages từ `messages/{locale}/*.json` (10 namespaces)
+- **`i18n/routing.ts`** — `defineRouting({ locales: ['zh','vi'], defaultLocale: 'zh', localePrefix: 'always' })`
+- **`i18n/request.ts`** — load messages từ `messages/{locale}/*.json`
 - **`i18n/navigation.ts`** — `createNavigation(routing)` → Link, useRouter, redirect locale-aware
-- **`messages/{vi,zh}/*.json`** — 10 namespace files: `common`, `chart`, `form`, `home`, `insight`, `knowledge`, `library`, `preview`, `share`, `star-detail`
-- **`lib/ziwei/terms.ts`** — Bảng phiên âm Hán-Việt ~100 thuật ngữ Tử Vi + `localizeTerm(term, locale)`
+- **`messages/{zh,vi}/*.json`** — namespaces: `common`, `chart`, `form`, `home`, `insight`, `knowledge`, `library`, `preview`, `privacy`, `share`, `star-detail`, `terms`, `announcement`
+- **`lib/ziwei/terms.ts`** — Bảng phiên âm Hán-Việt + `localizeTerm(term, locale)`
+- **`components/LocaleSwitcher.tsx`** — chuyển zh ↔ vi giữ nguyên path
 
 ---
 

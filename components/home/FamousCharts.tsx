@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { motion } from 'framer-motion';
 import type { Theme } from '@/components/ThemeProvider';
 import { FAMOUS_PERSONS, FAMOUS_CATEGORIES, type FamousPerson } from '@/lib/ziwei/famous';
 
@@ -26,14 +26,6 @@ interface FamousChartsProps {
   theme: Theme;
 }
 
-const CATEGORY_TITLES: Record<string, string> = {
-  '商业': '商业传奇',
-  '文艺': '文艺名家',
-  '科技': '科技精英',
-  '体育': '体育明星',
-  '历史': '历史人物',
-};
-
 export default function FamousCharts({ colors, theme }: FamousChartsProps) {
   const t = useTranslations('home');
   const c = colors;
@@ -44,7 +36,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8" style={{ background: c.goldLine }} />
             <span className="text-[10px] tracking-[0.5em] uppercase" style={{ color: c.tagText }}>
-              Famous Charts
+              {t('famousCharts.tag')}
             </span>
             <div className="h-px w-8" style={{ background: c.goldLine }} />
           </div>
@@ -52,13 +44,13 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
             className={`grad-text ${theme === 'dark' ? 'grad-text-dark' : 'grad-text-light'} font-bold tracking-tight`}
             style={{ fontSize: 'clamp(26px, 3.5vw, 40px)' }}
           >
-            名人命盘库
+            {t('famousCharts.title')}
           </h2>
           <p
             className="text-sm leading-relaxed mt-4 max-w-2xl mx-auto"
             style={{ color: c.textSecond }}
           >
-            收录商业、文艺、科技、体育四大领域名人命盘，结合倪海夏体系解读其命格亮点。
+            {t('famousCharts.description')}
           </p>
         </div>
 
@@ -71,7 +63,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
                 className="text-sm font-medium mb-5"
                 style={{ color: c.goldSolid, letterSpacing: '0.2em' }}
               >
-                {CATEGORY_TITLES[cat] ?? cat}
+                {t(`famousCharts.categories.${cat}`)}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {list.map(person => (

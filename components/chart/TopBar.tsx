@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { localizeTerm } from '@/lib/ziwei/terms';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from '@/components/TimeNav';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export type { TimeView };
 
@@ -108,6 +109,8 @@ export default function TopBar({
         </span>
 
         <div className="flex-1" />
+
+        <LocaleSwitcher />
 
         <div className="flex items-center gap-1.5">
           {onShare && (

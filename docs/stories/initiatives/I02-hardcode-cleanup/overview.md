@@ -1,9 +1,11 @@
-# Initiative I02 — Loại bỏ Hardcode Tiếng Trung
+# Initiative I02 — Loại bỏ Hardcode Tiếng Trung (中越双语闭环)
 
 Epic kế tiếp sau I01 (Vietnamese i18n), tiếp tục closure gap i18n còn sót
-sau I01 đã merge. Mục tiêu: `/vi` render **hoàn toàn** tiếng Việt, `/zh`
-render tiếng Trung, **không còn chuỗi CJK hardcode** trong component/page
-nào trên 2 locale.
+sau I01 đã merge. Mục tiêu: **`/zh` là ngôn ngữ chính**, `/vi` render
+**hoàn toàn** tiếng Việt, **không còn chuỗi CJK hardcode** trong
+component/page nào làm hỏng trải nghiệm `/vi`.
+
+> Intake #16: cặp song ngữ là **中文 + Tiếng Việt** (không phải tiếng Nhật).
 
 ## Tại sao cần epic riêng
 

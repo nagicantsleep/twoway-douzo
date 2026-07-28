@@ -165,17 +165,12 @@
   "scrollIntro": {
     "skip": "Bỏ qua",
     "title": "Tử Vi Đẩu Số",
-    "subtitle": "Ni Hà Hạ chính tông",
-    "beidou": ["Thiên Xu", "Thiên Tuyền", "Thiên Cơ", "Thiên Quyền", "Ngọc Hành", "Khai Dương", "Dao Quang"],
-    "seal": "Vương Đa Ngư Ấn",
-    "tagline": "Quan · Thiên Chi Tượng · Sát · Nhân Chi Mệnh",
-    "footer": "Ni Hà Hạ · 《Thiên Kỷ》chính tông hệ thống"
+    "subtitle": "Ni Hà Hạ chính tông"
   },
   "famousCharts": {
-    "tag": "Mệnh Bàn Danh Nhân",
+    "tag": "Famous Charts",
     "title": "Danh nhân mệnh bàn khố",
     "description": "Tổng hợp mệnh bàn danh nhân bốn lĩnh vực: Kinh doanh, Văn nghệ, Công nghệ, Thể thao, kết hợp hệ thống Ni Hà Hạ giải đọc cách cục mệnh bàn.",
-    "yearTemplate": "Sinh năm {year}",
     "categories": {
       "商业": "Kỳ tích kinh doanh",
       "文艺": "Danh gia văn nghệ",

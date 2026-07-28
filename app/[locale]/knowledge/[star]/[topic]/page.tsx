@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; star: string; topic: string }> }) {
-  const { star: slug, topic } = await params;
+  const { locale, star: slug, topic } = await params;
   const star = SLUG_TO_STAR[slug];
   if (!star) return {};
   const data = getKnowledge(star, topic as TopicKey);
@@ -56,12 +56,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title,
       description,
       type: 'article',
-      url: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
+      url: `https://wdyziweidoushu666.com/${locale}/knowledge/${slug}/${topic}`,
+      locale: locale === 'zh' ? 'zh_CN' : 'vi_VN',
     },
     alternates: {
       languages: {
-        vi: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
         zh: `https://wdyziweidoushu666.com/zh/knowledge/${slug}/${topic}`,
+        vi: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
       },
     },
     keywords: [

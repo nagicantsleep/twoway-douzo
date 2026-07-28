@@ -15,7 +15,6 @@ const ALLOWLIST = [
   'components/StarDetailPanel.tsx', // STAR_DETAIL body until US-018
   'components/ChartSummary.tsx',
   'components/LocaleSwitcher.tsx',
-  'app/[locale]/knowledge/[star]/[topic]/page.tsx',
   'app/[locale]/library/[book]/[chapter]/page.tsx',
   'app/[locale]/page.tsx',
 ];

@@ -14,6 +14,7 @@
 
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import type { TopicKey } from '@/lib/ziwei/db-analysis';
 import {
   ALL_STARS,
@@ -25,6 +26,7 @@ import {
   SLUG_TO_STAR,
 } from '@/lib/seo/knowledge';
 import { routing } from '@/i18n/routing';
+import { localizeTerm } from '@/lib/ziwei/terms';
 
 // 允许动态参数：如果某个 star/topic 组合不在 generateStaticParams 列表中
 // 也允许运行时按需渲染，避免中文 URL 编码问题导致 404
@@ -73,15 +75,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function KnowledgePage({ params }: { params: Promise<{ star: string; topic: string }> }) {
-  const { star: slug, topic } = await params;
+export default async function KnowledgePage({ params }: { params: Promise<{ locale: string; star: string; topic: string }> }) {
+  const { locale, star: slug, topic } = await params;
   const star = SLUG_TO_STAR[slug];
   if (!star) notFound();
   const data = getKnowledge(star, topic as TopicKey);
   if (!data.exists) notFound();
+  const t = await getTranslations({ locale, namespace: 'knowledge' });
+  const starL = localizeTerm(star, locale);
+  const palaceL = localizeTerm(data.palaceName, locale);
 
   // 同主星其他 topic
-  const otherTopicsForStar = ALL_TOPICS.filter(t => t !== topic && getKnowledge(star, t).exists);
+  const otherTopicsForStar = ALL_TOPICS.filter(t2 => t2 !== topic && getKnowledge(star, t2).exists);
   // 同 topic 其他主星
   const otherStarsForTopic = ALL_STARS.filter(s => s !== star && getKnowledge(s, topic as TopicKey).exists);
 
@@ -89,7 +94,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${star}入${data.palaceName}宫 · ${data.topicLabel}`,
+    headline: `${starL} · ${palaceL} · ${data.topicLabel}`,
     description: data.parsed.dingdiao,
     author: { '@type': 'Organization', name: '紫微研究 · 倪海夏正宗' },
     publisher: {
@@ -99,7 +104,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
     },
     datePublished: '2026-04-28',
     dateModified: '2026-04-28',
-    mainEntityOfPage: `https://wdyziweidoushu666.com/vi/knowledge/${slug}/${topic}`,
+    mainEntityOfPage: `https://wdyziweidoushu666.com/${locale}/knowledge/${slug}/${topic}`,
     articleSection: '紫微斗数 · 倪海夏体系',
     keywords: [`紫微斗数`, star, data.palaceName, data.topicLabel].join(', '),
   };
@@ -112,35 +117,35 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
       <div className="px-6 py-4 flex items-center justify-between"
         style={{ borderBottom: '1px solid rgba(184,146,42,0.15)', background: 'var(--bg-page)' }}>
         <Link href="/" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.3em', textDecoration: 'none' }}>
-          ← 首页
+          {t('page.backToHome')}
         </Link>
         <div style={{ fontSize: '12px', color: 'var(--tx-3)', letterSpacing: '0.2em' }}>
-          倪师方法论 · 知识库
+          {t('page.header')}
         </div>
         <Link href="/chart" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em', textDecoration: 'none' }}>
-          起盘 →
+          {t('page.goToChart')}
         </Link>
       </div>
 
       <article className="max-w-3xl mx-auto px-6 py-12">
         {/* 面包屑 */}
         <nav style={{ fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.1em', marginBottom: '16px' }}>
-          <Link href="/" style={{ color: 'var(--tx-3)', textDecoration: 'none' }}>首页</Link>
+          <Link href="/" style={{ color: 'var(--tx-3)', textDecoration: 'none' }}>{t('page.breadcrumbHome')}</Link>
           <span style={{ margin: '0 8px' }}>/</span>
-          <Link href="/knowledge" style={{ color: 'var(--tx-3)', textDecoration: 'none' }}>知识库</Link>
+          <Link href="/knowledge" style={{ color: 'var(--tx-3)', textDecoration: 'none' }}>{t('page.breadcrumbKnowledge')}</Link>
           <span style={{ margin: '0 8px' }}>/</span>
-          <span>{star}</span>
+          <span>{starL}</span>
           <span style={{ margin: '0 8px' }}>·</span>
-          <span style={{ color: 'var(--ac)' }}>{data.palaceName}宫</span>
+          <span style={{ color: 'var(--ac)' }}>{palaceL}</span>
         </nav>
 
         {/* 标题区 */}
         <header style={{ marginBottom: '36px' }}>
           <div style={{ fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.25em', marginBottom: '8px' }}>
-            {data.topicLabel} · 倪海夏体系详解
+            {t('page.topicDetail', { topicLabel: data.topicLabel })}
           </div>
           <h1 style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.1em', lineHeight: 1.2 }}>
-            {star}入{data.palaceName}宫
+            {starL} · {palaceL}
           </h1>
           {STAR_BRIEF_SEO[star] && (
             <p style={{ fontSize: '13px', color: 'var(--tx-2)', marginTop: '14px', lineHeight: 1.8 }}>
@@ -149,9 +154,9 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
           )}
         </header>
 
-        {/* 内容 4 段 */}
+        {/* 内容 4 段 — body still Chinese until US-018 data translation */}
         {data.parsed.dingdiao && (
-          <Section title="一句话定调" gradient>
+          <Section title={t('page.sections.dingdiao')} gradient>
             <p style={{ fontSize: '17px', color: 'var(--tx-0)', lineHeight: 1.9, fontWeight: 500, letterSpacing: '0.04em' }}>
               {data.parsed.dingdiao}
             </p>
@@ -159,7 +164,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
         )}
 
         {data.parsed.lundian && (
-          <Section title="核心论断">
+          <Section title={t('page.sections.lundian')}>
             <div style={{ fontSize: '15px', color: 'var(--tx-0)', lineHeight: 2, letterSpacing: '0.02em', whiteSpace: 'pre-wrap' }}>
               {data.parsed.lundian}
             </div>
@@ -167,7 +172,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
         )}
 
         {data.parsed.yiju && (
-          <Section title="命盘依据">
+          <Section title={t('page.sections.yiju')}>
             <div style={{ fontSize: '14px', color: 'var(--tx-0)', lineHeight: 2, letterSpacing: '0.02em', whiteSpace: 'pre-wrap' }}>
               {data.parsed.yiju}
             </div>
@@ -175,7 +180,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
         )}
 
         {data.parsed.chuchu && (
-          <Section title="经典出处" minimal>
+          <Section title={t('page.sections.chuchu')} minimal>
             <div style={{ fontSize: '13px', color: 'var(--tx-2)', lineHeight: 2, letterSpacing: '0.02em', whiteSpace: 'pre-wrap' }}>
               {data.parsed.chuchu}
             </div>
@@ -192,10 +197,10 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
           textAlign: 'center',
         }}>
           <div style={{ fontSize: '14px', color: 'var(--tx-0)', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '6px' }}>
-            想看你自己命盘的{data.topicLabel}？
+            {t('page.ctaTitle', { topicLabel: data.topicLabel })}
           </div>
           <div style={{ fontSize: '12px', color: 'var(--tx-2)', marginBottom: '16px' }}>
-            输入生辰起盘 · 倪师正宗解读 · AI 答疑伴学
+            {t('page.ctaSubtitle')}
           </div>
           <Link href="/chart" style={{
             display: 'inline-block',
@@ -209,19 +214,19 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
             textDecoration: 'none',
             boxShadow: '0 4px 12px rgba(184,146,42,0.3)',
           }}>
-            立即起盘 →
+            {t('page.ctaButton')}
           </Link>
         </div>
 
         {/* 内链：同主星其他 topic */}
-        <Section title={`${star}星的其他宫位解读`} minimal>
+        <Section title={t('page.relatedStarTopics', { star: starL })} minimal>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            {otherTopicsForStar.map(t => {
-              const d = getKnowledge(star, t);
+            {otherTopicsForStar.map(t2 => {
+              const d = getKnowledge(star, t2);
               return (
                 <Link
-                  key={t}
-                  href={`/knowledge/${slug}/${t}`}
+                  key={t2}
+                  href={`/knowledge/${slug}/${t2}`}
                   style={{
                     fontSize: '12px',
                     padding: '6px 12px',
@@ -232,7 +237,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
                     textDecoration: 'none',
                   }}
                 >
-                  {star}入{d.palaceName}
+                  {t('page.relatedStarTopicLink', { star: starL, palace: localizeTerm(d.palaceName, locale) })}
                 </Link>
               );
             })}
@@ -240,7 +245,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
         </Section>
 
         {/* 内链：同 topic 其他主星 */}
-        <Section title={`其他主星入${data.palaceName}宫的解读`} minimal>
+        <Section title={t('page.relatedPalaceTopics', { palace: palaceL })} minimal>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {otherStarsForTopic.slice(0, 13).map(s => (
               <Link
@@ -256,7 +261,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
                   textDecoration: 'none',
                 }}
               >
-                {s}入{data.palaceName}
+                {t('page.relatedPalaceTopicLink', { star: localizeTerm(s, locale), palace: palaceL })}
               </Link>
             ))}
           </div>
@@ -272,18 +277,18 @@ export default async function KnowledgePage({ params }: { params: Promise<{ star
           textAlign: 'center',
         }}>
           <div style={{ fontSize: '11px', color: 'var(--ac-dim)', letterSpacing: '0.15em', marginBottom: '6px' }}>
-            想读原典？
+            {t('page.classicsLinkTitle')}
           </div>
           <Link href="/library" style={{ fontSize: '13px', color: 'var(--ac)', fontWeight: 500, letterSpacing: '0.1em', textDecoration: 'none' }}>
-            📜 查阅古籍原典库 — 紫微斗数全集 / 全书 / 骨髓赋 →
+            {t('page.classicsLink')}
           </Link>
         </div>
       </article>
 
       {/* 页脚 */}
       <footer style={{ borderTop: '1px solid rgba(184,146,42,0.15)', padding: '20px 24px', textAlign: 'center', fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.1em' }}>
-        <div style={{ marginBottom: '6px' }}>紫微研究 · 基于倪海夏正宗体系 · 仅供学习参考</div>
-        <div style={{ opacity: 0.85 }}>本平台不构成任何医疗、投资、法律或重大决策建议</div>
+        <div style={{ marginBottom: '6px' }}>{t('page.footer')}</div>
+        <div style={{ opacity: 0.85 }}>{t('page.footerDisclaimer')}</div>
       </footer>
     </div>
   );

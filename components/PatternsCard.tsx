@@ -4,7 +4,12 @@ import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { detectPatterns } from '@/lib/ziwei/patterns';
-import { localizePatternDescription, localizePatternName } from '@/lib/ziwei/pattern-i18n';
+import {
+  localizePatternConditionItem,
+  localizePatternDescription,
+  localizePatternName,
+  localizePatternSource,
+} from '@/lib/ziwei/pattern-i18n';
 import { localizeTerm } from '@/lib/ziwei/terms';
 
 const LevelStyle = {
@@ -65,21 +70,21 @@ export default function PatternsCard({ chart }: { chart: ZiweiChart }) {
                     <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                       <span className="font-medium" style={{ color: 'var(--t-gold)' }}>{t('required')}</span>
                       <span style={{ opacity: 0.6 }}> · </span>
-                      {p.conditions.required.join('、')}
+                      {p.conditions.required.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                     </div>
                   )}
                   {p.conditions.bonus && p.conditions.bonus.length > 0 && (
                     <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                       <span className="font-medium text-emerald-500">{t('bonus')}</span>
                       <span style={{ opacity: 0.6 }}> · </span>
-                      {p.conditions.bonus.join('、')}
+                      {p.conditions.bonus.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                     </div>
                   )}
                   {p.conditions.breaking && p.conditions.breaking.length > 0 && (
                     <div className="text-[9px] leading-relaxed" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
                       <span className="font-medium text-orange-500">{t('breaking')}</span>
                       <span style={{ opacity: 0.6 }}> · </span>
-                      {p.conditions.breaking.join('、')}
+                      {p.conditions.breaking.map((c) => localizePatternConditionItem(c, locale)).join(locale === 'vi' ? '; ' : '、')}
                     </div>
                   )}
                 </div>
@@ -87,7 +92,7 @@ export default function PatternsCard({ chart }: { chart: ZiweiChart }) {
 
               {p.source && (
                 <div className="text-[9px] mt-1.5 pl-3.5" style={{ color: 'var(--t-faint)', opacity: 0.5 }}>
-                  {t('source', { source: p.source })}
+                  {t('source', { source: localizePatternSource(p.source, locale) })}
                 </div>
               )}
             </motion.div>

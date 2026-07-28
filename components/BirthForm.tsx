@@ -1,11 +1,12 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import type { BirthInfo } from '@/lib/ziwei/types';
 import { SHICHEN } from '@/lib/ziwei/constants';
 import { useTheme } from '@/components/ThemeProvider';
 import { PROVINCES } from '@/lib/ziwei/cities';
+import { localizePlaceName } from '@/lib/ziwei/cities-i18n';
 
 export interface BirthFormState {
   name: string;
@@ -49,6 +50,7 @@ function isValidDate(y: number, m: number, d: number): boolean {
 
 export default function BirthForm({ onSubmit, loading, initialData, onFormSave, hideSubmit }: BirthFormProps) {
   const t = useTranslations('form');
+  const locale = useLocale();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -299,7 +301,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
           >
             <option value="">{t('field.province')}</option>
             {PROVINCES.map(p => (
-              <option key={p.name} value={p.name}>{p.name}</option>
+              <option key={p.name} value={p.name}>{localizePlaceName(p.name, locale)}</option>
             ))}
           </select>
           <select
@@ -312,7 +314,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
           >
             <option value="">{form.province ? t('field.city') : t('field.selectProvinceFirst')}</option>
             {cityList.map(c => (
-              <option key={c.name} value={c.name}>{c.name}</option>
+              <option key={c.name} value={c.name}>{localizePlaceName(c.name, locale)}</option>
             ))}
           </select>
         </div>
@@ -326,7 +328,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
               style={{ fontSize: '10px', color: isDark ? 'rgba(180,210,235,0.85)' : 'rgba(100,70,10,0.5)', marginTop: '5px' }}
             >
               {t('field.locationInfo', {
-                city: form.city || t('field.selectCity'),
+                city: form.city ? localizePlaceName(form.city, locale) : t('field.selectCity'),
                 longitude: form.longitude.toFixed(1),
                 offset: offsetMin > 0 ? `+${offsetMin}` : String(offsetMin),
               })}

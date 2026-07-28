@@ -51,5 +51,17 @@
     "homeLink": "Trang chủ →",
     "bookHeader": "《{title}》",
     "paragraphCount": "{count} đoạn"
+  },
+  "chapter": {
+    "seoTitle": "{chapter} · 《{book}》· Cổ tịch Tử Vi Đẩu Số",
+    "seoDescription": "Nguyên văn 《{book}》{chapter}",
+    "backToToc": "← 《{book}》 mục lục",
+    "backToLibrary": "Thư viện cổ tịch →",
+    "bookMeta": "《{book}》· {dynasty}",
+    "vernacular": "Bạch thoại",
+    "niNote": "Ni sư chú",
+    "prev": "← Chương trước",
+    "next": "Chương sau →",
+    "sourceNote": "Nội dung chính là nguyên văn cổ tịch (tiếng Trung); nhãn giao diện đã được Việt hóa."
   }
 }

@@ -58,6 +58,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
   const locale = useLocale();
   const t = useTranslations('insight.title');
   const tBoard = useTranslations('insight.board');
+  const tSiHua = useTranslations('chart.siHua');
   const [selectedBranch, setSelectedBranch] = useState<number | null>(null);
   const [timeView, setTimeView] = useState<TimeView>('mingpan');
   const [liunianYear, setLiunianYear] = useState<number>(new Date().getFullYear());
@@ -274,16 +275,13 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
         className="mt-3 flex items-center justify-center gap-2 text-[9px] flex-wrap"
       >
         {[
-          { h: '化禄', c: 'text-emerald-500 border-emerald-500/30' },
-          { h: '化权', c: 'text-blue-500 border-blue-500/30' },
-          { h: '化科', c: 'text-yellow-500 border-yellow-500/30' },
-          { h: '化忌', c: 'text-red-500 border-red-500/30' },
-        ].map(({ h, c }) => {
-          const siHuaChar = h.replace('化', '');
-          return (
-          <span key={h} className={`border px-1.5 py-0.5 rounded-full font-medium ${c}`}>{locale === 'vi' ? `${localizeTerm(siHuaChar, locale)} Hóa` : h}</span>
-          );
-        })}
+          { key: 'lu' as const, c: 'text-emerald-500 border-emerald-500/30' },
+          { key: 'quan' as const, c: 'text-blue-500 border-blue-500/30' },
+          { key: 'ke' as const, c: 'text-yellow-500 border-yellow-500/30' },
+          { key: 'ji' as const, c: 'text-red-500 border-red-500/30' },
+        ].map(({ key, c }) => (
+          <span key={key} className={`border px-1.5 py-0.5 rounded-full font-medium ${c}`}>{tSiHua(key)}</span>
+        ))}
         <span className="px-1.5 py-0.5 rounded-full" style={{ color: 'var(--t-faint)', border: '1px solid var(--t-border)' }}>
           {tBoard('hint')}
         </span>

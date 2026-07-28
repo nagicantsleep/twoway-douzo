@@ -1,7 +1,7 @@
 # US-015: I18n TimeNav tabs + sihua overlay labels
 
 **Lane**: normal
-**Status**: planned
+**Status**: implemented
 **Initiative**: I02
 
 ## Scope

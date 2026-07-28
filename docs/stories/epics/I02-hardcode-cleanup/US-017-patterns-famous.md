@@ -1,7 +1,7 @@
 # US-017: I18n patterns.ts + famous.ts
 
 **Lane**: normal
-**Status**: planned
+**Status**: implemented
 **Initiative**: I02
 
 ## Scope

@@ -3,13 +3,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Star } from '@/lib/ziwei/types';
 import { STAR_DESCRIPTIONS } from '@/lib/ziwei/constants';
 import { localizeTerm } from '@/lib/ziwei/terms';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface StarDetailPanelProps {
   star: Star | null;
   palaceName?: string;
   onClose: () => void;
 }
+
+const LUCKY_STAR_KEYS: Record<string, string> = {
+  '文昌': 'wenchang', '文曲': 'wenqu', '左辅': 'zuofu', '右弼': 'youbi',
+  '天魁': 'tiankui', '天钺': 'tianyue', '禄存': 'lucun', '天马': 'tianma',
+};
+const SHA_STAR_KEYS: Record<string, string> = {
+  '地空': 'dikong', '地劫': 'dijie', '火星': 'huoxing', '铃星': 'lingxing',
+  '擎羊': 'qingyang', '陀罗': 'tuoluo',
+};
 
 // 倪海夏体系各星详细解读（参考顾祥弘《飞星紫微斗数全书》及南北山人《紫微斗数全书》）
 const STAR_DETAIL: Record<string, {
@@ -180,6 +189,7 @@ const siHuaColors: Record<string, string> = {
 
 export default function StarDetailPanel({ star, palaceName, onClose }: StarDetailPanelProps) {
   const locale = useLocale();
+  const t = useTranslations('star-detail');
   const desc = star ? STAR_DESCRIPTIONS[star.name] : null;
   const detail = star ? STAR_DETAIL[star.name] : null;
   const typeConfig = star ? levelConfig[star.type] : null;
@@ -236,7 +246,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {/* 关键词 */}
             {desc && (
               <div>
-                <div className="text-[10px] tracking-widest mb-1.5" style={{ color: 'var(--t-faint)' }}>{localizeTerm('星曜特质', locale)}</div>
+                <div className="text-[10px] tracking-widest mb-1.5" style={{ color: 'var(--t-faint)' }}>{t('sections.starTraits')}</div>
                 <div className="flex flex-wrap gap-1.5">
                   {desc.keywords.split('·').filter(k => k.trim()).map(k => (
                     <span key={k} className="text-[11px] px-2 py-0.5 rounded-full"
@@ -252,7 +262,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {detail && (
               <div className="rounded-xl p-3" style={{ background: 'rgba(212,168,67,0.04)', border: '1px solid rgba(212,168,67,0.12)' }}>
                 <div className="text-[10px] tracking-widest mb-1.5 flex items-center gap-1" style={{ color: 'var(--t-gold)', opacity: 0.7 }}>
-                  {localizeTerm('古书原文', locale)}
+                  {t('sections.classical')}
                 </div>
                 <p className="text-[11px] leading-relaxed italic" style={{ color: 'var(--t-gold)', opacity: 0.8 }}>{detail.classical}</p>
               </div>
@@ -264,7 +274,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
                 <div>
                   <div className="text-[10px] tracking-widest mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--t-faint)' }}>
                     <span className="w-3 h-px inline-block" style={{ background: 'var(--t-border-acc)' }} />
-                    {localizeTerm('倪海夏老师解读', locale)}
+                    {t('sections.niHaixiaInterpretation')}
                     <span className="w-3 h-px inline-block" style={{ background: 'var(--t-border-acc)' }} />
                   </div>
                   <p className="text-xs leading-relaxed" style={{ color: 'var(--t-text2)' }}>{detail.niHaixia}</p>
@@ -272,15 +282,15 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
 
                 <div className="grid grid-cols-1 gap-2">
                   {[
-                    { label: '事业方向', value: detail.career, icon: '◈' },
-                    { label: '感情特质', value: detail.relationship, icon: '♡' },
-                    { label: '财运分析', value: detail.wealth, icon: '◆' },
-                    { label: '健康提示', value: detail.health, icon: '☯' },
+                    { labelKey: 'career' as const, value: detail.career, icon: t('icons.career') },
+                    { labelKey: 'relationship' as const, value: detail.relationship, icon: t('icons.relationship') },
+                    { labelKey: 'wealth' as const, value: detail.wealth, icon: t('icons.wealth') },
+                    { labelKey: 'health' as const, value: detail.health, icon: t('icons.health') },
                   ].map(item => (
-                    <div key={item.label} className="card-inner rounded-lg p-3">
+                    <div key={item.labelKey} className="card-inner rounded-lg p-3">
                       <div className="text-[10px] mb-1 flex items-center gap-1" style={{ color: 'var(--t-faint)' }}>
                         <span>{item.icon}</span>
-                        <span>{localizeTerm(item.label, locale)}</span>
+                        <span>{t(`sections.${item.labelKey}`)}</span>
                       </div>
                       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--t-text2)' }}>{item.value}</p>
                     </div>
@@ -289,11 +299,11 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
 
                 <div className="grid grid-cols-2 gap-2">
                   <div className="text-[10px] p-2.5 rounded-lg" style={{ border: '1px solid rgba(74,222,128,0.15)', background: 'rgba(74,222,128,0.05)' }}>
-                    <div className="text-emerald-500 mb-0.5 font-medium">{localizeTerm('最佳宫位', locale)}</div>
+                    <div className="text-emerald-500 mb-0.5 font-medium">{t('sections.bestPalace')}</div>
                     <div className="text-emerald-500/70">{detail.bestPalace}</div>
                   </div>
                   <div className="text-[10px] p-2.5 rounded-lg" style={{ border: '1px solid rgba(248,113,113,0.15)', background: 'rgba(248,113,113,0.05)' }}>
-                    <div className="text-red-500 mb-0.5 font-medium">{localizeTerm('注意宫位', locale)}</div>
+                    <div className="text-red-500 mb-0.5 font-medium">{t('sections.worstPalace')}</div>
                     <div className="text-red-500/70">{detail.worstPalace}</div>
                   </div>
                 </div>
@@ -303,28 +313,8 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
             {/* 辅星/煞星说明 */}
             {!detail && star.type !== 'major' && (
               <div className="text-xs leading-relaxed" style={{ color: 'var(--t-text2)' }}>
-                {star.type === 'lucky' && (
-                  <>
-                    {star.name === '文昌' && '文昌入宫，主学业考试顺利，文书印鉴有利，宜从事文字相关工作。古诀：「文昌科甲，主文章显达，逢考必第。」'}
-                    {star.name === '文曲' && '文曲入宫，主才艺出众，口才佳，善于表达，艺术天赋强。古诀：「文曲为才艺之星，能文能武，口才胜人。」'}
-                    {star.name === '左辅' && '左辅入宫，主贵人相助，有人提携，该宫位事项受到善意支持。古诀：「左辅为助力之星，坐命则贵人多，逢凶化吉。」'}
-                    {star.name === '右弼' && '右弼入宫，主贵人相助，多出女性贵人，该宫位事项有人协助。古诀：「右弼为阴助之星，多女性贵人，化险为夷。」'}
-                    {star.name === '天魁' && '天魁入宫，主白天出生的贵人，男性贵人多，逢凶化吉之力。古诀：「天魁为天乙贵人，逢之必有贵人扶持。」'}
-                    {star.name === '天钺' && '天钺入宫，主夜晚出生的贵人，女性贵人多，增添吉祥之气。古诀：「天钺为玉堂贵人，主阴助，女贵人多。」'}
-                    {star.name === '禄存' && '禄存入宫，主财禄守成，该宫位有财气，但属于保守型财运。古诀：「禄存为财禄之星，主守财有余，进财稳健。」'}
-                    {star.name === '天马' && '天马入宫，主奔波动荡，动中求财，宜主动出击，不宜守株待兔。古诀：「天马主动，逢禄则财禄双全，动中生财。」'}
-                  </>
-                )}
-                {star.type === 'sha' && (
-                  <>
-                    {star.name === '地空' && '地空入宫，主该宫位事项有落空感，精神耗散，宜注意心理健康。古诀：「地空主虚耗，入命宫者多精神迷茫，须防空想。」'}
-                    {star.name === '地劫' && '地劫入宫，主该宫位事项有意外损失，财物需谨慎，防小人。古诀：「地劫主劫财，入命宫者财运受损，防意外之失。」'}
-                    {star.name === '火星' && '火星入宫，主该宫位事项急躁冲动，情绪波动，但若遇贪狼则反吉。古诀：「火星主急燥，然遇贪狼同宫，反为火贪格，主暴发。」'}
-                    {star.name === '铃星' && '铃星入宫，主该宫位事项有暗中阻碍，防背后小人，凡事宜低调。古诀：「铃星主暗煞，入命者多暗中受敌，须防背后是非。」'}
-                    {star.name === '擎羊' && '擎羊入宫，主刑克，该宫位事项多波折，有血光之灾或意外。古诀：「擎羊为刑克之星，入命宫者多刑克，须防意外血光。」'}
-                    {star.name === '陀罗' && '陀罗入宫，主是非缠身，该宫位事项拖延不决，凡事宜早做准备。古诀：「陀罗主是非拖延，入命宫者做事迟缓，须防纠缠不清。」'}
-                  </>
-                )}
+                {star.type === 'lucky' && LUCKY_STAR_KEYS[star.name] && t(`luckyStars.${LUCKY_STAR_KEYS[star.name]}`)}
+                {star.type === 'sha' && SHA_STAR_KEYS[star.name] && t(`shaStars.${SHA_STAR_KEYS[star.name]}`)}
               </div>
             )}
           </div>

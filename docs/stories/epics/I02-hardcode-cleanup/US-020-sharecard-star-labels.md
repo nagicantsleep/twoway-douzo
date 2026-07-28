@@ -1,7 +1,7 @@
 # US-020: I18n ShareCardCanvas + StarDetailPanel + ChartSummary labels
 
 **Lane**: normal
-**Status**: planned
+**Status**: implemented
 **Initiative**: I02
 
 ## Scope

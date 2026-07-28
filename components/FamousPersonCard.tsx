@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
-import type { FamousPerson } from '@/lib/ziwei/famous';
+import { useLocale, useTranslations } from 'next-intl';
+import { pickLocale, type FamousPerson } from '@/lib/ziwei/famous';
 
 const CATEGORY_COLORS: Record<string, string> = {
   '商业': '#4ade80',
@@ -13,6 +13,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export default function FamousPersonCard({ person }: { person: FamousPerson }) {
   const t = useTranslations('common.famous');
+  const locale = useLocale();
   const catColor = CATEGORY_COLORS[person.category] ?? '#d4a843';
   return (
     <motion.div
@@ -37,7 +38,7 @@ export default function FamousPersonCard({ person }: { person: FamousPerson }) {
       <div className="space-y-2.5">
         <div className="flex items-baseline gap-3 flex-wrap">
           <span className="text-base font-semibold" style={{ color: 'var(--t-text1)', letterSpacing: '0.02em' }}>
-            {person.name}
+            {pickLocale(person.name, locale)}
           </span>
           <span className="text-[11px]" style={{ color: 'var(--t-faint)' }}>
             {t('yearGender', { year: person.year, gender: person.gender === 'male' ? t('male') : t('female') })}
@@ -45,7 +46,7 @@ export default function FamousPersonCard({ person }: { person: FamousPerson }) {
         </div>
 
         <div className="text-[11px]" style={{ color: 'var(--t-text2)', opacity: 0.85 }}>
-          {person.description}
+          {pickLocale(person.description, locale)}
         </div>
 
         <div className="text-[11px] leading-relaxed px-3 py-2.5 rounded-md"
@@ -55,7 +56,7 @@ export default function FamousPersonCard({ person }: { person: FamousPerson }) {
             border: `1px solid ${catColor}25`,
           }}>
           <span style={{ color: catColor, fontWeight: 600, marginRight: '4px' }}>{t('highlights')}</span>
-          {person.notable}
+          {pickLocale(person.notable, locale)}
         </div>
 
         <div className="text-[10px] mt-2" style={{ color: 'var(--t-faint)', opacity: 0.6, lineHeight: 1.5 }}>

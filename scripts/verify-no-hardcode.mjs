@@ -11,13 +11,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const ALLOWLIST = [
   'lib/',
-  'components/InsightPanel.tsx',
-  'components/StarDetailPanel.tsx',
-  'components/ShareCardCanvas.tsx',
-  'components/TimeNav.tsx',
-  'components/ChartBoard.tsx', // legend until US-015
+  'components/InsightPanel.tsx', // PALACE_NAME_TO_ROLE_KEY algorithm keys
+  'components/StarDetailPanel.tsx', // STAR_DETAIL body until US-018
   'components/ChartSummary.tsx',
-  'components/LocaleSwitcher.tsx', // "中文" / "VI" labels
+  'components/LocaleSwitcher.tsx',
   'app/[locale]/knowledge/[star]/[topic]/page.tsx',
   'app/[locale]/library/[book]/[chapter]/page.tsx',
   'app/[locale]/page.tsx',

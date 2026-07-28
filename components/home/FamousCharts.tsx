@@ -1,9 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import type { Theme } from '@/components/ThemeProvider';
-import { FAMOUS_PERSONS, FAMOUS_CATEGORIES, type FamousPerson } from '@/lib/ziwei/famous';
+import { FAMOUS_PERSONS, FAMOUS_CATEGORIES, pickLocale, type FamousPerson } from '@/lib/ziwei/famous';
 
 interface Colors {
   goldLine?: string;
@@ -28,6 +28,7 @@ interface FamousChartsProps {
 
 export default function FamousCharts({ colors, theme }: FamousChartsProps) {
   const t = useTranslations('home');
+  const locale = useLocale();
   const c = colors;
   return (
     <section className="relative z-10 px-6 md:px-10 lg:px-14 py-20">
@@ -87,7 +88,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
                           letterSpacing: '0.1em',
                         }}
                       >
-                        {person.name}
+                        {pickLocale(person.name, locale)}
                       </span>
                       <span
                         style={{
@@ -107,7 +108,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
                         marginBottom: '10px',
                       }}
                     >
-                      {person.description}
+                      {pickLocale(person.description, locale)}
                     </p>
                     <p
                       style={{
@@ -117,7 +118,7 @@ export default function FamousCharts({ colors, theme }: FamousChartsProps) {
                         fontStyle: 'italic',
                       }}
                     >
-                      {person.notable}
+                      {pickLocale(person.notable, locale)}
                     </p>
                   </motion.div>
                 ))}

@@ -1,9 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { detectPatterns } from '@/lib/ziwei/patterns';
+import { localizePatternDescription, localizePatternName } from '@/lib/ziwei/pattern-i18n';
+import { localizeTerm } from '@/lib/ziwei/terms';
 
 const LevelStyle = {
   excellent: { dot: 'bg-amber-400', label: 'text-amber-500', badge: 'text-amber-500 bg-amber-500/10 border-amber-500/25' },
@@ -14,6 +16,7 @@ const LevelStyle = {
 
 export default function PatternsCard({ chart }: { chart: ZiweiChart }) {
   const t = useTranslations('common.patterns');
+  const locale = useLocale();
   const patterns = detectPatterns(chart);
   if (patterns.length === 0) return null;
 
@@ -42,18 +45,18 @@ export default function PatternsCard({ chart }: { chart: ZiweiChart }) {
             >
               <div className="flex items-center gap-2 mb-1.5">
                 <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${st.dot}`} />
-                <span className={`text-[11px] font-medium ${st.label}`}>{p.name}</span>
+                <span className={`text-[11px] font-medium ${st.label}`}>{localizePatternName(p.name, locale)}</span>
                 <div className="flex gap-1 ml-auto">
                   {p.palaces.slice(0, 2).map(pa => (
                     <span key={pa} className={`text-[8px] px-1.5 py-px rounded-full border ${st.badge}`}>
-                      {pa.replace('宫', '')}
+                      {localizeTerm(pa.replace('宫', '') || pa, locale)}
                     </span>
                   ))}
                 </div>
               </div>
 
               <p className="text-[10px] leading-relaxed pl-3.5" style={{ color: 'var(--t-text2)' }}>
-                {p.description}
+                {localizePatternDescription(p, locale)}
               </p>
 
               {p.conditions && (

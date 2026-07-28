@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { STEMS, SI_HUA_TABLE } from '@/lib/ziwei/constants';
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { localizeTerm } from '@/lib/ziwei/terms';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export type TimeView = 'mingpan' | 'daxian' | 'liunian';
 
@@ -47,6 +47,8 @@ export default function TimeNav({
   onYearChange,
 }: TimeNavProps) {
   const locale = useLocale();
+  const t = useTranslations('chart.timeNav');
+  const tSiHua = useTranslations('chart.siHua');
   const currentDx = chart.daXians[chart.currentDaXianIndex];
 
   // 计算当前叠加四化信息
@@ -88,7 +90,7 @@ export default function TimeNav({
           active={view === 'mingpan'}
           onClick={() => onViewChange('mingpan')}
         >
-          本命
+          {t('mingpan')}
         </TabButton>
 
         {/* 大限 */}
@@ -96,7 +98,9 @@ export default function TimeNav({
           active={view === 'daxian'}
           onClick={() => onViewChange('daxian')}
         >
-          {currentDx ? `大限 ${currentDx.startAge}–${currentDx.endAge}` : '大限'}
+          {currentDx
+            ? t('daxianPrefix', { startAge: currentDx.startAge, endAge: currentDx.endAge })
+            : t('daxian')}
         </TabButton>
 
         {/* 流年 — 含年份切换 */}
@@ -116,7 +120,7 @@ export default function TimeNav({
             className="text-[10px] font-medium flex-1 text-center"
             style={{ color: view === 'liunian' ? 'var(--t-gold)' : 'var(--t-faint)' }}
           >
-            流年
+            {t('liunian')}
           </button>
           {/* 年份 +/- */}
           <div className="flex items-center gap-0.5">
@@ -154,14 +158,17 @@ export default function TimeNav({
           className="flex items-center gap-2 mt-1.5 px-1 flex-wrap"
         >
           <span className="text-[9px]" style={{ color: 'var(--t-faint)' }}>
-            {view === 'daxian' ? '大限' : `${liunianYear}`}·{overlayInfo.stemName}年四化：
+            {view === 'daxian'
+              ? t('daxianSiHua', { stemName: localizeTerm(overlayInfo.stemName, locale) })
+              : `${liunianYear}·${t('yearSiHua', { stemName: localizeTerm(overlayInfo.stemName, locale) })}`}
           </span>
           {(['禄', '权', '科', '忌'] as const).map(sh => {
             const starName = Object.keys(overlayInfo.overlay).find(k => overlayInfo.overlay[k] === sh);
             if (!starName) return null;
+            const siKey = ({ '禄': 'lu', '权': 'quan', '科': 'ke', '忌': 'ji' } as const)[sh];
             return (
               <span key={sh} className="text-[9px] font-medium" style={{ color: SIHUA_COLORS[sh] }}>
-                {starName}化{sh}
+                {localizeTerm(starName, locale)}{tSiHua(siKey)}
               </span>
             );
           })}

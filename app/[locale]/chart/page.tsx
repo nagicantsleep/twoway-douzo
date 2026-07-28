@@ -331,7 +331,7 @@ export default function ChartPage() {
             <div className="chart-workspace-right">
               {(() => {
                 const famous = FAMOUS_PERSONS.find(p =>
-                  p.name === chart.birthInfo.name &&
+                  (p.name.zh === chart.birthInfo.name || p.name.vi === chart.birthInfo.name) &&
                   p.year === chart.birthInfo.year &&
                   p.month === chart.birthInfo.month &&
                   p.day === chart.birthInfo.day,

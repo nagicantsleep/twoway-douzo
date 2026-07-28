@@ -8,7 +8,7 @@
  */
 
 import type { ZiweiChart } from '@/lib/ziwei/types';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { localizeTerm } from '@/lib/ziwei/terms';
 import { BRANCHES } from '@/lib/ziwei/constants';
 
@@ -42,6 +42,8 @@ interface ShareCardProps {
 
 export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardProps) {
   const locale = useLocale();
+  const tCard = useTranslations('share.card');
+  const tGender = useTranslations('share.gender');
   const mingPalace = chart.palaces.find(p => p.branch === chart.mingGongBranch);
   const mingMajorStars = mingPalace?.stars.filter(s => s.type === 'major').map(s => s.name) ?? [];
   const mingStarStr = mingMajorStars.length > 0 ? mingMajorStars.map(n => localizeTerm(n, locale)).join('·') : localizeTerm('空宫', locale);
@@ -95,15 +97,15 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
             color: 'white', fontSize: '15px', fontWeight: 700,
           }}>紫</div>
           <div>
-            <div style={{ fontSize: '15px', color: '#3d2f10', fontWeight: 600, letterSpacing: '0.12em', lineHeight: 1.2 }}>紫微命盘</div>
-            <div style={{ fontSize: '9px', color: '#a89b7c', letterSpacing: '0.18em', marginTop: '2px' }}>倪海夏正宗 · ZI WEI</div>
+            <div style={{ fontSize: '15px', color: '#3d2f10', fontWeight: 600, letterSpacing: '0.12em', lineHeight: 1.2 }}>{tCard('title')}</div>
+            <div style={{ fontSize: '9px', color: '#a89b7c', letterSpacing: '0.18em', marginTop: '2px' }}>{tCard('subtitle')}</div>
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
           <div style={{ fontSize: '10px', color: '#6b5d3f', letterSpacing: '0.05em' }}>
             {birth.year}{locale === 'vi' ? ' năm ' : '年'}{birth.month}{locale === 'vi' ? ' tháng ' : '月'}{birth.day}{locale === 'vi' ? ' ngày' : '日'} · {birth.hour.padStart(2,'0')}:{birth.minute.padStart(2,'0')}
             <span style={{ margin: '0 4px', color: '#b8922a' }}>·</span>
-            {birth.gender === 'male' ? (locale === 'vi' ? 'Mệnh Nam' : '男命') : (locale === 'vi' ? 'Mệnh Nữ' : '女命')}
+            {birth.gender === 'male' ? tGender('male') : tGender('female')}
             {birth.city && <><span style={{ margin: '0 4px', color: '#b8922a' }}>·</span>{birth.city}</>}
           </div>
           <div style={{ fontSize: '8px', color: '#b8922a', letterSpacing: '0.08em', marginTop: '2px' }}>
@@ -247,8 +249,8 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
                 marginBottom: '10px',
                 letterSpacing: '0.05em',
               }}>
-                <span style={{ color: '#a89b7c' }}>{locale === 'vi' ? 'Đại Hạn Hiện Tại' : '当前大限'} </span>
-                <span style={{ fontWeight: 600 }}>{dx.startAge}–{dx.endAge} {locale === 'vi' ? 'tuổi' : '岁'} · {localizeTerm(dx.palaceName, locale)}</span>
+                <span style={{ color: '#a89b7c' }}>{tCard('currentDaxian')} </span>
+                <span style={{ fontWeight: 600 }}>{dx.startAge}–{dx.endAge} {tCard('age')} · {localizeTerm(dx.palaceName, locale)}</span>
               </div>
             )}
             <div style={{
@@ -258,13 +260,13 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
               borderRadius: '6px',
             }}>
               <div style={{ fontSize: '11px', color: '#3d2f10', fontWeight: 600, letterSpacing: '0.08em', lineHeight: 1.4 }}>
-                紫微为门 · 天地人为路
+                {tCard('sloganLine1')}
               </div>
               <div style={{ fontSize: '10px', color: '#8b6a14', fontWeight: 600, letterSpacing: '0.08em', lineHeight: 1.4, marginTop: '2px' }}>
-                倪海夏为师 · AI 答疑伴学
+                {tCard('sloganLine2')}
               </div>
               <div style={{ fontSize: '8px', color: '#a89b7c', letterSpacing: '0.15em', marginTop: '4px' }}>
-                扫码起你的命盘 →
+                {tCard('sloganCta')}
               </div>
             </div>
           </div>

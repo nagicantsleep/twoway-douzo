@@ -12,10 +12,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ALLOWLIST = [
   'lib/',
   'components/InsightPanel.tsx', // PALACE_NAME_TO_ROLE_KEY algorithm keys
-  'components/StarDetailPanel.tsx', // STAR_DETAIL body until US-018
+  'components/StarDetailPanel.tsx', // algorithm star-name keys (lucky/sha) + sihua color keys
   'components/ChartSummary.tsx',
   'components/LocaleSwitcher.tsx',
-  'app/[locale]/knowledge/[star]/[topic]/page.tsx', // SEO meta + STAR_DB body until US-018
   'app/[locale]/library/[book]/[chapter]/page.tsx',
   'app/[locale]/page.tsx',
 ];

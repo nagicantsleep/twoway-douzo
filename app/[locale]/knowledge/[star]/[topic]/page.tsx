@@ -21,7 +21,7 @@ import {
   ALL_TOPICS,
   getKnowledge,
   getAllKnowledgeRoutes,
-  STAR_BRIEF_SEO,
+  starBriefSeo,
   STAR_TO_SLUG,
   SLUG_TO_STAR,
 } from '@/lib/seo/knowledge';
@@ -44,12 +44,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, star: slug, topic } = await params;
   const star = SLUG_TO_STAR[slug];
   if (!star) return {};
-  const data = getKnowledge(star, topic as TopicKey);
+  const data = getKnowledge(star, topic as TopicKey, locale);
   if (!data.exists) return {};
 
-  const title = `${star}入${data.palaceName}宫 · ${data.topicLabel} · 倪海夏体系详解`;
+  const t = await getTranslations({ locale, namespace: 'knowledge' });
+  const starL = localizeTerm(star, locale);
+  const palaceL = localizeTerm(data.palaceName, locale);
+  const title = t('page.articleTitle', { star: starL, palace: palaceL, topicLabel: data.topicLabel });
   const description = data.parsed.dingdiao
-    || `${star}入${data.palaceName}宫的紫微斗数解读 — 基于倪海夏《天纪》体系与古籍《紫微斗数全集》《骨髓赋》。`;
+    || t('page.articleDescriptionFallback', { star: starL, palace: palaceL });
 
   return {
     title,
@@ -68,9 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       },
     },
     keywords: [
-      '紫微斗数', '倪海夏', star, data.palaceName, data.topicLabel,
-      `${star}${data.palaceName}`, `${star}入${data.palaceName}`,
-      `紫微斗数 ${star}`, '倪海厦紫微斗数', '紫微斗数全集',
+      t('page.jsonLdKeywordRoot'), starL, palaceL, data.topicLabel,
     ],
   };
 }
@@ -79,16 +80,17 @@ export default async function KnowledgePage({ params }: { params: Promise<{ loca
   const { locale, star: slug, topic } = await params;
   const star = SLUG_TO_STAR[slug];
   if (!star) notFound();
-  const data = getKnowledge(star, topic as TopicKey);
+  const data = getKnowledge(star, topic as TopicKey, locale);
   if (!data.exists) notFound();
   const t = await getTranslations({ locale, namespace: 'knowledge' });
   const starL = localizeTerm(star, locale);
   const palaceL = localizeTerm(data.palaceName, locale);
+  const brief = starBriefSeo(star, locale);
 
   // 同主星其他 topic
-  const otherTopicsForStar = ALL_TOPICS.filter(t2 => t2 !== topic && getKnowledge(star, t2).exists);
+  const otherTopicsForStar = ALL_TOPICS.filter(t2 => t2 !== topic && getKnowledge(star, t2, locale).exists);
   // 同 topic 其他主星
-  const otherStarsForTopic = ALL_STARS.filter(s => s !== star && getKnowledge(s, topic as TopicKey).exists);
+  const otherStarsForTopic = ALL_STARS.filter(s => s !== star && getKnowledge(s, topic as TopicKey, locale).exists);
 
   // JSON-LD
   const jsonLd = {
@@ -96,17 +98,17 @@ export default async function KnowledgePage({ params }: { params: Promise<{ loca
     '@type': 'Article',
     headline: `${starL} · ${palaceL} · ${data.topicLabel}`,
     description: data.parsed.dingdiao,
-    author: { '@type': 'Organization', name: '紫微研究 · 倪海夏正宗' },
+    author: { '@type': 'Organization', name: t('page.jsonLdAuthor') },
     publisher: {
       '@type': 'Organization',
-      name: '紫微研究',
+      name: t('page.jsonLdPublisher'),
       url: 'https://wdyziweidoushu666.com',
     },
     datePublished: '2026-04-28',
     dateModified: '2026-04-28',
     mainEntityOfPage: `https://wdyziweidoushu666.com/${locale}/knowledge/${slug}/${topic}`,
-    articleSection: '紫微斗数 · 倪海夏体系',
-    keywords: [`紫微斗数`, star, data.palaceName, data.topicLabel].join(', '),
+    articleSection: t('page.jsonLdSection'),
+    keywords: [t('page.jsonLdKeywordRoot'), starL, palaceL, data.topicLabel].join(', '),
   };
 
   return (
@@ -147,14 +149,14 @@ export default async function KnowledgePage({ params }: { params: Promise<{ loca
           <h1 style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.1em', lineHeight: 1.2 }}>
             {starL} · {palaceL}
           </h1>
-          {STAR_BRIEF_SEO[star] && (
+          {brief && (
             <p style={{ fontSize: '13px', color: 'var(--tx-2)', marginTop: '14px', lineHeight: 1.8 }}>
-              {STAR_BRIEF_SEO[star]}
+              {brief}
             </p>
           )}
         </header>
 
-        {/* 内容 4 段 — body still Chinese until US-018 data translation */}
+        {/* 内容 4 段 — locale body from STAR_DB_ZH / STAR_DB_VI */}
         {data.parsed.dingdiao && (
           <Section title={t('page.sections.dingdiao')} gradient>
             <p style={{ fontSize: '17px', color: 'var(--tx-0)', lineHeight: 1.9, fontWeight: 500, letterSpacing: '0.04em' }}>
@@ -222,7 +224,7 @@ export default async function KnowledgePage({ params }: { params: Promise<{ loca
         <Section title={t('page.relatedStarTopics', { star: starL })} minimal>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {otherTopicsForStar.map(t2 => {
-              const d = getKnowledge(star, t2);
+              const d = getKnowledge(star, t2, locale);
               return (
                 <Link
                   key={t2}

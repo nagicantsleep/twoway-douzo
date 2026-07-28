@@ -134,8 +134,9 @@ Khối lượng này không vừa một US-010/US-011 tiếp — cần epic riê
 ## Status (merged)
 
 Epic merged to `main` via PR #8 (merge commit `6b07000`, tip
-`b860284`). Follow-ups: backlog #11 (cities), #12 (classics bodies),
+`b860284`). Follow-ups: backlog #12 (classics bodies),
 #7 (Playwright locale e2e). US-025 retired (JA superseded).
+Backlog #11 (city VI labels) closed via US-029.
 
 ## Open decisions
 

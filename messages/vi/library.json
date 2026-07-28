@@ -4,7 +4,7 @@
     "description": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số uy tín:《Tử Vi Đẩu Số Toàn Tập》《Tử Vi Đẩu Số Toàn Thư》《Tủy Phú》—— nguồn dẫn chứng《Thiên Kỷ》của Ni Hà Hạ"
   },
   "header": {
-    "sectionLabel": "CỔ TỊCH NGUYÊN ĐIỂN KHỐ · CLASSICS",
+    "sectionLabel": "CỔ TỊCH NGUYÊN ĐIỂN KHỐ",
     "title": "Ni Sư phương pháp luận · Cổ tịch nguyên điển khố",
     "subtitle": "Tra cứu toàn văn cổ tịch Tử Vi Đẩu Số uy tín",
     "countTemplate": "Thu thập {count} bộ cổ tịch · tổng cộng {paragraphs} đoạn tinh hoa"
@@ -47,7 +47,7 @@
     "enterLink": "Vào xem →",
     "dynastyAuthor": "{dynasty} · {author}",
     "backLink": "← Thư viện cổ tịch",
-    "chaptersLabel": "CHAPTERS · Mục lục chương",
+    "chaptersLabel": "Mục lục chương",
     "homeLink": "Trang chủ →",
     "bookHeader": "《{title}》",
     "paragraphCount": "{count} đoạn"
@@ -58,10 +58,10 @@
     "backToToc": "← 《{book}》 mục lục",
     "backToLibrary": "Thư viện cổ tịch →",
     "bookMeta": "《{book}》· {dynasty}",
-    "vernacular": "Bạch thoại",
-    "niNote": "Ni sư chú",
+    "vernacular": "Bạch thoại (Trung)",
+    "niNote": "Ni sư chú (Trung)",
     "prev": "← Chương trước",
     "next": "Chương sau →",
-    "sourceNote": "Nội dung chính là nguyên văn cổ tịch (tiếng Trung); nhãn giao diện đã được Việt hóa."
+    "sourceNote": "Nguyên văn · bạch thoại · chú giải Ni sư đang giữ bản tiếng Trung (nguồn cổ tịch). Nhãn điều hướng đã Việt hóa; bản dịch Việt theo chương sẽ bổ sung sau."
   }
 }

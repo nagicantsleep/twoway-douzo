@@ -122,20 +122,25 @@ Khối lượng này không vừa một US-010/US-011 tiếp — cần epic riê
 
 - `npm run build` pass, `npx tsc --noEmit` sạch.
 - `npx tsx scripts/verify-no-hardcode.mjs` (CI guard) exit 0.
-- `/vi` render 100% tiếng Việt, `/zh` render 100% tiếng Trung
-  (tolerance: comments tiếng Trung trong code TS, data layer `key`
-  trong `TERMS`/constants — đây là algorithm key, không phải UI).
+- `/vi` UI chrome 100% tiếng Việt, `/zh` 100% tiếng Trung
+  (tolerance: algorithm keys trong `TERMS`/constants; **accepted ZH
+  islands** — classics/nihai bodies + remaining city proper nouns —
+  per Decision 0002; UI phải giải thích nguồn Trung trên `/vi`).
 - `next build` không có `MISSING_MESSAGE` warning nào.
 - `messages/vi` và `messages/zh` key parity 100% (no drift).
 - AI prompt ở locale=vi gửi tiếng Việt cho Claude → response tiếng
   Việt; locale=zh giữ tiếng Trung.
 
+## Status (merged)
+
+Epic merged to `main` via PR #8 (merge commit `6b07000`, tip
+`b860284`). Follow-ups: backlog #11 (cities), #12 (classics bodies),
+#7 (Playwright locale e2e). US-025 retired (JA superseded).
+
 ## Open decisions
 
-- Kiến trúc data layer (xem Decision cần tạo phía trên).
-- AI prompt khi locale=vi: dịch toàn bộ `请`/`该宫`/`按以下结构` →
-  tương đương Việt, hay chỉ wrap trong preamble "Trả lời bằng
-  tiếng Việt"? Cần test thực tế với Claude trước khi ship.
+- ~~Kiến trúc data layer~~ → Decision 0002 Accepted.
+- ~~AI prompt locale split~~ → shipped US-019 (`prompts.{zh,vi}.ts`).
 
 ## Trace tier (theo TRACE_SPEC.md)
 

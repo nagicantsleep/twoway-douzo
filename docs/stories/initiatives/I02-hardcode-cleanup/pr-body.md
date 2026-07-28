@@ -18,30 +18,25 @@ locale-aware (US-017/018), i18n AI prompts cho Claude (US-019).
 
 | ID | Title | Status | Lane |
 |---|---|---|---|
-| US-013 | Backfill messages vi↔zh key parity | planned | normal |
-| US-014 | I18n BirthForm + AnnouncementModal | planned | normal |
-| US-015 | I18n TimeNav tabs + sihua overlay | planned | normal |
-| US-016 | I18n HomePage hero/feature/philosophy/footer | planned | normal |
-| US-017 | I18n patterns.ts + famous.ts (data layer short) | planned | normal |
-| US-018 | I18n STAR_DB + STAR_BRIEF_SEO + STAR_DETAIL (data layer long) | planned | high-risk |
-| US-019 | I18n AI prompts (TOPIC_PROMPTS + inline) | planned | high-risk |
-| US-020 | I18n ShareCardCanvas + StarDetailPanel labels + ChartSummary | planned | normal |
-| US-021 | Tooling: verify-no-hardcode + diff-message-keys | planned | tiny |
-
-(Số US cuối cùng sẽ được adjust khi implement; ước tính 9 US.)
+| US-013 … US-024 | Key parity, UI hardcode, zh-primary, switcher, data/prompts | implemented | mixed |
+| US-025 | OBSOLETE JA cleanup | retired | — |
+| US-026 | Pattern conditions + library chapter chrome | implemented | normal |
+| US-027 | High bilingual bugs (pattern demo + BirthForm) | implemented | tiny |
+| US-028 | Exit docs + Medium decorative / source-note polish | post-merge | tiny |
 
 ## What's in this PR (PR epic close)
 
-- 9 feat branch đã merge squash vào epic.
-- `next build` 0 MISSING_MESSAGE warning.
-- `npm run lint:i18n` pass.
-- Manual smoke `/vi` ↔ `/zh` 11 route.
+- Feat branches squash-merged vào epic; epic → main = **merge commit** PR #8.
+- Merge SHA: `6b07000` (epic tip `b860284`).
+- `npm run lint:i18n` / story verifies on epic tip.
+- Accepted ZH islands documented in Decision 0002 (classics bodies,
+  remaining cities).
 
 ## What's NOT in this PR
 
-- Playwright e2e locale switch (backlog follow-up).
-- Bổ sung locale thứ 3 (en/ja/...) — out of scope.
-- Bản dịch Anh cho nội dung cổ văn (classics) — out of scope I02.
+- Playwright e2e locale switch (backlog #7).
+- Full city VI labels (backlog #11) / classics body VI (backlog #12).
+- Third locale (en/ja) — out of scope.
 
 ## Related
 

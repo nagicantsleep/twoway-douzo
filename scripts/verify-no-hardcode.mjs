@@ -2,6 +2,8 @@
 /**
  * Flag unexpected CJK UI string literals in components/pages.
  * Strips comments first. Allowlists data/prompt files still mid-migration.
+ *
+ * Also asserts keyword consumers wire localizeTerm (US-030 regression guard).
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
@@ -12,9 +14,26 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ALLOWLIST = [
   'lib/',
   'components/InsightPanel.tsx', // PALACE_NAME_TO_ROLE_KEY algorithm keys
-  'components/StarDetailPanel.tsx', // algorithm star-name keys (lucky/sha) + sihua color keys
+  // StarDetailPanel: LUCKY/SHA star-name map keys + levelConfig/siHua algorithm keys
+  'components/StarDetailPanel.tsx',
   'components/LocaleSwitcher.tsx',
   // homepage algorithm keys + pattern demo copy live in lib/ziwei/homepage-demo-i18n.ts
+];
+
+/** Components that must localize keyword chips (data stays Chinese keys). */
+const KEYWORD_CONSUMERS = [
+  {
+    file: 'components/StarDetailPanel.tsx',
+    // desc.keywords.split(...).map → localizeTerm(k.trim(), locale)
+    mustMatch: /localizeTerm\(\s*k\.trim\(\)\s*,\s*locale\s*\)/,
+    hint: 'StarDetailPanel must localize keyword chips via localizeTerm(k.trim(), locale)',
+  },
+  {
+    file: 'components/ChartSummary.tsx',
+    // keywords.map → localizeTerm(k, locale)
+    mustMatch: /keywords\.map[\s\S]*?localizeTerm\(\s*k\s*,\s*locale\s*\)/,
+    hint: 'ChartSummary must localize keyword chips via localizeTerm(k, locale)',
+  },
 ];
 
 const SCAN_ROOTS = ['components', 'app'];
@@ -46,6 +65,15 @@ function cjkRatio(s) {
 }
 
 let failed = 0;
+
+for (const { file, mustMatch, hint } of KEYWORD_CONSUMERS) {
+  const src = readFileSync(join(root, file), 'utf8');
+  if (!mustMatch.test(src)) {
+    console.error(`${file}: ${hint}`);
+    failed++;
+  }
+}
+
 for (const file of SCAN_ROOTS.flatMap((r) => walk(join(root, r)))) {
   const rel = relative(root, file).replace(/\\/g, '/');
   if (isAllowlisted(rel)) continue;

@@ -87,7 +87,7 @@ export default function ChartSummary({ chart }: ChartSummaryProps) {
                       background: 'rgba(212,168,67,0.08)',
                       border: '1px solid rgba(212,168,67,0.15)',
                     }}>
-                    {k}
+                    {localizeTerm(k, locale)}
                   </span>
                 ))}
               </div>

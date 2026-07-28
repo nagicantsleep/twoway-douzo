@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-const fs = require('fs');
+import fs from 'fs';
+
 const routing = fs.readFileSync('i18n/routing.ts', 'utf8');
 const page = fs.readFileSync('app/page.tsx', 'utf8');
 if (!routing.includes("defaultLocale: 'zh'")) process.exit(1);

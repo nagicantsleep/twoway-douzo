@@ -9,7 +9,14 @@ import FamousCharts from '@/components/home/FamousCharts';
 import AnnouncementModal from '@/components/AnnouncementModal';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { localizeTerm } from '@/lib/ziwei/terms';
-import { getDemoBrief } from '@/lib/ziwei/homepage-demo-i18n';
+import {
+  DEMO_MAJOR_STARS,
+  DEMO_SIHUA,
+  DEMO_TIANFU_STARS,
+  DEMO_ZIWEI_STARS,
+  getDemoBrief,
+  getPatternDemo,
+} from '@/lib/ziwei/homepage-demo-i18n';
 
 // ─── 滚动入场 wrapper ────────────────────────────────────
 function FadeIn({
@@ -82,14 +89,6 @@ function ThemeToggle() {
     </motion.button>
   );
 }
-
-// ─── 主星数据 ────────────────────────────────────────────
-const STARS = [
-  { name: '紫微' }, { name: '天机' }, { name: '太阳' }, { name: '武曲' },
-  { name: '天同' }, { name: '廉贞' }, { name: '天府' }, { name: '太阴' },
-  { name: '贪狼' }, { name: '巨门' }, { name: '天相' }, { name: '天梁' },
-  { name: '七杀' }, { name: '破军' },
-];
 
 // ─── 主题色彩 helper ─────────────────────────────────────
 function useColors(theme: Theme) {
@@ -175,8 +174,8 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
     return (
       <div className="flex flex-col gap-4 h-full justify-center">
         {[
-          { group: t('features.chartDisplay.ziweiGroup'), stars: ['紫微', '天机', '太阳', '武曲', '天同', '廉贞'] },
-          { group: t('features.chartDisplay.tianfuGroup'), stars: ['天府', '太阴', '贪狼', '巨门', '天相', '天梁', '七杀', '破军'] },
+          { group: t('features.chartDisplay.ziweiGroup'), stars: DEMO_ZIWEI_STARS },
+          { group: t('features.chartDisplay.tianfuGroup'), stars: DEMO_TIANFU_STARS },
         ].map(group => (
           <div key={group.group}>
             <div className="text-[11px] tracking-widest mb-2 transition-colors duration-300"
@@ -204,7 +203,7 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
           <div className="text-[11px] tracking-widest mb-2 transition-colors duration-300"
             style={{ color: c.textFaint }}>{t('features.chartDisplay.siHuaGroup')}</div>
           <div className="flex gap-2 flex-wrap">
-            {([['化禄', '禄'], ['化权', '权'], ['化科', '科'], ['化忌', '忌']] as const).map(([label, sihua], i) => {
+            {DEMO_SIHUA.map(([label, sihua], i) => {
               const color = ['rgba(52,211,153,0.7)', 'rgba(96,165,250,0.7)', 'rgba(250,204,21,0.7)', 'rgba(248,113,113,0.7)'][i];
               return (
               <motion.button key={label}
@@ -271,11 +270,7 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
   }
 
   if (index === 3) {
-    const patterns = [
-      { name: t('features.patternRecognition.points.0').split('：')[0] || '杀破狼格', desc: '开创进取之命', ok: true },
-      { name: t('features.patternRecognition.points.0').split('、')[1]?.split('、')[0] || '廉相格', desc: '行政印绶之格', ok: true },
-      { name: '化忌入命', desc: '需关注心理课题', ok: false },
-    ];
+    const patterns = getPatternDemo(locale);
     return (
       <div className="flex flex-col gap-3 h-full justify-center">
         {patterns.map((p, i) => (
@@ -309,6 +304,7 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
 // ─── 主页 ─────────────────────────────────────────────────
 export default function HomePage() {
   const router = useRouter();
+  const locale = useLocale();
   const { theme } = useTheme();
   const c = useColors(theme);
   const t = useTranslations('home');
@@ -440,13 +436,13 @@ export default function HomePage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.8 }}
             className="mt-12 grid grid-cols-7 gap-1.5 max-w-[540px] mx-auto">
-            {STARS.map((star, i) => (
-              <motion.div key={star.name}
+            {DEMO_MAJOR_STARS.map((star, i) => (
+              <motion.div key={star}
                 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.05 + i * 0.03, duration: 0.35 }}
                 className="flex items-center justify-center px-2 py-1 rounded-full"
                 style={{ background: c.starBg, border: `1px solid ${c.starBorder}` }}>
-                <span className="text-[11px] tracking-wide" style={{ color: c.starText }}>{star.name}</span>
+                <span className="text-[11px] tracking-wide" style={{ color: c.starText }}>{localizeTerm(star, locale)}</span>
               </motion.div>
             ))}
           </motion.div>

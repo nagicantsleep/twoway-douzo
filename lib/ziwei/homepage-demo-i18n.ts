@@ -149,3 +149,56 @@ export function getDemoBrief(
     brief: pickLocale(entry.brief, locale),
   };
 }
+
+/** Algorithm keys for homepage chart-display demo (display via localizeTerm). */
+export const DEMO_MAJOR_STARS = [
+  '紫微', '天机', '太阳', '武曲', '天同', '廉贞', '天府',
+  '太阴', '贪狼', '巨门', '天相', '天梁', '七杀', '破军',
+] as const;
+
+export const DEMO_ZIWEI_STARS = [
+  '紫微', '天机', '太阳', '武曲', '天同', '廉贞',
+] as const;
+
+export const DEMO_TIANFU_STARS = [
+  '天府', '太阴', '贪狼', '巨门', '天相', '天梁', '七杀', '破军',
+] as const;
+
+/** [full sihua label, short key for localizeTerm] */
+export const DEMO_SIHUA = [
+  ['化禄', '禄'],
+  ['化权', '权'],
+  ['化科', '科'],
+  ['化忌', '忌'],
+] as const;
+
+/**
+ * Pattern-recognition feature visual — dedicated strings (do not parse feature bullets).
+ */
+const PATTERN_DEMO: { name: LocaleText; desc: LocaleText; ok: boolean }[] = [
+  {
+    name: { zh: '杀破狼格', vi: 'Sát Phá Lang cách' },
+    desc: { zh: '开创进取之命', vi: 'Mệnh khai sáng, tiến thủ' },
+    ok: true,
+  },
+  {
+    name: { zh: '廉相格', vi: 'Liêm Tướng cách' },
+    desc: { zh: '行政印绶之格', vi: 'Cách ấn thụ hành chính' },
+    ok: true,
+  },
+  {
+    name: { zh: '化忌入命', vi: 'Hóa Kỵ nhập Mệnh' },
+    desc: { zh: '需关注心理课题', vi: 'Cần chú ý đề tài tâm lý' },
+    ok: false,
+  },
+];
+
+export function getPatternDemo(
+  locale: string,
+): { name: string; desc: string; ok: boolean }[] {
+  return PATTERN_DEMO.map((p) => ({
+    name: pickLocale(p.name, locale),
+    desc: pickLocale(p.desc, locale),
+    ok: p.ok,
+  }));
+}

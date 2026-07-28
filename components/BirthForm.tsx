@@ -7,6 +7,7 @@ import { SHICHEN } from '@/lib/ziwei/constants';
 import { useTheme } from '@/components/ThemeProvider';
 import { PROVINCES } from '@/lib/ziwei/cities';
 import { localizePlaceName } from '@/lib/ziwei/cities-i18n';
+import { localizeTerm } from '@/lib/ziwei/terms';
 
 export interface BirthFormState {
   name: string;
@@ -123,8 +124,14 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
   const summaryText = showSummary
     ? [
         `${y} ${t('labels.year')}${m} ${t('labels.month')}${d} ${t('labels.day')}`,
-        form.city || (form.province ? form.province : ''),
-        form.unknownTime ? t('summary.unknownHour') : `${SHICHEN_NAMES[branch]}${t('labels.hourSuffix')}`,
+        form.city
+          ? localizePlaceName(form.city, locale)
+          : form.province
+            ? localizePlaceName(form.province, locale)
+            : '',
+        form.unknownTime
+          ? t('summary.unknownHour')
+          : `${localizeTerm(SHICHEN_NAMES[branch], locale)}${t('labels.hourSuffix')}`,
         form.gender === 'male' ? t('field.male') : t('field.female'),
       ].filter(Boolean).join(' · ')
     : '';
@@ -374,7 +381,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
           {/* True solar time result */}
           <div style={{ textAlign: 'center', padding: '4px 0' }}>
             <span style={{ fontSize: '10px', color: isDark ? 'rgba(170,195,220,0.75)' : 'rgba(140,100,20,0.5)' }}>
-              {t('field.trueSolar', { hourName: SHICHEN_NAMES[branch], range: shichenInfo?.range ?? '' })}
+              {t('field.trueSolar', { hourName: localizeTerm(SHICHEN_NAMES[branch], locale), range: shichenInfo?.range ?? '' })}
             </span>
           </div>
         </div>

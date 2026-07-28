@@ -14,7 +14,7 @@ const ALLOWLIST = [
   'components/InsightPanel.tsx', // PALACE_NAME_TO_ROLE_KEY algorithm keys
   'components/StarDetailPanel.tsx', // algorithm star-name keys (lucky/sha) + sihua color keys
   'components/LocaleSwitcher.tsx',
-  'app/[locale]/page.tsx', // homepage demo star/sihua algorithm keys (briefs localized via homepage-demo-i18n)
+  // homepage algorithm keys + pattern demo copy live in lib/ziwei/homepage-demo-i18n.ts
 ];
 
 const SCAN_ROOTS = ['components', 'app'];

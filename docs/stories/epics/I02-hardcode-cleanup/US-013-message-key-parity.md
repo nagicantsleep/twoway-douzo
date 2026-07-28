@@ -1,7 +1,7 @@
 # US-013: Backfill message key parity vi↔zh
 
 **Lane**: normal
-**Status**: planned
+**Status**: implemented
 **Initiative**: I02
 
 ## Scope

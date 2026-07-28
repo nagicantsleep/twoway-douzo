@@ -1,4 +1,19 @@
 {
+  "card": {
+    "title": "紫微命盘",
+    "sloganLine1": "紫微为门 · 天地人为路",
+    "sloganLine2": "倪海夏为师 · AI 答疑伴学",
+    "sloganCta": "扫码起你的命盘 →",
+    "currentDaxian": "当前大限",
+    "age": "岁",
+    "subtitle": "倪海夏正宗 · ZI WEI",
+    "emptyPalace": "空宫",
+    "centerLabel": "ZI WEI"
+  },
+  "gender": {
+    "male": "男命",
+    "female": "女命"
+  },
   "modal": {
     "title": "✦ 分享命盘",
     "snsHint": "朋友圈 / 微信 / 抖音 / 小红书 都能用",
@@ -11,23 +26,6 @@
     "usageLine2": "· 复制链接发给微信好友，对方点开看自己的盘起点",
     "done": "完成",
     "error": "图片生成失败，请截图保存或刷新重试"
-  },
-  "card": {
-    "title": "紫微命盘",
-    "subtitle": "倪海夏正宗 · ZI WEI",
-    "centerLabel": "ZI WEI",
-    "centerTitle": "紫微斗数",
-    "mingGong": "命宫 · {branch}",
-    "shenGong": "身宫 · {branch}",
-    "mingPalace": "命 宫 · {branch}",
-    "currentDaxian": "当前大限 ",
-    "ageSuffix": " 岁 · ",
-    "slogan": "紫微为门 · 天地人为路",
-    "sloganSub": "倪海夏为师 · AI 答疑伴学",
-    "scanHint": "扫码起你的命盘 →",
-    "genderMale": "男命",
-    "genderFemale": "女命",
-    "emptyPalace": "空宫"
   },
   "filename": "紫微命盘_{timestamp}.png"
 }

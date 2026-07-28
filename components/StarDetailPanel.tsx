@@ -99,7 +99,7 @@ export default function StarDetailPanel({ star, palaceName, onClose }: StarDetai
                   {desc.keywords.split('·').filter(k => k.trim()).map(k => (
                     <span key={k} className="text-[11px] px-2 py-0.5 rounded-full"
                       style={{ color: 'var(--t-gold)', border: '1px solid rgba(212,168,67,0.2)', background: 'rgba(212,168,67,0.06)' }}>
-                      {k.trim()}
+                      {localizeTerm(k.trim(), locale)}
                     </span>
                   ))}
                 </div>

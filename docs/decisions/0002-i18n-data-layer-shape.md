@@ -22,6 +22,16 @@ already uses next-intl JSON; algorithm keys stay Chinese.
 | Classics chapter bodies | **Accepted ZH island** (backlog #12) | Original + vernacular + niNote stay Chinese source until a dedicated translation slice; UI chrome + `/vi` source note explain this (US-026 / US-028) |
 | City display names | Province + **all** city/prefecture labels in `cities-i18n.ts` (US-029 / backlog #11) | Algorithm keys stay Chinese; UI uses `localizePlaceName` |
 | AI prompts | Split `prompts.zh.ts` / `prompts.vi.ts` + `prompts.ts` selector | Matches I02 US-019; locale from `useLocale()` |
+| Star trait keywords + nature labels | **Option C** atoms in `terms.ts` + `localizeTerm` (US-030) | `STAR_DESCRIPTIONS.keywords` / `getMingGongSummary` stay Chinese keys; UI chips localize in `StarDetailPanel` / `ChartSummary` |
+| High-visibility decorative EN tags | Prefer VI on `/vi` when the tag is a section eyebrow (US-030: `famousCharts.tag`) | Other brand-Latin tags (e.g. `CURRICULUM`) may remain intentional; do not leave raw EN that reads as unfinished copy |
+
+## Teacher naming (canonical VI)
+
+| Form | Use |
+| --- | --- |
+| **Ni Hà Hạ** | Full personal name in product copy |
+| **Ni Sư** | Short honorific (aligns with ZH 倪师) |
+| Avoid as primary | “Thầy Nghê” (phonetic nickname; not product voice) |
 
 ## Accepted ZH islands (I02 exit)
 
@@ -42,8 +52,11 @@ open hardcode bugs:
 - Library chapter pages must show a localized source note on `/vi`
   when bodies remain Chinese.
 - BirthForm place dropdowns use `localizePlaceName` for all cities.
+- Keyword / nature chips must call `localizeTerm(...)` — never render
+  raw atoms from `constants.ts` / `patterns.ts` on `/vi`.
+- VI long-form referring to the teacher uses **Ni Hà Hạ** / **Ni Sư**.
 
 ## Related
 - Decision 0003 (zh primary + vi second)
-- Initiative I02 US-017 / US-018 / US-019 / US-026 / US-028 / US-029
+- Initiative I02 US-017 / US-018 / US-019 / US-026 / US-028 / US-029 / US-030
 - Harness backlog #12 (classics bodies)

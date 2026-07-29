@@ -15,10 +15,17 @@ if (fs.existsSync(libDir)) {
   env.LD_LIBRARY_PATH = [libDir, env.LD_LIBRARY_PATH].filter(Boolean).join(':');
 }
 
-const result = spawnSync('npx', ['playwright', 'test', ...process.argv.slice(2)], {
+const cliJs = path.join(root, 'node_modules', '@playwright', 'test', 'cli.js');
+const bin = fs.existsSync(cliJs)
+  ? process.execPath
+  : 'npx';
+const args = fs.existsSync(cliJs)
+  ? [cliJs, 'test', ...process.argv.slice(2)]
+  : ['playwright', 'test', ...process.argv.slice(2)];
+
+const result = spawnSync(bin, args, {
   cwd: root,
   env,
   stdio: 'inherit',
-  shell: process.platform === 'win32',
 });
 process.exit(result.status ?? 1);

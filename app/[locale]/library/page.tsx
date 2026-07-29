@@ -5,7 +5,7 @@
  */
 
 import { Link } from '@/i18n/navigation';
-import { ALL_BOOKS, TOTAL_PARAGRAPHS } from '@/lib/classics';
+import { ALL_BOOKS, TOTAL_PARAGRAPHS, localizeBookChrome } from '@/lib/classics';
 import LibrarySearch from './LibrarySearch';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -68,7 +68,9 @@ export default async function LibraryHomePage({ params }: Props) {
       {/* 古籍列表 */}
       <div className="max-w-5xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ALL_BOOKS.map(book => (
+          {ALL_BOOKS.map(book => {
+            const chrome = localizeBookChrome(book, locale);
+            return (
             <Link
               key={book.slug}
               href={`/library/${book.slug}`}
@@ -85,13 +87,13 @@ export default async function LibraryHomePage({ params }: Props) {
               className="hover:shadow-lg"
             >
               <div style={{ fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.2em', marginBottom: '6px' }}>
-                {book.dynasty} · {book.author.split(' ')[0]}
+                {chrome.dynasty} · {chrome.author.split(/[（(]/)[0]}
               </div>
               <div style={{ fontSize: '20px', fontWeight: 600, color: 'var(--tx-0)', marginBottom: '10px', letterSpacing: '0.1em' }}>
-                《{book.title}》
+                《{chrome.title}》
               </div>
               <div style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, marginBottom: '14px' }}>
-                {book.intro}
+                {chrome.intro}
               </div>
               <div style={{ display: 'flex', gap: '12px', fontSize: '11px', color: 'var(--tx-3)' }}>
                 <span>{t('bookMeta.chapters', { chapters: book.chapters.length })}</span>
@@ -109,7 +111,8 @@ export default async function LibraryHomePage({ params }: Props) {
                 {t('about.enterLink')}
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {/* 底部说明 */}

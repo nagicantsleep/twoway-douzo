@@ -1,13 +1,20 @@
 /**
  * /library/[book]/[chapter] — chapter reading page
  *
- * Chrome (nav / labels / SEO) is bilingual via next-intl.
- * Classic body text (paragraphs / translation / niNote) stays Chinese source text.
+ * Chrome + vernacular + niNote are locale-aware (US-031).
+ * Classical paragraph text stays Chinese source.
  */
 
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
-import { ALL_BOOKS, getChapter } from '@/lib/classics';
+import {
+  ALL_BOOKS,
+  getChapter,
+  localizeBookChrome,
+  localizeChapterChrome,
+  localizeParagraphExtras,
+  bookHasViBody,
+} from '@/lib/classics';
 import { routing } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
@@ -26,16 +33,23 @@ export async function generateMetadata({ params }: Props) {
   const result = getChapter(bookSlug, parseInt(chIdx));
   if (!result) return {};
   const t = await getTranslations({ locale, namespace: 'library' });
+  const bookChrome = localizeBookChrome(result.book, locale);
+  const chapterChrome = localizeChapterChrome(
+    bookSlug,
+    result.chapterIdx,
+    result.chapter,
+    locale,
+  );
   return {
     title: t('chapter.seoTitle', {
-      chapter: result.chapter.title,
-      book: result.book.title,
+      chapter: chapterChrome.title,
+      book: bookChrome.title,
     }),
     description:
-      result.chapter.subtitle ||
+      chapterChrome.subtitle ||
       t('chapter.seoDescription', {
-        book: result.book.title,
-        chapter: result.chapter.title,
+        book: bookChrome.title,
+        chapter: chapterChrome.title,
       }),
   };
 }
@@ -47,18 +61,22 @@ export default async function ChapterPage({ params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'library' });
   const { book, chapter, chapterIdx } = result;
+  const bookChrome = localizeBookChrome(book, locale);
+  const chapterChrome = localizeChapterChrome(bookSlug, chapterIdx, chapter, locale);
   const prevIdx = chapterIdx - 1;
   const nextIdx = chapterIdx + 1;
+  const showSourceNote =
+    locale === 'vi' || (locale === 'zh' && bookHasViBody(book.slug));
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
       <div className="px-6 py-4 flex items-center justify-between"
         style={{ borderBottom: '1px solid rgba(184,146,42,0.15)', background: 'var(--bg-page)' }}>
         <Link href={`/library/${book.slug}`} style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.3em', textDecoration: 'none' }}>
-          {t('chapter.backToToc', { book: book.title })}
+          {t('chapter.backToToc', { book: bookChrome.title })}
         </Link>
         <div style={{ fontSize: '12px', color: 'var(--tx-3)', letterSpacing: '0.15em' }}>
-          {chapter.title}
+          {chapterChrome.title}
         </div>
         <Link href="/library" style={{ fontSize: '12px', color: 'var(--ac)', letterSpacing: '0.2em', textDecoration: 'none' }}>
           {t('chapter.backToLibrary')}
@@ -68,17 +86,17 @@ export default async function ChapterPage({ params }: Props) {
       <article className="max-w-3xl mx-auto px-6 py-12">
         <div className="text-center mb-10">
           <div style={{ fontSize: '11px', color: 'var(--tx-3)', letterSpacing: '0.25em', marginBottom: '8px' }}>
-            {t('chapter.bookMeta', { book: book.title, dynasty: book.dynasty })}
+            {t('chapter.bookMeta', { book: bookChrome.title, dynasty: bookChrome.dynasty })}
           </div>
           <h1 style={{ fontSize: 'clamp(24px, 3.5vw, 36px)', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.15em', marginBottom: '8px' }}>
-            {chapter.title}
+            {chapterChrome.title}
           </h1>
-          {chapter.subtitle && (
+          {chapterChrome.subtitle && (
             <div style={{ fontSize: '13px', color: 'var(--tx-2)', letterSpacing: '0.1em' }}>
-              {chapter.subtitle}
+              {chapterChrome.subtitle}
             </div>
           )}
-          {locale === 'vi' && (
+          {showSourceNote && (
             <p style={{ fontSize: '12px', color: 'var(--tx-3)', marginTop: '12px', lineHeight: 1.6 }}>
               {t('chapter.sourceNote')}
             </p>
@@ -86,74 +104,77 @@ export default async function ChapterPage({ params }: Props) {
         </div>
 
         <div style={{ background: 'var(--bg-card)', borderRadius: '14px', border: '1px solid rgba(184,146,42,0.2)', padding: '32px 28px' }}>
-          {chapter.paragraphs.map((p, i) => (
-            <div
-              key={p.id}
-              id={p.id}
-              style={{
-                marginBottom: i === chapter.paragraphs.length - 1 ? 0 : '20px',
-                paddingBottom: i === chapter.paragraphs.length - 1 ? 0 : '20px',
-                borderBottom: i === chapter.paragraphs.length - 1 ? 'none' : '1px dashed rgba(184,146,42,0.15)',
-                scrollMarginTop: '80px',
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: '12px',
-              }}>
-                <span style={{
-                  fontSize: '11px',
-                  color: 'var(--ac)',
-                  fontWeight: 600,
-                  letterSpacing: '0.1em',
-                  minWidth: '24px',
+          {chapter.paragraphs.map((p, i) => {
+            const extras = localizeParagraphExtras(p, locale);
+            return (
+              <div
+                key={p.id}
+                id={p.id}
+                style={{
+                  marginBottom: i === chapter.paragraphs.length - 1 ? 0 : '20px',
+                  paddingBottom: i === chapter.paragraphs.length - 1 ? 0 : '20px',
+                  borderBottom: i === chapter.paragraphs.length - 1 ? 'none' : '1px dashed rgba(184,146,42,0.15)',
+                  scrollMarginTop: '80px',
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '12px',
                 }}>
-                  {String(p.idx).padStart(2, '0')}
-                </span>
-                <p style={{
-                  flex: 1,
-                  fontSize: '16px',
-                  color: 'var(--tx-0)',
-                  lineHeight: 2,
-                  letterSpacing: '0.04em',
-                  fontFamily: '"PingFang SC", "Hiragino Sans GB", serif',
-                }}>
-                  {p.text}
-                </p>
+                  <span style={{
+                    fontSize: '11px',
+                    color: 'var(--ac)',
+                    fontWeight: 600,
+                    letterSpacing: '0.1em',
+                    minWidth: '24px',
+                  }}>
+                    {String(p.idx).padStart(2, '0')}
+                  </span>
+                  <p style={{
+                    flex: 1,
+                    fontSize: '16px',
+                    color: 'var(--tx-0)',
+                    lineHeight: 2,
+                    letterSpacing: '0.04em',
+                    fontFamily: '"PingFang SC", "Hiragino Sans GB", serif',
+                  }}>
+                    {p.text}
+                  </p>
+                </div>
+                {extras.translation && (
+                  <div style={{
+                    marginTop: '8px',
+                    marginLeft: '36px',
+                    padding: '8px 12px',
+                    background: 'rgba(184,146,42,0.05)',
+                    borderRadius: '6px',
+                    fontSize: '13px',
+                    color: 'var(--tx-2)',
+                    lineHeight: 1.8,
+                  }}>
+                    <span style={{ fontSize: '10px', color: 'var(--ac)', marginRight: '6px' }}>{t('chapter.vernacular')}</span>
+                    {extras.translation}
+                  </div>
+                )}
+                {extras.niNote && (
+                  <div style={{
+                    marginTop: '8px',
+                    marginLeft: '36px',
+                    padding: '8px 12px',
+                    background: 'rgba(196,90,45,0.05)',
+                    borderRadius: '6px',
+                    fontSize: '13px',
+                    color: 'var(--tx-2)',
+                    lineHeight: 1.8,
+                  }}>
+                    <span style={{ fontSize: '10px', color: 'var(--ji)', marginRight: '6px' }}>{t('chapter.niNote')}</span>
+                    {extras.niNote}
+                  </div>
+                )}
               </div>
-              {p.translation && (
-                <div style={{
-                  marginTop: '8px',
-                  marginLeft: '36px',
-                  padding: '8px 12px',
-                  background: 'rgba(184,146,42,0.05)',
-                  borderRadius: '6px',
-                  fontSize: '13px',
-                  color: 'var(--tx-2)',
-                  lineHeight: 1.8,
-                }}>
-                  <span style={{ fontSize: '10px', color: 'var(--ac)', marginRight: '6px' }}>{t('chapter.vernacular')}</span>
-                  {p.translation}
-                </div>
-              )}
-              {p.niNote && (
-                <div style={{
-                  marginTop: '8px',
-                  marginLeft: '36px',
-                  padding: '8px 12px',
-                  background: 'rgba(196,90,45,0.05)',
-                  borderRadius: '6px',
-                  fontSize: '13px',
-                  color: 'var(--tx-2)',
-                  lineHeight: 1.8,
-                }}>
-                  <span style={{ fontSize: '10px', color: 'var(--ji)', marginRight: '6px' }}>{t('chapter.niNote')}</span>
-                  {p.niNote}
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div style={{ marginTop: '24px', display: 'flex', justifyContent: 'space-between', gap: '12px' }}>
@@ -171,7 +192,9 @@ export default async function ChapterPage({ params }: Props) {
               }}
             >
               <div style={{ fontSize: '10px', color: 'var(--tx-3)', letterSpacing: '0.2em', marginBottom: '2px' }}>{t('chapter.prev')}</div>
-              <div style={{ fontSize: '13px', fontWeight: 500 }}>{book.chapters[prevIdx].title}</div>
+              <div style={{ fontSize: '13px', fontWeight: 500 }}>
+                {localizeChapterChrome(book.slug, prevIdx, book.chapters[prevIdx], locale).title}
+              </div>
             </Link>
           ) : <div style={{ flex: 1 }} />}
           {nextIdx < book.chapters.length ? (
@@ -189,7 +212,9 @@ export default async function ChapterPage({ params }: Props) {
               }}
             >
               <div style={{ fontSize: '10px', color: 'var(--tx-3)', letterSpacing: '0.2em', marginBottom: '2px' }}>{t('chapter.next')}</div>
-              <div style={{ fontSize: '13px', fontWeight: 500 }}>{book.chapters[nextIdx].title}</div>
+              <div style={{ fontSize: '13px', fontWeight: 500 }}>
+                {localizeChapterChrome(book.slug, nextIdx, book.chapters[nextIdx], locale).title}
+              </div>
             </Link>
           ) : <div style={{ flex: 1 }} />}
         </div>

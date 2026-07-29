@@ -107,3 +107,10 @@ function escapeHtml(s: string): string {
 }
 
 export type { Book, Chapter, Paragraph, SearchHit } from './types';
+export {
+  localizeBookChrome,
+  localizeChapterChrome,
+  localizeParagraphExtras,
+  bookHasViBody,
+  paragraphHasLocalizedBody,
+} from './localize';

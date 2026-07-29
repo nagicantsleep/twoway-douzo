@@ -13,6 +13,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export default function FamousPersonCard({ person }: { person: FamousPerson }) {
   const t = useTranslations('common.famous');
+  const tHome = useTranslations('home');
   const locale = useLocale();
   const catColor = CATEGORY_COLORS[person.category] ?? '#d4a843';
   return (
@@ -31,7 +32,7 @@ export default function FamousPersonCard({ person }: { person: FamousPerson }) {
         {t('tag')}
         <span className="text-[9px] px-2 py-0.5 rounded-full ml-auto"
           style={{ color: catColor, background: catColor + '18', border: `1px solid ${catColor}40` }}>
-          {person.category}
+          {tHome(`famousCharts.categories.${person.category}`)}
         </span>
       </div>
 

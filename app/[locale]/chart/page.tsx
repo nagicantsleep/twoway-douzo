@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import BirthForm, { type BirthFormState } from '@/components/BirthForm';
 import TopBar, { type TimeView } from '@/components/chart/TopBar';
 import ChartBoard from '@/components/chart/ChartBoard';
@@ -12,10 +12,11 @@ import ShareModal from '@/components/ShareModal';
 import { FAMOUS_PERSONS } from '@/lib/ziwei/famous';
 import type { BirthInfo, ZiweiChart, Star, Palace } from '@/lib/ziwei/types';
 import { formToSearchParams, searchParamsToForm, formToBirthInfo } from '@/lib/ziwei/share';
-import { useHistory } from '@/lib/ziwei/history';
+import { formatHistoryLabel, useHistory } from '@/lib/ziwei/history';
 
 export default function ChartPage() {
   const router = useRouter();
+  const locale = useLocale();
   const t = useTranslations('form');
   const tShare = useTranslations('common.share');
 
@@ -245,7 +246,7 @@ export default function ChartPage() {
                         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                         color: 'var(--tx-2)',
                       }}>
-                        {entry.label}
+                        {entry.form ? formatHistoryLabel(entry.form, locale) : entry.label}
                       </span>
                       <button
                         onClick={e => { e.stopPropagation(); removeHistory(entry.id); }}

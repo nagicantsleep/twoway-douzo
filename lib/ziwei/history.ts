@@ -1,5 +1,16 @@
 import { useEffect, useState, useCallback } from 'react';
 import type { BirthFormState } from '@/components/BirthForm';
+import { localizePlaceName } from '@/lib/ziwei/cities-i18n';
+import { localizeTerm } from '@/lib/ziwei/terms';
+
+export function formatHistoryLabel(form: BirthFormState, locale: string): string {
+  return [
+    form.name,
+    `${form.year}${localizeTerm('年', locale)}${form.month}${localizeTerm('月', locale)}${form.day}${localizeTerm('日', locale)}`,
+    form.city ? localizePlaceName(form.city, locale) : form.province ? localizePlaceName(form.province, locale) : '',
+    form.gender === 'male' ? localizeTerm('男', locale) : form.gender === 'female' ? localizeTerm('女', locale) : '',
+  ].filter(Boolean).join(' · ');
+}
 
 const STORAGE_KEY = 'ziwei_history';
 const MAX_ENTRIES = 10;
@@ -22,12 +33,7 @@ export function useHistory() {
   }, []);
 
   const save = useCallback((form: BirthFormState) => {
-    const label = [
-      form.name,
-      `${form.year}年${form.month}月${form.day}日`,
-      form.city || form.province || '',
-      form.gender === 'male' ? '男' : '女',
-    ].filter(Boolean).join(' · ');
+    const label = formatHistoryLabel(form, 'zh');
 
     const entry: HistoryEntry = {
       id: Date.now().toString(),

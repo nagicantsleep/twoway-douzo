@@ -30,11 +30,13 @@ const SIHUA_STYLES: Record<string, string> = {
 
 const SiHuaBadge = ({
   siHua,
+  locale,
   overlay,
   label,
   onClick,
 }: {
   siHua: string;
+  locale: string;
   overlay?: boolean;
   label?: string;
   onClick?: (e: React.MouseEvent) => void;
@@ -50,7 +52,7 @@ const SiHuaBadge = ({
       onClick={onClick}
     >
       {overlay && label && <span className="mr-px opacity-70">{label}</span>}
-      {siHua}
+      {localizeTerm(siHua, locale)}
     </span>
   );
 };
@@ -113,7 +115,7 @@ export default function PalaceCell({
         )}
           style={!isMingGong && !isShenGong ? { color: 'var(--t-faint)' } : undefined}
         >
-          {name}
+          {localizeTerm(name, locale)}
         </span>
         {isMingGong && (
           <span className="text-[7px] text-amber-500/80 border border-amber-500/30 px-0.5 rounded leading-tight">{localizeTerm('命', locale)}</span>
@@ -145,10 +147,11 @@ export default function PalaceCell({
               )}>
                 {localizeTerm(star.name, locale)}
               </span>
-              {star.siHua && <SiHuaBadge siHua={star.siHua} />}
+              {star.siHua && <SiHuaBadge siHua={star.siHua} locale={locale} />}
               {overlaySiHua && (
                 <SiHuaBadge
                   siHua={overlaySiHua}
+                  locale={locale}
                   overlay
                   label={overlayLabel}
                   onClick={e => {
@@ -170,10 +173,11 @@ export default function PalaceCell({
             return (
               <span key={s.name} className="inline-flex items-center text-[9px] text-sky-500/70 leading-tight">
                 {localizeTerm(s.name, locale)}
-                {s.siHua && <SiHuaBadge siHua={s.siHua} />}
+                {s.siHua && <SiHuaBadge siHua={s.siHua} locale={locale} />}
                 {overlaySiHua && (
                   <SiHuaBadge
                     siHua={overlaySiHua}
+                    locale={locale}
                     overlay
                     label={overlayLabel}
                     onClick={e => {
@@ -193,7 +197,7 @@ export default function PalaceCell({
         <div className="flex flex-wrap gap-x-1">
           {shaStars.map(s => (
             <span key={s.name} className="text-[9px] text-red-500/60 leading-tight">
-              {localizeTerm(s.name, locale)}{s.siHua && <SiHuaBadge siHua={s.siHua} />}
+              {localizeTerm(s.name, locale)}{s.siHua && <SiHuaBadge siHua={s.siHua} locale={locale} />}
             </span>
           ))}
         </div>

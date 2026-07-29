@@ -33,17 +33,22 @@ already uses next-intl JSON; algorithm keys stay Chinese.
 | **Ni Sư** | Short honorific (aligns with ZH 倪师) |
 | Avoid as primary | “Thầy Nghê” (phonetic nickname; not product voice) |
 
-## Accepted ZH islands (I02 exit)
+## Accepted ZH islands (I02 exit — closed 2026-07-29)
 
-These surfaces intentionally keep Chinese source text on `/vi` until a
-follow-up story ships a coherent translation slice. They are **not**
-open hardcode bugs:
+These surfaces intentionally keep Chinese (or unused ZH corpora). They
+are **not** open hardcode bugs:
 
 1. ~~**Classics chapter bodies**~~ — closed in US-031 for `lib/classics`
    (titles + vernacular + selective niNote; classical `p.text` remains
-   Chinese by design). **`lib/nihai/*` (~97KB)** still Chinese — follow-up.
+   Chinese by design).
 2. ~~**Remaining city display names**~~ — closed in US-029 (full
    `cities-i18n.ts` coverage; keys remain Chinese).
+3. **`lib/nihai/*` + `heming-knowledge.ts`** — still Chinese; **no UI
+   route imports them yet**. Translate only when a curriculum / heming
+   surface ships.
+4. **Brand-Latin decorative tags** on `/vi` (e.g. `Zi Wei Dou Shu`,
+   `A LETTER TO USERS`) — intentional Latin brand marks unless a later
+   story localizes them.
 
 ## Consequences
 - Callers of famous persons must use `pickLocale(person.field, locale)`.

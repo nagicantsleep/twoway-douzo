@@ -131,17 +131,26 @@ Khối lượng này không vừa một US-010/US-011 tiếp — cần epic riê
 - AI prompt ở locale=vi gửi tiếng Việt cho Claude → response tiếng
   Việt; locale=zh giữ tiếng Trung.
 
-## Status (merged)
+## Status (closed)
 
-Epic merged to `main` via PR #8 (merge commit `6b07000`, tip
-`b860284`). Follow-ups: backlog #12 (classics bodies),
-#7 (Playwright locale e2e). US-025 retired (JA superseded).
-Backlog #11 (city VI labels) closed via US-029.
+**I02 closed on `main` @ `e0ac36c`** (2026-07-29).
+
+| Milestone | Evidence |
+| --- | --- |
+| Epic → main | PR #8 merge commit `6b07000` |
+| Cities VI | US-029 / PR #10 — backlog #11 closed |
+| Keyword/nature + Ni Hà Hạ naming | US-030 / PR #11 |
+| Classics chrome + vernacular + niNote | US-031 / PR #12 — backlog #12 classics closed |
+| Playwright zh↔vi smoke | US-032 / PR #13+#14 — backlog #7 closed |
+| US-025 (JA) | `retired` — superseded by 中越 (Decision 0003) |
+
+**Accepted remaining ZH (not bugs):** classical `Paragraph.text` (Hán văn nguồn); `lib/nihai/*` + unused `heming-knowledge.ts` until a curriculum UI lands; intentional brand-Latin tags (`Zi Wei Dou Shu`, …) per Decision 0002.
 
 ## Open decisions
 
 - ~~Kiến trúc data layer~~ → Decision 0002 Accepted.
 - ~~AI prompt locale split~~ → shipped US-019 (`prompts.{zh,vi}.ts`).
+- ~~I02 exit / accepted ZH islands~~ → closed; nihai deferred only.
 
 ## Trace tier (theo TRACE_SPEC.md)
 

@@ -3,7 +3,8 @@
  * Flag unexpected CJK UI string literals in components/pages.
  * Strips comments first. Allowlists data/prompt files still mid-migration.
  *
- * Also asserts keyword consumers wire localizeTerm (US-030 regression guard).
+ * Also asserts keyword consumers wire localizeTerm (US-030 regression guard)
+ * and that every localizeTerm('…') literal key exists in TERMS.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
@@ -65,6 +66,26 @@ const KEYWORD_CONSUMERS = [
     hint: 'ShareCardCanvas must localize birth place via localizePlaceName',
   },
   {
+    file: 'components/ShareCardCanvas.tsx',
+    mustMatch: /localizeTerm\(\s*['"]年['"]\s*,\s*locale\s*\)/,
+    hint: 'ShareCardCanvas must localize birth year unit via localizeTerm(\'年\', locale)',
+  },
+  {
+    file: 'components/ChartBoard.tsx',
+    mustMatch: /tBoard\(\s*['"]age['"]\s*\)/,
+    hint: 'ChartBoard must localize age suffix via tBoard(\'age\') for both locales',
+  },
+  {
+    file: 'components/ChartBoard.tsx',
+    mustMatch: /localizeTerm\(\s*['"]身宫['"]\s*,\s*locale\s*\)/,
+    hint: 'ChartBoard must localize 身宫 via localizeTerm(\'身宫\', locale)',
+  },
+  {
+    file: 'app/[locale]/page.tsx',
+    mustMatch: /localizeTerm\(\s*label\s*,\s*locale\s*\)/,
+    hint: 'homepage DEMO_SIHUA chips must localize via localizeTerm(label, locale)',
+  },
+  {
     file: 'app/[locale]/chart/page.tsx',
     mustMatch: /entry\.form\s*\?\s*formatHistoryLabel\(entry\.form,\s*locale\)\s*:\s*entry\.label/,
     hint: 'chart page must fall back to entry.label when entry.form is missing',
@@ -99,7 +120,28 @@ function cjkRatio(s) {
   return s.length ? cjk / s.length : 0;
 }
 
+function loadTermsKeys() {
+  const src = readFileSync(join(root, 'lib/ziwei/terms.ts'), 'utf8');
+  return new Set([...src.matchAll(/^\s*'([^']+)':\s*\{/gm)].map((m) => m[1]));
+}
+
 let failed = 0;
+
+const termsKeys = loadTermsKeys();
+const termLiteralRe = /localizeTerm\(\s*(['"])([^'"\\]+)\1/g;
+for (const file of SCAN_ROOTS.flatMap((r) => walk(join(root, r)))) {
+  const rel = relative(root, file).replace(/\\/g, '/');
+  const src = readFileSync(file, 'utf8');
+  let m;
+  termLiteralRe.lastIndex = 0;
+  while ((m = termLiteralRe.exec(src)) !== null) {
+    const key = m[2];
+    if (!termsKeys.has(key)) {
+      console.error(`${rel}: localizeTerm('${key}') missing from TERMS`);
+      failed++;
+    }
+  }
+}
 
 for (const { file, mustMatch, hint } of KEYWORD_CONSUMERS) {
   const src = readFileSync(join(root, file), 'utf8');

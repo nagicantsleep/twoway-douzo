@@ -178,7 +178,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
               <div className="border border-purple-500/30 rounded-lg px-3 py-1.5 text-center"
                 style={{ background: 'rgba(147,51,234,0.06)' }}>
                 <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">{tBoard('currentDaXian')}</div>
-                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}{locale === 'vi' ? ' ' + tBoard('age') : '岁'}</div>
+                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}{locale === 'vi' ? ' ' : ''}{tBoard('age')}</div>
                 <div className="text-[9px] text-purple-500/60">{localizeTerm(dx.palaceName, locale)}</div>
               </div>
             );

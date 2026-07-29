@@ -203,7 +203,7 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
           <div className="text-[11px] tracking-widest mb-2 transition-colors duration-300"
             style={{ color: c.textFaint }}>{t('features.chartDisplay.siHuaGroup')}</div>
           <div className="flex gap-2 flex-wrap">
-            {DEMO_SIHUA.map(([label, sihua], i) => {
+            {DEMO_SIHUA.map(([label], i) => {
               const color = ['rgba(52,211,153,0.7)', 'rgba(96,165,250,0.7)', 'rgba(250,204,21,0.7)', 'rgba(248,113,113,0.7)'][i];
               return (
               <motion.button key={label}
@@ -217,7 +217,7 @@ function FeatureVisual({ index, colors: c, t }: { index: number; colors: ReturnT
                   background: sel === label ? `${color.replace('0.7', '0.15')}` : 'transparent',
                   fontWeight: sel === label ? 600 : 400,
                 }}>
-                {locale === 'vi' ? `Hóa ${localizeTerm(sihua, locale)}` : label}
+                {localizeTerm(label, locale)}
               </motion.button>
               );
             })}

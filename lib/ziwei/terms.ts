@@ -34,6 +34,7 @@ export const TERMS: Record<string, TermEntry> = {
 
   // ── 12 cung ──
   '命宫': { vi: 'Cung Mệnh', zh: '命宫' },
+  '身宫': { vi: 'Cung Thân', zh: '身宫' },
   '兄弟宫': { vi: 'Cung Huynh Đệ', zh: '兄弟宫' },
   '夫妻宫': { vi: 'Cung Phu Thê', zh: '夫妻宫' },
   '子女宫': { vi: 'Cung Tử Nữ', zh: '子女宫' },
@@ -196,6 +197,10 @@ export const TERMS: Record<string, TermEntry> = {
   '女': { vi: 'Nữ', zh: '女' },
   '四化': { vi: 'Tứ Hóa', zh: '四化' },
   '化': { vi: 'hóa', zh: '化' },
+  '化禄': { vi: 'Hóa Lộc', zh: '化禄' },
+  '化权': { vi: 'Hóa Quyền', zh: '化权' },
+  '化科': { vi: 'Hóa Khoa', zh: '化科' },
+  '化忌': { vi: 'Hóa Kỵ', zh: '化忌' },
 
   // ── star detail panel labels ──
   '星曜特质': { vi: 'Tinh Diệu Đặc Chất', zh: '星曜特质' },

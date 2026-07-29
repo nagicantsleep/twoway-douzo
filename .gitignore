@@ -5,6 +5,10 @@ node_modules/
 !.env.example
 dist/
 coverage/
+playwright-report/
+test-results/
+blob-report/
+.playwright-libs/
 *.tsbuildinfo
 .DS_Store
 .gitnexus

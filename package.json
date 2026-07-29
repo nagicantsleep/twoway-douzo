@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "node scripts/run-playwright.mjs",
     "typecheck": "tsc --noEmit",
     "lint:i18n": "node scripts/diff-message-keys.mjs && node scripts/verify-no-hardcode.mjs",
     "prepare": "husky"
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
+    "@playwright/test": "^1.62.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",

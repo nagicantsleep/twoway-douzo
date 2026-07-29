@@ -46,6 +46,20 @@ export const TERMS: Record<string, TermEntry> = {
   '福德宫': { vi: 'Cung Phúc Đức', zh: '福德宫' },
   '父母宫': { vi: 'Cung Phụ Mẫu', zh: '父母宫' },
 
+  // iztro short palace names (no 宫 suffix) — same display as full *宫 entries
+  '兄弟': { vi: 'Cung Huynh Đệ', zh: '兄弟宫' },
+  '夫妻': { vi: 'Cung Phu Thê', zh: '夫妻宫' },
+  '子女': { vi: 'Cung Tử Nữ', zh: '子女宫' },
+  '财帛': { vi: 'Cung Tài Bạch', zh: '财帛宫' },
+  '疾厄': { vi: 'Cung Tật Ách', zh: '疾厄宫' },
+  '迁移': { vi: 'Cung Thiên Di', zh: '迁移宫' },
+  '仆役': { vi: 'Cung Giao Hữu', zh: '交友宫' },
+  '交友': { vi: 'Cung Giao Hữu', zh: '交友宫' },
+  '官禄': { vi: 'Cung Quan Lộc', zh: '官禄宫' },
+  '田宅': { vi: 'Cung Điền Trạch', zh: '田宅宫' },
+  '福德': { vi: 'Cung Phúc Đức', zh: '福德宫' },
+  '父母': { vi: 'Cung Phụ Mẫu', zh: '父母宫' },
+
   // ── 命 / 身 (badge) ──
   '命': { vi: 'Mệnh', zh: '命' },
   '身': { vi: 'Thân', zh: '身' },
@@ -177,6 +191,9 @@ export const TERMS: Record<string, TermEntry> = {
   '大限': { vi: 'Đại Hạn', zh: '大限' },
   '流年': { vi: 'Lưu Niên', zh: '流年' },
   '年': { vi: 'năm', zh: '年' },
+  '限': { vi: 'hạn', zh: '限' },
+  '男': { vi: 'Nam', zh: '男' },
+  '女': { vi: 'Nữ', zh: '女' },
   '四化': { vi: 'Tứ Hóa', zh: '四化' },
   '化': { vi: 'hóa', zh: '化' },
 

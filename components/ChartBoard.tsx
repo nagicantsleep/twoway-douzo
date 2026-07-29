@@ -78,7 +78,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
     }
     return {};
   })();
-  const overlayLabel = timeView === 'daxian' ? '限' : timeView === 'liunian' ? '年' : undefined;
+  const overlayLabel = timeView === 'daxian' ? localizeTerm('限', locale) : timeView === 'liunian' ? localizeTerm('年', locale) : undefined;
 
   const handlePalaceClick = (branch: number) => {
     const isDeselecting = selectedBranch === branch;

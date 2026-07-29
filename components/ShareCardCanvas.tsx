@@ -9,6 +9,7 @@
 
 import type { ZiweiChart } from '@/lib/ziwei/types';
 import { useLocale, useTranslations } from 'next-intl';
+import { localizePlaceName } from '@/lib/ziwei/cities-i18n';
 import { localizeTerm } from '@/lib/ziwei/terms';
 import { BRANCHES } from '@/lib/ziwei/constants';
 
@@ -106,7 +107,7 @@ export default function ShareCardCanvas({ chart, birth, highlight }: ShareCardPr
             {birth.year}{locale === 'vi' ? ' năm ' : '年'}{birth.month}{locale === 'vi' ? ' tháng ' : '月'}{birth.day}{locale === 'vi' ? ' ngày' : '日'} · {birth.hour.padStart(2,'0')}:{birth.minute.padStart(2,'0')}
             <span style={{ margin: '0 4px', color: '#b8922a' }}>·</span>
             {birth.gender === 'male' ? tGender('male') : tGender('female')}
-            {birth.city && <><span style={{ margin: '0 4px', color: '#b8922a' }}>·</span>{birth.city}</>}
+            {birth.city && <><span style={{ margin: '0 4px', color: '#b8922a' }}>·</span>{localizePlaceName(birth.city, locale)}</>}
           </div>
           <div style={{ fontSize: '8px', color: '#b8922a', letterSpacing: '0.08em', marginTop: '2px' }}>
             wdyziweidoushu666.com

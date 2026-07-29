@@ -34,6 +34,41 @@ const KEYWORD_CONSUMERS = [
     mustMatch: /keywords\.map[\s\S]*?localizeTerm\(\s*k\s*,\s*locale\s*\)/,
     hint: 'ChartSummary must localize keyword chips via localizeTerm(k, locale)',
   },
+  {
+    file: 'components/PalaceCell.tsx',
+    mustMatch: /localizeTerm\(\s*name\s*,\s*locale\s*\)/,
+    hint: 'PalaceCell must localize palace name via localizeTerm(name, locale)',
+  },
+  {
+    file: 'components/PalaceCell.tsx',
+    mustMatch: /localizeTerm\(\s*siHua\s*,\s*locale\s*\)/,
+    hint: 'PalaceCell SiHuaBadge must localize siHua via localizeTerm(siHua, locale)',
+  },
+  {
+    file: 'components/FamousPersonCard.tsx',
+    mustMatch: /famousCharts\.categories\.\$\{person\.category\}/,
+    hint: 'FamousPersonCard must localize category via home.famousCharts.categories',
+  },
+  {
+    file: 'components/ChartBoard.tsx',
+    mustMatch: /localizeTerm\(\s*['"]限['"]\s*,\s*locale\s*\)/,
+    hint: 'ChartBoard must localize daxian overlay label via localizeTerm(\'限\', locale)',
+  },
+  {
+    file: 'components/ChartBoard.tsx',
+    mustMatch: /localizeTerm\(\s*['"]年['"]\s*,\s*locale\s*\)/,
+    hint: 'ChartBoard must localize liunian overlay label via localizeTerm(\'年\', locale)',
+  },
+  {
+    file: 'components/ShareCardCanvas.tsx',
+    mustMatch: /localizePlaceName\(/,
+    hint: 'ShareCardCanvas must localize birth place via localizePlaceName',
+  },
+  {
+    file: 'app/[locale]/chart/page.tsx',
+    mustMatch: /entry\.form\s*\?\s*formatHistoryLabel\(entry\.form,\s*locale\)\s*:\s*entry\.label/,
+    hint: 'chart page must fall back to entry.label when entry.form is missing',
+  },
 ];
 
 const SCAN_ROOTS = ['components', 'app'];

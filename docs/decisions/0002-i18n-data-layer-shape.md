@@ -19,7 +19,7 @@ already uses next-intl JSON; algorithm keys stay Chinese.
 | `STAR_BRIEF_SEO` / `TOPIC_LABEL` | **Option B** `{ zh, vi }` + `pickLocale()` | Short lookup; shipped in US-018 |
 | Homepage demo `STAR_BRIEF` / `SIHUA_BRIEF` | **Option B** `homepage-demo-i18n.ts` | Shipped US-026 |
 | Library chapter chrome | next-intl `library.chapter.*` | Shipped US-026; body text stays ZH |
-| Classics chapter bodies | **Accepted ZH island** (backlog #12) | Original + vernacular + niNote stay Chinese source until a dedicated translation slice; UI chrome + `/vi` source note explain this (US-026 / US-028) |
+| Classics chapter bodies | **Option C** overlay `classics-i18n.ts` (US-031 / backlog #12) | Classical `p.text` stays Chinese; book/chapter chrome (VI) + vernacular/niNote `{ zh, vi }` via `localize*` helpers; nihai corpus deferred |
 | City display names | Province + **all** city/prefecture labels in `cities-i18n.ts` (US-029 / backlog #11) | Algorithm keys stay Chinese; UI uses `localizePlaceName` |
 | AI prompts | Split `prompts.zh.ts` / `prompts.vi.ts` + `prompts.ts` selector | Matches I02 US-019; locale from `useLocale()` |
 | Star trait keywords + nature labels | **Option C** atoms in `terms.ts` + `localizeTerm` (US-030) | `STAR_DESCRIPTIONS.keywords` / `getMingGongSummary` stay Chinese keys; UI chips localize in `StarDetailPanel` / `ChartSummary` |
@@ -39,8 +39,9 @@ These surfaces intentionally keep Chinese source text on `/vi` until a
 follow-up story ships a coherent translation slice. They are **not**
 open hardcode bugs:
 
-1. **Classics / nihai chapter bodies** — `p.text` / `p.translation` /
-   `p.niNote` in `lib/classics` (backlog #12).
+1. ~~**Classics chapter bodies**~~ — closed in US-031 for `lib/classics`
+   (titles + vernacular + selective niNote; classical `p.text` remains
+   Chinese by design). **`lib/nihai/*` (~97KB)** still Chinese — follow-up.
 2. ~~**Remaining city display names**~~ — closed in US-029 (full
    `cities-i18n.ts` coverage; keys remain Chinese).
 
@@ -49,8 +50,10 @@ open hardcode bugs:
 - Pattern UI uses `localizePatternName` / `localizePatternDescription`.
 - Knowledge / StarDetail long-form use `getKnowledge(..., locale)` /
   `getStarDetail(name, locale)` / `starBriefSeo(star, locale)`.
-- Library chapter pages must show a localized source note on `/vi`
-  when bodies remain Chinese.
+- Library chapter pages use `localizeBookChrome` /
+  `localizeChapterChrome` / `localizeParagraphExtras`; classical text
+  stays Chinese with a source note explaining the bilingual layout.
+- Initiative I02 US-031; harness backlog #12 (classics done; nihai open).
 - BirthForm place dropdowns use `localizePlaceName` for all cities.
 - Keyword / nature chips must call `localizeTerm(...)` — never render
   raw atoms from `constants.ts` / `patterns.ts` on `/vi`.
@@ -58,5 +61,5 @@ open hardcode bugs:
 
 ## Related
 - Decision 0003 (zh primary + vi second)
-- Initiative I02 US-017 / US-018 / US-019 / US-026 / US-028 / US-029 / US-030
-- Harness backlog #12 (classics bodies)
+- Initiative I02 US-017 / US-018 / US-019 / US-026 / US-028 / US-029 / US-030 / US-031
+- Harness backlog #12 (classics closed in US-031; nihai deferred)

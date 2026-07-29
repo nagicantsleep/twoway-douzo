@@ -3,7 +3,12 @@
  */
 
 import { Link } from '@/i18n/navigation';
-import { searchClassics, getParagraphById } from '@/lib/classics';
+import {
+  searchClassics,
+  getParagraphById,
+  localizeBookChrome,
+  localizeChapterChrome,
+} from '@/lib/classics';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 
@@ -89,6 +94,12 @@ export default async function SearchPage({
             {hits.map((hit, i) => {
               const ctx = getParagraphById(hit.paragraphId);
               const chapterIdx = ctx?.chapterIdx ?? 0;
+              const bookTitle = ctx
+                ? localizeBookChrome(ctx.book, locale).title
+                : hit.bookTitle;
+              const chapterTitle = ctx
+                ? localizeChapterChrome(hit.bookSlug, chapterIdx, ctx.chapter, locale).title
+                : hit.chapterTitle;
               return (
                 <Link
                   key={i}
@@ -113,9 +124,9 @@ export default async function SearchPage({
                     marginBottom: '8px',
                     letterSpacing: '0.1em',
                   }}>
-                    <span style={{ color: 'var(--ac)', fontWeight: 600 }}>《{hit.bookTitle}》</span>
+                    <span style={{ color: 'var(--ac)', fontWeight: 600 }}>《{bookTitle}》</span>
                     <span style={{ opacity: 0.5 }}>·</span>
-                    <span>{hit.chapterTitle}</span>
+                    <span>{chapterTitle}</span>
                   </div>
                   <div
                     style={{

@@ -58,10 +58,10 @@
     "backToToc": "← 《{book}》 mục lục",
     "backToLibrary": "Thư viện cổ tịch →",
     "bookMeta": "《{book}》· {dynasty}",
-    "vernacular": "Bạch thoại (Trung)",
-    "niNote": "Ni sư chú (Trung)",
+    "vernacular": "Bạch thoại",
+    "niNote": "Chú giải Ni Sư",
     "prev": "← Chương trước",
     "next": "Chương sau →",
-    "sourceNote": "Nguyên văn · bạch thoại · chú giải Ni sư đang giữ bản tiếng Trung (nguồn cổ tịch). Nhãn điều hướng đã Việt hóa; bản dịch Việt theo chương sẽ bổ sung sau."
+    "sourceNote": "Nguyên văn cổ tịch giữ tiếng Hán. Tiêu đề chương, bạch thoại và chú giải Ni Sư đã Việt hóa. Hệ《Thiên Kỷ》của Ni Hà Hạ (nihai) sẽ bổ sung riêng."
   }
 }

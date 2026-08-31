@@ -21,3 +21,7 @@ harness.db
 .omc/state/sessions/*/pre-tool-advisory-throttle.json
 .omc/state/sessions/*/subagent-tracking-state.json
 .omc/state/sessions/*/session-started.json
+
+# Harness core maintenance binary
+scripts/bin/harness
+scripts/bin/harness.exe

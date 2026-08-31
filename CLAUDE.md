@@ -46,8 +46,8 @@ This project is indexed by GitNexus as **twoway-douzo** (920 symbols, 1456 relat
 
 ## Workflow (MANDATORY)
 
-**Mọi thay đổi code đều phải đi qua intake gate trước.**  
-Repo này **không dùng GitHub Issues** (`has_issues: false`). Source-of-truth cho task state là **`harness.db`** (SQLite, local, `.gitignore`d).
+**Quy trình theo Repository Harness protocol (harness core 0.1.10) — tham chiếu chính: `docs/WORKFLOW.md`.**  
+Repo này **không dùng GitHub Issues** (`has_issues: false`). Task state sống trong repo: plans (`docs/plans/`), stories (`docs/stories/`), decisions (`docs/decisions/`).
 
 ### Workflow Overview
 
@@ -55,48 +55,33 @@ Repo này **không dùng GitHub Issues** (`has_issues: false`). Source-of-truth 
 User prompt
     |
     v
-1. Classify input type (docs/FEATURE_INTAKE.md)
-2. Record intake: scripts/bin/harness-cli intake ...
-3. Identify story(s) from matrix: scripts/bin/harness-cli query matrix
-4. Risk lane → determine depth
-5. Branch theo docs/BRANCHING.md
-6. Implement → commit theo Conventional Commits
-7. Verify: story verify + proof booleans
-8. Record trace: scripts/bin/harness-cli trace ...
-9. Merge PR theo docs/BRANCHING.md
-10. Cập nhật harness: story update --status implemented
+1. Chọn work shape (docs/WORKFLOW.md): read-only | bounded | multi-session
+2. Multi-session/coordinated → tạo plan: docs/plans/active/<plan>.md
+   (từ docs/templates/exec-plan.md; progress + decision task-local giữ trong cùng file)
+3. Material product ambiguity → DỪNG trước khi sửa, hỏi user quyết định nhỏ nhất
+4. Branch theo docs/BRANCHING.md
+5. Implement → commit theo Conventional Commits
+6. Verify bằng proof thực (tests/e2e/lint) — checklist không phải proof
+7. Merge PR theo docs/BRANCHING.md
+8. Plan validated xong → chuyển sang docs/plans/completed/
 ```
 
-### 1. Intake Gate
+### 1. Authority & Judgment Boundary
 
-Mỗi task bắt đầu bằng intake classification. Xem `docs/FEATURE_INTAKE.md` để xác định input type và risk lane.
-
-```bash
-scripts/bin/harness-cli intake --type "<input-type>" --summary "<text>" --lane <tiny|normal|high-risk>
-```
-
-Input types: `new spec | spec slice | change request | new initiative | maintenance request | harness improvement`.
-
-Lanes: `tiny` (patch trực tiếp), `normal` (story + validation), `high-risk` (execplan + design + decision records + human confirmation).
+- Repository là system of record: `docs/product/`, `docs/decisions/`, code, tests, CI, runtime signals.
+- **KHÔNG bịa product policy.** Khi request còn mở lựa chọn vật chất (quota, contract, schema, thêm ngôn ngữ mới...): dừng, trình bày lựa chọn + hậu quả, chờ user quyết.
+- Cấu hình mặc định không phải authority. Quy tắc cần enforcement tự động → skill `$encode-invariant` (`.agents/skills/encode-invariant/`).
 
 ### 2. Task Tracking (No GitHub Issues)
 
-Repo không dùng GitHub Issues. Thay thế bằng:
-
 | Thay thế | Bằng |
 |---|---|
-| Issue để track task | Story row trong harness.db |
-| Issue checklist | story contract trong docs/stories/ |
-| Auto-close khi merge | Branch cleanup thủ công + harness update |
-| PR body "Closes #123" | PR body "Story: US-XXX" + link story file |
+| Issue để track task | Plan file trong `docs/plans/active/` |
+| Issue checklist | Task list + progress ngay trong plan file |
+| Auto-close khi merge | Branch cleanup + chuyển plan sang `docs/plans/completed/` |
+| PR body "Closes #123" | PR body tham chiếu plan/story file |
 
-**Quy tắc:**
-
-- Mỗi US (user story) có row trong `harness.db` với id như `US-001`, `US-002`, ...
-- `scripts/bin/harness-cli query matrix` để xem trạng thái tất cả stories.
-- Story workflow: `planned → implemented → verified` (status trong CLI).
-- Khi bắt đầu story: kiểm tra `scripts/bin/harness-cli query matrix` để biết story đã planned chưa.
-- Khi hoàn thành: update status + chạy verify.
+Story packets cũ trong `docs/stories/` (US-001…US-032) giữ nguyên làm lịch sử. Story mới chỉ tạo khi công việc vẫn map 1:1 với branch `feat/<us-id>-<slug>`.
 
 ### 3. Branch & Commit
 
@@ -116,40 +101,17 @@ Commit convention:
 Story: US-XXX
 ```
 
-### 4. Implementation & Harness Proof
+### 4. Implementation & Proof
 
 **Trước khi code:**
 - Đọc `docs/BRANCHING.md` để biết branch đích.
-- Với normal/high-risk: tạo story file từ template nếu chưa có.
+- Work multi-session: tạo plan file trước khi sửa code.
 
 **Sau khi code:**
-```bash
-scripts/bin/harness-cli story update --id US-XXX --status implemented
-scripts/bin/harness-cli story update --id US-XXX --unit 1 --integration 0 --e2e 0 --platform 0
-scripts/bin/harness-cli story verify US-XXX
-```
+- Chạy proof thực tế và nêu kết quả: `npm run typecheck`, `npm run test`, `npm run lint:i18n`, `npm run test:e2e` (tùy phạm vi thay đổi).
+- Plan/checklist/completion message không được tính là proof behavior.
 
-### 5. Trace
-
-Mọi task phải ghi trace. Mức depth tùy theo lane (xem `docs/TRACE_SPEC.md`):
-
-| Lane | Trace tier |
-|---|---|
-| Tiny | Minimal |
-| Normal | Standard |
-| High-risk | Detailed |
-
-```bash
-scripts/bin/harness-cli trace \
-  --summary "<what was done>" \
-  --story US-XXX \
-  --outcome completed \
-  --actions "..." \
-  --changed "file1.ts,file2.ts" \
-  --friction "<none or description>"
-```
-
-### 6. Merge & Cleanup
+### 5. Merge & Cleanup
 
 Theo `docs/BRANCHING.md`:
 
@@ -158,24 +120,31 @@ Theo `docs/BRANCHING.md`:
 | feat → epic | squash | Sau mỗi story hoàn thành (auto-proceed, không cần hỏi) |
 | epic → main | merge commit | Sau khi tất cả feature trong epic xong (cần user approval) |
 
-### 7. Harness Friction
-
-Nếu phát hiện thiếu sót trong harness (docs stale, thiếu template, quy trình mơ hồ):
+### 6. Harness Maintenance
 
 ```bash
-scripts/bin/harness-cli backlog add --title "<short name>" --pain "<what was hard>"
+scripts/bin/harness status            # phiên bản đã cài vs target
+scripts/bin/harness doctor            # kiểm tra sức khỏe cài đặt
+scripts/bin/harness update --dry-run  # xem trước bản cập nhật
+scripts/bin/harness update            # conflict → xử lý theo README "Maintain An Installation" (update --continue / --abort)
 ```
+
+Thiếu sót harness / quy trình mơ hồ → đề xuất qua skill `$improve-harness` (explicit-only) hoặc plan trong `docs/plans/active/`.
+
+### 7. Legacy harness-cli (EOL 2026-08-10)
+
+`scripts/bin/harness-cli.exe`, `harness.db`, và docs legacy (`docs/HARNESS.md`, `docs/FEATURE_INTAKE.md`, `docs/TRACE_SPEC.md`, `docs/TEST_MATRIX.md`, `docs/HARNESS_COMPONENTS.md`, `docs/HARNESS_MATURITY.md`) là **archive của protocol v1 đã khai tử**. KHÔNG chạy lệnh `harness-cli` (EOL; binary chỉ có bản Windows, không chạy trên macOS). Giữ nguyên làm lịch sử trừ khi user yêu cầu dọn dẹp rõ ràng.
 
 ### 8. Thứ tự ưu tiên khi đọc docs
 
 Khi bắt đầu task mới, đọc theo thứ tự:
 
 1. `CLAUDE.md` hoặc `AGENTS.md` (workflow này)
-2. `docs/BRANCHING.md` (branch & merge rules)
-3. `docs/HARNESS.md` (harness durable layer)
-4. `docs/FEATURE_INTAKE.md` (risk classification)
-5. `docs/TRACE_SPEC.md` (trace quality tiers)
-6. `scripts/bin/harness-cli query matrix` (trạng thái stories hiện tại)
+2. `docs/WORKFLOW.md` (repository protocol)
+3. `docs/BRANCHING.md` (branch & merge rules)
+4. `docs/decisions/` (đặc biệt 0001–0003 cho i18n)
+5. `docs/plans/active/` (công việc đang dở)
+6. `docs/stories/` + `docs/decisions/0002` (bối cảnh data-layer song ngữ)
 
 ### 9. Quyịn tắc vận hành process
 

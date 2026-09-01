@@ -69,21 +69,28 @@ interface ParsedContent {
 function parseStarContent(content: string): ParsedContent {
   const out: ParsedContent = { dingdiao: '', lundian: '', yiju: '', chuchu: '', raw: content, hasMarkers: false };
   if (!content) return out;
-  if (!content.includes('**【一句话定调】**') && !content.includes('**【核心论断】**')) {
+
+  // Markers stay Chinese in both locales (Decision 0002). Data shape is
+  // `**【marker】section text…**` — section text lives inside the bold and runs
+  // until the next marker. Also accept the legacy `**【marker】**\ntext` shape.
+  const markerRe = /\*\*【([^】]+)】/g;
+  const parts: { name: string; start: number; textStart: number }[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = markerRe.exec(content)) !== null) {
+    parts.push({ name: m[1], start: m.index, textStart: m.index + m[0].length });
+  }
+  if (parts.length === 0) {
     out.lundian = content;
     return out;
   }
   out.hasMarkers = true;
-  const re = /\*\*【([^】]+)】\*\*/g;
-  const parts: { name: string; markerEnd: number; start: number }[] = [];
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(content)) !== null) {
-    parts.push({ name: m[1], start: m.index, markerEnd: m.index + m[0].length });
-  }
   for (let i = 0; i < parts.length; i++) {
     const p = parts[i];
     const end = i + 1 < parts.length ? parts[i + 1].start : content.length;
-    const text = content.slice(p.markerEnd, end).trim();
+    const text = content.slice(p.textStart, end)
+      .replace(/^\*\*\s*/, '')
+      .replace(/\*\*\s*$/, '')
+      .trim();
     if (p.name === '一句话定调') out.dingdiao = text;
     else if (p.name === '核心论断') out.lundian = text;
     else if (p.name === '命盘依据') out.yiju = text;

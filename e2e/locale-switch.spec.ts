@@ -3,15 +3,16 @@ import { test, expect } from '@playwright/test';
 async function dismissAnnouncement(page: import('@playwright/test').Page) {
   const ack = page.getByRole('button', { name: /我知道了|Tôi đã hiểu/ });
   const close = page.getByRole('button', { name: /关闭|Đóng/ });
-  if (await ack.isVisible({ timeout: 2000 }).catch(() => false)) {
-    await ack.click();
-    await expect(ack).toBeHidden({ timeout: 5000 }).catch(() => undefined);
-    return;
+  // The modal mounts asynchronously after hydration — wait for it instead of a
+  // single short poll, otherwise a late mount blocks the locale switcher.
+  const dismissBtn = ack.or(close).first();
+  try {
+    await dismissBtn.waitFor({ state: 'visible', timeout: 10_000 });
+  } catch {
+    return; // modal not shown (already dismissed / removed)
   }
-  if (await close.isVisible({ timeout: 1000 }).catch(() => false)) {
-    await close.click();
-    await expect(close).toBeHidden({ timeout: 5000 }).catch(() => undefined);
-  }
+  await dismissBtn.click();
+  await dismissBtn.waitFor({ state: 'hidden', timeout: 5000 }).catch(() => undefined);
 }
 
 /**
